@@ -135,6 +135,18 @@ namespace tkEngine{
 		{
 			return m_rStickY;
 		}
+
+		//マウスのX座標を返す。
+		float GetMouseX() const
+		{
+			return m_mouseX;
+		}
+
+		//マウスのY座標を返す。
+		float GetMouseY() const
+		{
+			return m_mouseY;
+		}
 	private:
 		PAD_STATE m_state;	//!<パッドステート。
 		int m_padNo = 0;			//!<パッド番号。
@@ -144,5 +156,10 @@ namespace tkEngine{
 		float m_lStickY = 0.0f;		//!<左スティックのY軸の入力量。
 		float m_rStickX = 0.0f;		//!<右スティックのX軸の入力量。
 		float m_rStickY = 0.0f;		//!<右スティックのY軸の入力量。
+
+		float m_mouseX = 0.0f;
+		float m_mouseY = 0.0f;
+		float oldx = 0.0f;
+		float oldy = 0.0f;
 	};
 }
