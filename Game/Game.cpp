@@ -1,12 +1,13 @@
 #include "stdafx.h"
 #include "Game.h"
+#include "BackGround/BackGround.h"
 #include "Player.h"
 #include "Camera/GameCamera.h"
 #include "tkEngine/light/tkDirectionLight.h"
 
 Game::Game()
 {
-	DeleteGO(m_skinModelRender);
+	//DeleteGO(m_skinModelRender);
 }
 
 
@@ -23,8 +24,11 @@ bool Game::Start()
 	MainCamera().Update();*/
 	/*m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(L"modelData/unityChan.cmo");*/
-	NewGO<Player>(0,"player");
+	//NewGO<Player>(0,"player");
+	NewGO <BackGround>(0, "BG");
 	NewGO<GameCamera>(0, "camera");
+
+	
 	
 	return true;
 }

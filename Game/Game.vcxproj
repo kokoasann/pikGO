@@ -1762,6 +1762,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BackGround\BackGround.cpp" />
     <ClCompile Include="Camera\GameCamera.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
@@ -1788,6 +1789,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BackGround\BackGround.h" />
     <ClInclude Include="Camera\GameCamera.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Player.h" />
@@ -1796,6 +1798,7 @@
     <ResourceCompile Include="Game.rc" />
   </ItemGroup>
   <ItemGroup>
+    <MeshContentTask Include="Assets\modelData\map\tesmap.fbx" />
     <MeshContentTask Include="Assets\modelData\Theif\Thethief_H.FBX" />
     <MeshContentTask Include="Assets\modelData\unityChan.fbx" />
   </ItemGroup>

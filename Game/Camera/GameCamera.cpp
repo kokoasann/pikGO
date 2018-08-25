@@ -28,11 +28,11 @@ bool GameCamera::Start()
 	);
 	Scamera.SetTarget({ 0,70,0 });
 	Scamera.SetPosition({ 0,70,200 });
-	Scamera.Update();
+	//camera.Update();
 	return true;
 }
 
 void GameCamera::Update()
 {
-
+	Scamera.Update();
 }

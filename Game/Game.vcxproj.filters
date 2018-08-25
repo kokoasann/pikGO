@@ -20,6 +20,12 @@
     <Filter Include="Camera">
       <UniqueIdentifier>{112d6df6-f398-4eb4-a880-a8a7f8f2d408}</UniqueIdentifier>
     </Filter>
+    <Filter Include="BackGround">
+      <UniqueIdentifier>{693e5a65-e33c-47f6-a75e-c8907703bbe7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\modelData\map">
+      <UniqueIdentifier>{e8990852-d4c3-466b-ae9d-1ab6732ecf6d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -28,6 +34,9 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Camera\GameCamera.cpp">
       <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="BackGround\BackGround.cpp">
+      <Filter>BackGround</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -39,6 +48,9 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Camera\GameCamera.h">
       <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="BackGround\BackGround.h">
+      <Filter>BackGround</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -52,6 +64,9 @@
     </MeshContentTask>
     <MeshContentTask Include="Assets\modelData\Theif\Thethief_H.FBX">
       <Filter>Assets\modelData\Theif</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\map\tesmap.fbx">
+      <Filter>Assets\modelData\map</Filter>
     </MeshContentTask>
   </ItemGroup>
   <ItemGroup>
