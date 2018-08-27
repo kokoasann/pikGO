@@ -11,6 +11,7 @@ public:
 	~Game();
 	bool Start();
 	void Update();
+	prefab::CSpriteRender* point = nullptr;
 	//prefab::CSkinModelRender* m_skinModelRender = nullptr;		//スキンモデルレンダラー。
 };
 

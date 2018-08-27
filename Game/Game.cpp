@@ -2,7 +2,7 @@
 #include "Game.h"
 #include "BackGround/BackGround.h"
 #include "Player.h"
-#include "Fairy/Fairy.h"
+#include "Pixie/Pixie.h"
 #include "Camera/GameCamera.h"
 #include "tkEngine/light/tkDirectionLight.h"
 
@@ -29,8 +29,10 @@ bool Game::Start()
 	NewGO <BackGround>(0, "BG");
 	NewGO<GameCamera>(0, "camera");
 
-	NewGO<Fairy>(0, "f");
+	NewGO<Pixie>(0, "pixie");
 	
+	point = NewGO < prefab::CSpriteRender>(0);
+	point->Init(L"sprite/point.dds", 24, 24);
 	return true;
 }
 

@@ -8,8 +8,8 @@ public:
 	~Player();
 	bool Start() override;
 	void Update() override;
-
 	void Rotation();
+	void PikGet();
 
 	prefab::CSkinModelRender* sr = nullptr;
 	CVector3 pos = CVector3::Zero;

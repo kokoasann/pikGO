@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Player.h"
+#include "Pixie/Pixie.h"
 #include "Camera/GameCamera.h"
 
 Player::Player()
@@ -35,10 +36,37 @@ void Player::Rotation()
 	sr->SetRotation(rot);
 }
 
+void Player::PikGet()
+{
+	if (Pad(0).IsTrigger(enButtonB))
+	{
+		CVector3 vec = cam->GetPos() - cam->GetTar();
+		vec.Normalize();
+		QueryGOs<Pixie>("pixie", [&](Pixie* pix)->bool
+		{
+			CVector3 p = pix->pos;
+			p.y += 35;
+			CVector3 dif = pos - p;
+			
+			if (dif.Length() < 200)
+			{
+				CVector3 piv = cam->pos - pix->pos;
+				piv.Normalize();
+
+				float cta = piv.Dot(vec);
+				cta = acosf(cta);
+				if (cta < 10)
+				{
+					pix->ac = true;
+				}
+			}
+			return true;
+		});
+	}
+}
+
 void Player::Update()
 {
-	olds = pos;
-
 	CVector3 vecX = cam->GetPos() - cam->GetTar();
 	vecX.y = 0;
 	vecX.Normalize();
@@ -55,6 +83,11 @@ void Player::Update()
 	speed += vecX * x*300;
 	speed += vecZ * z*300;
 
+	if (speed.x >= 0.0001f || speed.z >= 0.0001f)
+	{
+		olds = pos;
+	}
+
 	if (Pad(0).IsTrigger(enButtonA) && cc.IsOnGround())
 	{
 		speed.y += 400;
@@ -70,9 +103,9 @@ void Player::Update()
 
 
 	sr->SetPosition(pos);
-	
-	
 
 
 	Rotation();
+
+	PikGet();
 }

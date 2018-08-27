@@ -49,7 +49,7 @@ namespace tkEngine{
 			{ enButtonLeft		, '4' },
 			{ enButtonRight		, '6' },
 			{ enButtonA			, VK_SPACE },
-			{ enButtonB			, 'K' },
+			{ enButtonB			, 'E' },
 			{ enButtonY			, 'I' },
 			{ enButtonX			, 'L' },
 			{ enButtonSelect	, 'U' },

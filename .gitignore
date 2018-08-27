@@ -12,14 +12,14 @@
 
 # Build results
 #[Dd]ebug/
-Debug_Low/
-Debug_Middle/
-Preview_Low/
-Preview_Middle/
+[Dd]ebug_Low/
+[Dd]ebug_Middle/
+[Pp]review_Low/
+[Pp]review_Middle/
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
-#x64/
+x64/
 x86/
 bld/
 [Bb]in/

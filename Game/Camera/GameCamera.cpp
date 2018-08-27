@@ -13,8 +13,7 @@ bool GameCamera::Start()
 	//注視点から視点までのベクトルを設定。
 	//pos.Set(0.0f, 50.0f, 100.0f);
 
-	pos.Set(0, 70, 200);
-	toto.Set(0.0f, 50.0f, 180.0f);
+	toto.Set(0.0f, 230.0f, 240.0f);
 	//プレイヤーのインスタンスを探す。
 	player = FindGO<Player>("player");
 
@@ -29,7 +28,6 @@ bool GameCamera::Start()
 		true,				//カメラと地形とのあたり判定を取るかどうかのフラグ。trueだとあたり判定を行う。
 		5.0f				//カメラに設定される球体コリジョンの半径。第３引数がtrueの時に有効になる。
 	);
-	Scamera.SetPosition(pos);
 	//camera.Update();
 	return true;
 }
@@ -39,7 +37,13 @@ void GameCamera::Update()
 	//注視点を計算する。
 	CVector3 target = player->pos;
 	//プレイヤの足元からちょっと上を注視点とする。
-	target.y += 50.0f;
+	target.y += 130.0f;
+
+	CVector3 plv = player->GetMove();
+	plv.Cross(CVector3::AxisY,plv);
+	plv.Normalize();
+	plv *= 40;
+	target += plv;
 
 	CVector3 toCameraPosOld = toto;
 	//パッドの入力を使ってカメラを回す。

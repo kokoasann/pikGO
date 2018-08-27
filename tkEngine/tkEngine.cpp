@@ -111,8 +111,13 @@ namespace tkEngine {
 	}
 	void CEngine::Update()
 	{
-		
 		m_sw.Start();
+
+		//ウインドウの非アクティブ時
+		if (m_hWnd != GetActiveWindow())
+		{
+
+		}
 		
 		//パッドの更新。
 		for (auto& pad : m_pad) {
