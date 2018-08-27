@@ -2,6 +2,7 @@
 #include "Game.h"
 #include "BackGround/BackGround.h"
 #include "Player.h"
+#include "Fairy/Fairy.h"
 #include "Camera/GameCamera.h"
 #include "tkEngine/light/tkDirectionLight.h"
 
@@ -24,11 +25,11 @@ bool Game::Start()
 	MainCamera().Update();*/
 	/*m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(L"modelData/unityChan.cmo");*/
-	//NewGO<Player>(0,"player");
+	NewGO<Player>(0,"player");
 	NewGO <BackGround>(0, "BG");
 	NewGO<GameCamera>(0, "camera");
 
-	
+	NewGO<Fairy>(0, "f");
 	
 	return true;
 }

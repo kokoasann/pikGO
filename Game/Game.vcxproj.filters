@@ -26,6 +26,12 @@
     <Filter Include="Assets\modelData\map">
       <UniqueIdentifier>{e8990852-d4c3-466b-ae9d-1ab6732ecf6d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fairy">
+      <UniqueIdentifier>{a61885ef-f0e5-4266-943b-5edb218caea2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\modelData\fairy">
+      <UniqueIdentifier>{2d49cfb5-b021-4ce9-967d-6770b34309dd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -37,6 +43,9 @@
     </ClCompile>
     <ClCompile Include="BackGround\BackGround.cpp">
       <Filter>BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="Fairy\Fairy.cpp">
+      <Filter>Fairy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -51,6 +60,9 @@
     </ClInclude>
     <ClInclude Include="BackGround\BackGround.h">
       <Filter>BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Fairy\Fairy.h">
+      <Filter>Fairy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -67,6 +79,9 @@
     </MeshContentTask>
     <MeshContentTask Include="Assets\modelData\map\tesmap.fbx">
       <Filter>Assets\modelData\map</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\fairy\fairy.FBX">
+      <Filter>Assets\modelData\fairy</Filter>
     </MeshContentTask>
   </ItemGroup>
   <ItemGroup>

@@ -216,40 +216,44 @@ namespace tkEngine{
 					m_press[vPadToKeyboard.vButton] = 0;
 				}
 			}
+
+
+			m_rStickX = 0.0f;
+			m_rStickY = 0.0f;
+			float mx = 0.0f, my = 0.0f;
+			POINT pt;
+			GetCursorPos(&pt);
+			mx = pt.x;
+			my = pt.y;
+
+			mx -= oldx;
+			my -= oldy;
+
+			m_rStickX = mx / 10;
+			m_rStickY = -my / 10;
+
+			if (pt.x > GetSystemMetrics(SM_CXSCREEN) - 5)
+			{
+				SetCursorPos(10, pt.y);
+			}
+			if (pt.y > GetSystemMetrics(SM_CYSCREEN) - 5)
+			{
+				SetCursorPos(pt.x, 10);
+			}
+			if (pt.x < 5)
+			{
+				SetCursorPos(GetSystemMetrics(SM_CXSCREEN) - 10, pt.y);
+			}
+			if (pt.y < 5)
+			{
+				SetCursorPos(pt.x, GetSystemMetrics(SM_CYSCREEN) - 10);
+			}
+
+			GetCursorPos(&pt);
+			oldx = pt.x;
+			oldy = pt.y;
 		}
 
-		m_mouseX = 0.0f;
-		m_mouseY = 0.0f;
-		float mx = 0.0f, my = 0.0f;
-		POINT pt;
-		GetCursorPos(&pt);
-		mx = pt.x;
-		my = pt.y;
-
-		mx -= oldx;
-		my -= oldy;
-
-		m_mouseX = mx / 10;
-		m_mouseY = -my / 10;
-
-		oldx = pt.x;
-		oldy = pt.y;
-
-		if (pt.x > GetSystemMetrics(SM_CXSCREEN) - 5)
-		{
-			SetCursorPos(10, pt.y);
-		}
-		if (pt.y > GetSystemMetrics(SM_CYSCREEN) - 5)
-		{
-			SetCursorPos(pt.x, 10);
-		}
-		if (pt.x < 5)
-		{
-			SetCursorPos(GetSystemMetrics(SM_CXSCREEN) - 10, pt.y);
-		}
-		if (pt.y < 5)
-		{
-			SetCursorPos(pt.x, GetSystemMetrics(SM_CYSCREEN) - 10);
-		}
+		
 	}
 }
