@@ -13,9 +13,10 @@ Player::~Player()
 
 bool Player::Start()
 {
+	pos.Set(0, 10, 0);
 	sr = NewGO<prefab::CSkinModelRender>(0);
 	sr->Init(L"modelData/unityChan.cmo");
-	cc.Init(10.0f, 10.0f, pos);
+	cc.Init(20.0f, 40.0f, pos);
 
 	cam = FindGO<GameCamera>("camera");
 	return true;
@@ -51,11 +52,27 @@ void Player::Update()
 
 	speed.x = 0;
 	speed.z = 0;
-	speed += vecX * x*200;
-	speed += vecZ * z*200;
+	speed += vecX * x*300;
+	speed += vecZ * z*300;
+
+	if (Pad(0).IsTrigger(enButtonA) && cc.IsOnGround())
+	{
+		speed.y += 400;
+	}
+	speed.y -= 500*GameTime().GetFrameDeltaTime();
 
 	pos = cc.Execute(GameTime().GetFrameDeltaTime(), speed);
+
+	if (cc.IsOnGround())
+	{
+		speed.y = 0;
+	}
+
+
 	sr->SetPosition(pos);
+	
+	
+
 
 	Rotation();
 }
