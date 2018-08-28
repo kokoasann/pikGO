@@ -1801,6 +1801,7 @@
   </ItemGroup>
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\map\tesmap.fbx" />
+    <MeshContentTask Include="Assets\modelData\pixie\pixie.FBX" />
     <MeshContentTask Include="Assets\modelData\Theif\Thethief_H.FBX" />
     <MeshContentTask Include="Assets\modelData\unityChan.fbx" />
   </ItemGroup>
@@ -1808,7 +1809,7 @@
     <ImageContentTask Include="Assets\sprite\dummy.png" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Assets\sprite\point.png" />
+    <ImageContentTask Include="Assets\sprite\point.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

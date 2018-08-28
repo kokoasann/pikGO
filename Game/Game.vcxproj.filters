@@ -80,6 +80,9 @@
     <MeshContentTask Include="Assets\modelData\map\tesmap.fbx">
       <Filter>Assets\modelData\map</Filter>
     </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\pixie\pixie.FBX">
+      <Filter>Assets\modelData\pixie</Filter>
+    </MeshContentTask>
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\dummy.png">
