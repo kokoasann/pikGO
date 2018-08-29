@@ -20,7 +20,6 @@ public:
 	CVector3 olds = CVector3::Zero;
 
 	GameCamera* cam = nullptr;
-	bool isJamp = false;
 	int count = 0;
 	CVector3 GetMove()
 	{

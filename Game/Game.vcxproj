@@ -1811,6 +1811,11 @@
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\point.png" />
   </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Assets\modelData\pixie\pixie.tks">
+      <FileType>Document</FileType>
+    </CustomBuild>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="$(VCTargetsPath)\BuildCustomizations\ImageContentTask.targets" />

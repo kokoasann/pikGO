@@ -14,5 +14,13 @@ public:
 	CCharacterController cc;
 
 	bool ac = false;
+
+	enum AnimationClip
+	{
+		anim_idle,
+		anim_walk,
+		anim_num
+	};
+	CAnimationClip animClip[anim_num];
 };
 
