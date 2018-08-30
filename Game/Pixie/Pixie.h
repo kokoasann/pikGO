@@ -10,23 +10,23 @@ public:
 	void Update() override;
 	
 	void PushPushed();
-	void Rotation(CVector3 v);
+	void Rotationa(CVector3 v);
 
 	void Free();
 	void Stay();
-	void Move();
+	void Chase();
 
-	prefab::CSkinModelRender* sr = nullptr;
+	//prefab::CSkinModelRender* sr = nullptr;
 
-	CVector3 pos = CVector3::Zero;
-	CQuaternion rot = CQuaternion::Identity;
-	CVector3 speed = CVector3::Zero;
+	//CVector3 pos = CVector3::Zero;
+	//CQuaternion rot = CQuaternion::Identity;
+	//CVector3 speed = CVector3::Zero;
 	
-	CCharacterController cc;
-	float weight = 0.5f;
+	//CCharacterController cc;
+	//float weight = 0.5f;
 
 	bool walking = false;
-	CVector3 walk = CVector3::Zero;
+	//CVector3 walk = CVector3::Zero;
 	float time = 0;
 	float timeUP = 0;
 

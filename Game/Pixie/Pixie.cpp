@@ -15,14 +15,16 @@ bool Pixie::Start()
 	animClip[anim_walk].SetLoopFlag(true);
 
 	pos.Set(500, 0, 0);
-	sr = NewGO < prefab::CSkinModelRender>(0);
-	sr->Init(L"modelData/pixie/pixie.cmo",animClip,anim_num);
-	sr->SetPosition(pos);
+	//sr = NewGO < prefab::CSkinModelRender>(0);
+	//sr->Init(L"modelData/pixie/pixie.cmo",animClip,anim_num);
+	//sr->SetPosition(pos);
 
-	cc.Init(20, 70, pos);
+	//cc.Init(20, 70, pos);
 
-	sr->PlayAnimation(anim_walk);
+	//sr->PlayAnimation(anim_walk);
 
+	init(pos, 1, 0.5f, 20, 70, L"modelData/pixie/pixie.cmo",animClip,anim_num);
+	PlayAnim(anim_walk);
 	player = FindGO<Player>("player");
 	return true;
 }
@@ -39,7 +41,7 @@ void Pixie::Update()
 		Stay();
 		break;
 	case move:
-		Move();
+		Chase();
 		break;
 	}
 }
@@ -48,7 +50,7 @@ void Pixie::PushPushed()
 {
 }
 
-void Pixie::Rotation(CVector3 v)
+void Pixie::Rotationa(CVector3 v)
 {
 	if (v.x < 0.0001f && v.z < 0.0001f)
 	{
@@ -63,9 +65,14 @@ void Pixie::Free()
 {
 	if (walking)
 	{
-		pos = cc.Execute(GameTime().GetFrameDeltaTime(), walk);
-		sr->SetPosition(pos);
-		Rotation(walk);
+		//pos = cc.Execute(GameTime().GetFrameDeltaTime(), walk);
+		//pos = cc.Execute(GameTime().GetFrameDeltaTime(), speed);
+
+		//sr->SetPosition(pos);
+
+		//Rotation(walk);
+		Rotation(speed);
+		Move();
 		if (time > timeUP)
 		{
 			walking = false;
@@ -83,17 +90,27 @@ void Pixie::Free()
 			rand = Random().GetRandDouble();
 			timeUP = rand * 2;
 
-			walk.x = Random().GetRandDouble();
+			//walk.x = Random().GetRandDouble();
+			speed.x = Random().GetRandDouble();
+
 			if (Random().GetRandDouble() <= 0.5)
 			{
-				walk.x *= -1;
+				//walk.x *= -1;
+				speed.x *= -1;
+
 			}
-			walk.z = Random().GetRandDouble();
+			//walk.z = Random().GetRandDouble();
+			speed.z = Random().GetRandDouble();
+
 			if (Random().GetRandDouble() <= 0.5)
 			{
-				walk.z *= -1;
+				//walk.z *= -1;
+				speed.z *= -1;
+
 			}
-			walk *= 200;
+			//walk *= 200;
+			speed *= 200;
+
 			walking = true;
 			time = 0;
 		}
@@ -105,16 +122,16 @@ void Pixie::Stay()
 
 }
 
-void Pixie::Move()
+void Pixie::Chase()
 {
-	speed = pos - player->pos;
+	speed = pos - player->Getpos();
 	float t = speed.Length();
 	if (t > 20)
 	{
 		speed.Normalize();
 
 		pos = cc.Execute(GameTime().GetFrameDeltaTime(), speed * -100);
-		sr->SetPosition(pos);
+		//sr->SetPosition(pos);
 		Rotation(speed);
 		if (t > 1500)
 		{

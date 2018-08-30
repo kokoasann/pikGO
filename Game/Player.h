@@ -12,12 +12,12 @@ public:
 	void Rotationa();
 	void PikGet();
 
-	prefab::CSkinModelRender* sr = nullptr;
-	CVector3 pos = CVector3::Zero;
-	CQuaternion rot = CQuaternion::Identity;
+	//prefab::CSkinModelRender* sr = nullptr;
+	//CVector3 pos = CVector3::Zero;
+	//CQuaternion rot = CQuaternion::Identity;
 
-	CCharacterController cc;
-	CVector3 speed = CVector3::Zero;
+	//CCharacterController cc;
+	//CVector3 speed = CVector3::Zero;
 
 	GameCamera* cam = nullptr;
 	int count = 0;

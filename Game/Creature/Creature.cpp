@@ -26,7 +26,7 @@ void Creature::init(CVector3 pos,float scale, float weight, float radius, float 
 
 void Creature::Rotation(CVector3 v)
 {
-	if (v.x < 0.0001 && v.z < 0.0001)
+	if (fabsf(v.x) < 0.0001 && fabsf(v.z) < 0.0001)
 	{
 		return;
 	}
@@ -40,7 +40,7 @@ void Creature::Move()
 	creatureManager->Creatures([&](Creature* crea)->void 
 	{
 		CVector3 diff = pos - crea->Getpos();
-		if (diff.Length() >= radius + crea->Getradius())
+		if (diff.Length() < radius + crea->Getradius())
 		{
 			if (weight >= crea->Getweight())
 			{
@@ -51,6 +51,7 @@ void Creature::Move()
 				crea->Move();
 			}
 		}
+		return;
 	});
 	pos = cc.Execute(GameTime().GetFrameDeltaTime(), speed);
 	sr->SetPosition(pos);

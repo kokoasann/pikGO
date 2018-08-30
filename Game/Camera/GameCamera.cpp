@@ -13,7 +13,7 @@ bool GameCamera::Start()
 	//注視点から視点までのベクトルを設定。
 	//pos.Set(0.0f, 50.0f, 100.0f);
 
-	toto.Set(0.0f, 230.0f, 240.0f);
+	toto.Set(0.0f, 230.0f, 250);
 	//プレイヤーのインスタンスを探す。
 	player = FindGO<Player>("player");
 
@@ -35,15 +35,20 @@ bool GameCamera::Start()
 void GameCamera::Update()
 {
 	//注視点を計算する。
-	CVector3 target = player->pos;
+	CVector3 target = player->Getpos();
 	//プレイヤの足元からちょっと上を注視点とする。
-	target.y += 130.0f;
+	target.y += 180.0f;
 
-	CVector3 plv = player->GetMove();
+	CVector3 camX = Scamera.GetCamera()->GetForward();
+	camX.y = 0;
+	camX.Normalize();
+	target += camX*20;
+
+	/*CVector3 plv = player->GetMove();
 	plv.Cross(CVector3::AxisY,plv);
 	plv.Normalize();
 	plv *= 40;
-	target += plv;
+	target += plv;*/
 
 	CVector3 toCameraPosOld = toto;
 	//パッドの入力を使ってカメラを回す。
@@ -75,7 +80,9 @@ void GameCamera::Update()
 	}
 
 	//視点を計算する。
-	CVector3 pos = target + toto;
+	pos = target + toto;
+
+
 
 	//pos += player->GetMove();
 	//tar += player->GetMove();

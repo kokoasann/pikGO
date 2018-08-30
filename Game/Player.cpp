@@ -46,13 +46,13 @@ void Player::PikGet()
 		vec.Normalize();
 		QueryGOs<Pixie>("pixie", [&](Pixie* pix)->bool
 		{
-			CVector3 p = pix->pos;
+			CVector3 p = pix->Getpos();
 			p.y += 35;
 			CVector3 dif = pos - p;
 			
 			if (dif.Length() < 200)
 			{
-				CVector3 piv = cam->pos - pix->pos;
+				CVector3 piv = cam->pos - pix->Getpos();
 				piv.Normalize();
 
 				float cta = piv.Dot(vec);
@@ -86,21 +86,21 @@ void Player::Update()
 	speed += vecZ * z*300;
 
 	if (fabsf(speed.x) <= 0.0001f && fabsf(speed.z) <= 0.0001f)
-		olds = pos;
+		olds = Getpos();
 	if (Pad(0).IsTrigger(enButtonA) && cc.IsOnGround())
 	{
 		speed.y += 400;
 	}
 	speed.y -= 500*GameTime().GetFrameDeltaTime();
 
-	Setspeed(speed);
+	//Setspeed(speed);
 
 	//pos = cc.Execute(GameTime().GetFrameDeltaTime(), speed);
 
 	if (cc.IsOnGround())
 	{
 		speed.y = 0;
-		Setspeed(speed);
+		//Setspeed(speed);
 	}
 
 
