@@ -1764,6 +1764,8 @@
   <ItemGroup>
     <ClCompile Include="BackGround\BackGround.cpp" />
     <ClCompile Include="Camera\GameCamera.cpp" />
+    <ClCompile Include="Creature\Creature.cpp" />
+    <ClCompile Include="Creature\CreatureManager.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Pixie\Pixie.cpp" />
@@ -1792,6 +1794,8 @@
   <ItemGroup>
     <ClInclude Include="BackGround\BackGround.h" />
     <ClInclude Include="Camera\GameCamera.h" />
+    <ClInclude Include="Creature\Creature.h" />
+    <ClInclude Include="Creature\CreatureManager.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Pixie\Pixie.h" />
     <ClInclude Include="Player.h" />

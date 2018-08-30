@@ -32,6 +32,9 @@
     <Filter Include="Assets\modelData\pixie">
       <UniqueIdentifier>{2d49cfb5-b021-4ce9-967d-6770b34309dd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Creature">
+      <UniqueIdentifier>{9a38c16f-d6e6-4ad8-9251-cfa28236081f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -46,6 +49,12 @@
     </ClCompile>
     <ClCompile Include="Pixie\Pixie.cpp">
       <Filter>Pixie</Filter>
+    </ClCompile>
+    <ClCompile Include="Creature\Creature.cpp">
+      <Filter>Creature</Filter>
+    </ClCompile>
+    <ClCompile Include="Creature\CreatureManager.cpp">
+      <Filter>Creature</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -63,6 +72,12 @@
     </ClInclude>
     <ClInclude Include="Pixie\Pixie.h">
       <Filter>Pixie</Filter>
+    </ClInclude>
+    <ClInclude Include="Creature\Creature.h">
+      <Filter>Creature</Filter>
+    </ClInclude>
+    <ClInclude Include="Creature\CreatureManager.h">
+      <Filter>Creature</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -91,8 +106,6 @@
     <ImageContentTask Include="Assets\sprite\point.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\modelData\pixie\pixie.tks">
-      <Filter>Assets\modelData\pixie</Filter>
-    </None>
+    <CustomBuild Include="Assets\modelData\pixie\pixie.tks" />
   </ItemGroup>
 </Project>

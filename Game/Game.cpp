@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Game.h"
+#include "Creature/CreatureManager.h"
 #include "BackGround/BackGround.h"
 #include "Player.h"
 #include "Pixie/Pixie.h"
@@ -25,6 +26,7 @@ bool Game::Start()
 	MainCamera().Update();*/
 	/*m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(L"modelData/unityChan.cmo");*/
+	NewGO<CreatureManager>(0,"CM");
 	NewGO<Player>(0,"player");
 	NewGO <BackGround>(0, "BG");
 	NewGO<GameCamera>(0, "camera");

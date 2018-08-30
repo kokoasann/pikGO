@@ -39,6 +39,11 @@ namespace tkEngine{
 			}
 			return hash;
 		}
+
+		static unsigned int MakeGameObjectTags(const char* tags)
+		{
+
+		}
 	public:
 		/*!
 		 *@brief	インスタンスの取得。

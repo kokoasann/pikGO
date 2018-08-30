@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Player.h"
+#include "Creature/Creature.h"
 #include "Pixie/Pixie.h"
 #include "Camera/GameCamera.h"
 
@@ -15,15 +16,16 @@ Player::~Player()
 bool Player::Start()
 {
 	pos.Set(0, 10, 0);
-	sr = NewGO<prefab::CSkinModelRender>(0);
-	sr->Init(L"modelData/unityChan.cmo");
-	cc.Init(20.0f, 40.0f, pos);
+	//sr = NewGO<prefab::CSkinModelRender>(0);
+	//sr->Init(L"modelData/unityChan.cmo");
+	//cc.Init(20.0f, 40.0f, pos);
 
+	init(pos, 1, 5, 20, 40, L"modelData/unityChan.cmo");
 	cam = FindGO<GameCamera>("camera");
 	return true;
 }
 
-void Player::Rotation()
+void Player::Rotationa()
 {
 	if (fabsf(speed.x) <= 0.0001f && fabsf(speed.z) <= 0.0001f)
 	{
@@ -57,7 +59,7 @@ void Player::PikGet()
 				cta = acosf(cta);
 				if (cta < 10)
 				{
-					pix->ac = true;
+
 				}
 			}
 			return true;
@@ -83,29 +85,29 @@ void Player::Update()
 	speed += vecX * x*300;
 	speed += vecZ * z*300;
 
-	if (speed.x >= 0.0001f || speed.z >= 0.0001f)
-	{
+	if (fabsf(speed.x) <= 0.0001f && fabsf(speed.z) <= 0.0001f)
 		olds = pos;
-	}
-
 	if (Pad(0).IsTrigger(enButtonA) && cc.IsOnGround())
 	{
 		speed.y += 400;
 	}
 	speed.y -= 500*GameTime().GetFrameDeltaTime();
 
-	pos = cc.Execute(GameTime().GetFrameDeltaTime(), speed);
+	Setspeed(speed);
+
+	//pos = cc.Execute(GameTime().GetFrameDeltaTime(), speed);
 
 	if (cc.IsOnGround())
 	{
 		speed.y = 0;
+		Setspeed(speed);
 	}
 
 
-	sr->SetPosition(pos);
+	//sr->SetPosition(pos);
 
-
-	Rotation();
-
+	
+	Rotation(speed);
+	Move();
 	PikGet();
 }
