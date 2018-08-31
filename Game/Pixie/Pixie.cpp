@@ -23,7 +23,7 @@ bool Pixie::Start()
 
 	//sr->PlayAnimation(anim_walk);
 
-	init(pos, 1, 0.5f, 20, 70, L"modelData/pixie/pixie.cmo",animClip,anim_num);
+	init(pos, 1, 0.1f, 20, 70, L"modelData/pixie/pixie.cmo",animClip,anim_num);
 	PlayAnim(anim_walk);
 	player = FindGO<Player>("player");
 	return true;
@@ -31,7 +31,8 @@ bool Pixie::Start()
 
 void Pixie::Update()
 {
-
+	Rotation(speed);
+	Gravity();
 	switch (mode)
 	{
 	case free:
@@ -44,6 +45,7 @@ void Pixie::Update()
 		Chase();
 		break;
 	}
+	
 }
 
 void Pixie::PushPushed()
@@ -71,7 +73,8 @@ void Pixie::Free()
 		//sr->SetPosition(pos);
 
 		//Rotation(walk);
-		Rotation(speed);
+		
+		
 		Move();
 		if (time > timeUP)
 		{

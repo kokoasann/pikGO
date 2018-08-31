@@ -123,7 +123,7 @@ namespace tkEngine {
 		PhysicsWorld().AddRigidBody(m_rigidBody);
 		m_isInited = true;
 	}
-	const CVector3& CCharacterController::Execute( CVector3& moveSpeed, float deltaTime )
+	const CVector3& CCharacterController::Execute( CVector3& moveSpeed,float deltaTime )
 	{
 		if (m_isInited == false) {
 			TK_WARNING_MESSAGE_BOX("初期化されていないキャラクターコントローラーのExecute関数が呼ばれています。\n"
@@ -178,7 +178,6 @@ namespace tkEngine {
 				callback.startPos = posTmp;
 				//衝突検出。
 				PhysicsWorld().ConvexSweepTest((const btConvexShape*)m_collider.GetBody(), start, end, callback);
-
 				if (callback.isHit) {
 					//当たった。
 					//壁。
@@ -290,6 +289,7 @@ namespace tkEngine {
 		//@todo 未対応。 trans.setRotation(btQuaternion(rotation.x, rotation.y, rotation.z));
 		return m_position;
 	}
+
 	/*!
 	* @brief	死亡したことを通知。
 	*/

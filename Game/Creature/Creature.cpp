@@ -39,22 +39,48 @@ void Creature::Move()
 {
 	creatureManager->Creatures([&](Creature* crea)->void 
 	{
-		CVector3 diff = pos - crea->Getpos();
-		if (diff.Length() < radius + crea->Getradius())
+		if (crea != this)
 		{
-			if (weight >= crea->Getweight())
+			CVector3 diff = pos - crea->Getpos();
+			diff.y = 0;
+			if (diff.Length() <= radius + crea->Getradius()+5)
 			{
-				speed -= speed * (weight - crea->Getweight())/(weight + crea->Getweight());
-				CVector3 v = speed;
-				diff.Normalize();
-				crea->Addspeed(diff * 20);
-				crea->Move();
+				if (weight >= crea->Getweight())
+				{
+					float f = (weight - crea->Getweight()) / (weight + crea->Getweight());
+					speed -= speed * f;
+					CVector3 v = speed;
+
+					diff.Normalize();
+					
+					crea->PullOtherSpeed(diff * f *150);
+					crea->OtherMove();
+				}
 			}
 		}
 		return;
 	});
 	pos = cc.Execute(GameTime().GetFrameDeltaTime(), speed);
+
+	if (cc.IsOnGround())
+	{
+		speed.y = 0;
+	}
+
 	sr->SetPosition(pos);
+}
+
+void Creature::OtherMove()
+{
+	pos = cc.Execute(GameTime().GetFrameDeltaTime(), otherspeed);
+	sr->SetPosition(pos);
+	otherspeed = CVector3::Zero;
+}
+
+void Creature::Gravity()
+{
+	speed.y -= grav * GameTime().GetFrameDeltaTime();
+
 }
 
 void Creature::PushPushed()

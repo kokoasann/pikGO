@@ -91,23 +91,24 @@ void Player::Update()
 	{
 		speed.y += 400;
 	}
-	speed.y -= 500*GameTime().GetFrameDeltaTime();
+	//speed.y -= 500*GameTime().GetFrameDeltaTime();
 
 	//Setspeed(speed);
 
 	//pos = cc.Execute(GameTime().GetFrameDeltaTime(), speed);
 
-	if (cc.IsOnGround())
-	{
-		speed.y = 0;
-		//Setspeed(speed);
-	}
+	//if (cc.IsOnGround())
+	//{
+	//	speed.y = 0;
+	//	//Setspeed(speed);
+	//}
 
 
 	//sr->SetPosition(pos);
 
 	
 	Rotation(speed);
+	Gravity();
 	Move();
 	PikGet();
 }

@@ -36,7 +36,7 @@ namespace tkEngine{
 		 */
 		const CVector3& Execute(CVector3& moveSpeed, float deltaTime = GameTime().GetFrameDeltaTime());
 		[[deprecated("This function will be delete. please don't use.")]]
-		const CVector3& Execute(float deltaTime, CVector3& moveSpeed )
+		const CVector3& Execute(float deltaTime, CVector3& moveSpeed)
 		{
 			return Execute(moveSpeed, deltaTime);
 		}
@@ -83,6 +83,7 @@ namespace tkEngine{
 		{
 			return &m_rigidBody;
 		}
+
 		/*!
 		* @brief	剛体を物理エンジンから削除。。
 		*/
