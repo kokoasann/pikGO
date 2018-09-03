@@ -7,6 +7,13 @@ public:
 	bool Start() override;
 	void Update() override;
 
-	prefab::CSkinModelRender* mainMap = nullptr;
-	CPhysicsStaticObject pso;
+	int map[30][30] = {0};
+	
+	prefab::CSkinModelRender* start = nullptr;
+	prefab::CSkinModelRender* end = nullptr;
+	std::list<prefab::CSkinModelRender*> maps;
+
+	std::vector<CPhysicsStaticObject> psolist;
+	CPhysicsStaticObject psoa[900];
+	//CPhysicsStaticObject pso,pso2;
 };

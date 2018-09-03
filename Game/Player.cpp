@@ -15,7 +15,7 @@ Player::~Player()
 
 bool Player::Start()
 {
-	pos.Set(0, 10, 0);
+	pos.Set(0, 500, 0);
 	//sr = NewGO<prefab::CSkinModelRender>(0);
 	//sr->Init(L"modelData/unityChan.cmo");
 	//cc.Init(20.0f, 40.0f, pos);
@@ -82,8 +82,8 @@ void Player::Update()
 
 	speed.x = 0;
 	speed.z = 0;
-	speed += vecX * x*300;
-	speed += vecZ * z*300;
+	speed += vecX * x*1000;
+	speed += vecZ * z*1000;
 
 	if (fabsf(speed.x) <= 0.0001f && fabsf(speed.z) <= 0.0001f)
 		olds = Getpos();

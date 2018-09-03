@@ -41,7 +41,7 @@ void Pixie::Update()
 	case stay:
 		Stay();
 		break;
-	case move:
+	case chase:
 		Chase();
 		break;
 	}
@@ -74,7 +74,7 @@ void Pixie::Free()
 
 		//Rotation(walk);
 		
-		
+		Rotation(speed);
 		Move();
 		if (time > timeUP)
 		{
@@ -112,6 +112,7 @@ void Pixie::Free()
 
 			}
 			//walk *= 200;
+			speed.y = 0;
 			speed *= 200;
 
 			walking = true;
@@ -129,16 +130,21 @@ void Pixie::Chase()
 {
 	speed = pos - player->Getpos();
 	float t = speed.Length();
-	if (t > 20)
+	if (t > 70)
 	{
 		speed.Normalize();
-
-		pos = cc.Execute(GameTime().GetFrameDeltaTime(), speed * -100);
+		speed *= -100;
+		//pos = cc.Execute(GameTime().GetFrameDeltaTime(), speed * -100);
 		//sr->SetPosition(pos);
 		Rotation(speed);
+		Move();
 		if (t > 1500)
 		{
 			mode = stay;
 		}
+	}
+	else
+	{
+		speed = CVector3::Zero;
 	}
 }

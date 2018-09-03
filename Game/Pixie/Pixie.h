@@ -36,7 +36,7 @@ public:
 	{
 		free,
 		stay,
-		move
+		chase
 	};
 
 	Mode mode = free;

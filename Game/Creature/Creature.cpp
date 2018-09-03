@@ -79,7 +79,11 @@ void Creature::OtherMove()
 
 void Creature::Gravity()
 {
-	speed.y -= grav * GameTime().GetFrameDeltaTime();
+	if (Pad(0).IsPress(enButtonB))
+	{
+		speed.y -= grav * GameTime().GetFrameDeltaTime();
+	}
+	
 
 }
 

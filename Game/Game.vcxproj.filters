@@ -98,6 +98,24 @@
     <MeshContentTask Include="Assets\modelData\pixie\pixie.FBX">
       <Filter>Assets\modelData\pixie</Filter>
     </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\map\right.FBX">
+      <Filter>Assets\modelData\map</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\map\leftkarb.FBX">
+      <Filter>Assets\modelData\map</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\map\end.FBX">
+      <Filter>Assets\modelData\map</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\map\start.FBX">
+      <Filter>Assets\modelData\map</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\map\road.FBX">
+      <Filter>Assets\modelData\map</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\map\rightkarb.FBX">
+      <Filter>Assets\modelData\map</Filter>
+    </MeshContentTask>
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\dummy.png">

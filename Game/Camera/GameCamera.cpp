@@ -19,7 +19,7 @@ bool GameCamera::Start()
 
 	//カメラのニアクリップとファークリップを設定する。
 	MainCamera().SetNear(1.0f);
-	MainCamera().SetFar(10000.0f);
+	MainCamera().SetFar(100000.0f);
 
 	//ばねカメラの初期化。
 	Scamera.Init(
