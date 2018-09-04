@@ -9,36 +9,41 @@ bool BackGround::Start()
 {
 	
 	CVector3 pos;
-	int x, y;
+	int x, y,cnt = 0;
+
 	x = Random().GetRandDouble() * 30;
 	y = Random().GetRandDouble() * 30;
 	map[x][y] = 10;
 
 	{
-		CPhysicsStaticObject pso;
+		//CPhysicsStaticObject pso;
 		start = NewGO<prefab::CSkinModelRender>(0);
 		start->Init(L"modelData/map/start.cmo");
 		pos.Set((float)(x * 1000), 0, (float)(y * 1000));
 		start->SetPosition(pos);
 
-		pso.CreateMeshObject(start, pos, CQuaternion::Identity, CVector3::One);
+		//pso.CreateMeshObject(start, pos, CQuaternion::Identity, CVector3::One);
+		psoa[cnt].CreateMeshObject(start, pos, CQuaternion::Identity, CVector3::One);
+		cnt++;
 		//psolist.push_back(pso);
 	}
 	
 	do
 	{
-		x = Random().GetRandDouble() * 30;
-		y = Random().GetRandDouble() * 30;
+		x = Random().GetRandDouble() * 29;
+		y = Random().GetRandDouble() * 29;
 	} while (map[x][y] != 0);
 	map[x][y] = 20;
 	{
-		CPhysicsStaticObject pso;
+		//CPhysicsStaticObject pso;
 		end = NewGO<prefab::CSkinModelRender>(0);
 		end->Init(L"modelData/map/end.cmo");
 		pos.Set((float)(x * 1000), 0, (float)(y * 1000));
 		end->SetPosition(pos);
 
-		pso.CreateMeshObject(end, pos, CQuaternion::Identity, CVector3::One);
+		psoa[cnt].CreateMeshObject(end, pos, CQuaternion::Identity, CVector3::One);
+		cnt++;
+		//pso.CreateMeshObject(end, pos, CQuaternion::Identity, CVector3::One);
 		//psolist.push_back(pso);
 	}
 
@@ -52,8 +57,10 @@ bool BackGround::Start()
 		maps.push_back(smr);
 		map[0][0] = 30;
 
-		CPhysicsStaticObject pso;
-		pso.CreateMeshObject(smr, pos, CQuaternion::Identity, CVector3::One);
+		psoa[cnt].CreateMeshObject(smr, pos, CQuaternion::Identity, CVector3::One);
+		cnt++;
+		//CPhysicsStaticObject pso;
+		//pso.CreateMeshObject(smr, pos, CQuaternion::Identity, CVector3::One);
 		//psolist.push_back(pso);
 	}
 	if (map[0][29] == 0)
@@ -71,8 +78,10 @@ bool BackGround::Start()
 		maps.push_back(smr);
 		map[0][29] = 33;
 
-		CPhysicsStaticObject pso;
-		pso.CreateMeshObject(smr, pos, CQuaternion::Identity, CVector3::One);
+		psoa[cnt].CreateMeshObject(smr, pos, rot, CVector3::One);
+		cnt++;
+		//CPhysicsStaticObject pso;
+		//pso.CreateMeshObject(smr, pos, CQuaternion::Identity, CVector3::One);
 		//psolist.push_back(pso);
 	}
 
@@ -87,8 +96,10 @@ bool BackGround::Start()
 		maps.push_back(smr);
 		map[29][0] = 40;
 
-		CPhysicsStaticObject pso;
-		pso.CreateMeshObject(smr, pos, CQuaternion::Identity, CVector3::One);
+		psoa[cnt].CreateMeshObject(smr, pos, CQuaternion::Identity, CVector3::One);
+		cnt++;
+		//CPhysicsStaticObject pso;
+		//pso.CreateMeshObject(smr, pos, CQuaternion::Identity, CVector3::One);
 		//psolist.push_back(pso);
 	}
 	if (map[29][29] == 0)
@@ -106,8 +117,10 @@ bool BackGround::Start()
 		maps.push_back(smr);
 		map[29][29] = 43;
 
-		CPhysicsStaticObject pso;
-		pso.CreateMeshObject(smr, pos, CQuaternion::Identity, CVector3::One);
+		psoa[cnt].CreateMeshObject(smr, pos, rot, CVector3::One);
+		cnt++;
+		//CPhysicsStaticObject pso;
+		//pso.CreateMeshObject(smr, pos, CQuaternion::Identity, CVector3::One);
 		//psolist.push_back(pso);
 	}
 
@@ -131,8 +144,10 @@ bool BackGround::Start()
 			maps.push_back(smr);
 			map[x][0] = 40;
 
-			CPhysicsStaticObject pso;
-			pso.CreateMeshObject(smr, pos, CQuaternion::Identity, CVector3::One);
+			psoa[cnt].CreateMeshObject(smr, pos, rot, CVector3::One);
+			cnt++;
+			//CPhysicsStaticObject pso;
+			//pso.CreateMeshObject(smr, pos, CQuaternion::Identity, CVector3::One);
 			//psolist.push_back(pso);
 		}
 		if (map[x][29] == 0)
@@ -151,8 +166,10 @@ bool BackGround::Start()
 			maps.push_back(smr);
 			map[x][29] = 43;
 
-			CPhysicsStaticObject pso;
-			pso.CreateMeshObject(smr, pos, CQuaternion::Identity, CVector3::One);
+			psoa[cnt].CreateMeshObject(smr, pos, rot, CVector3::One);
+			cnt++;
+			//CPhysicsStaticObject pso;
+			//pso.CreateMeshObject(smr, pos, CQuaternion::Identity, CVector3::One);
 			//psolist.push_back(pso);
 		}
 		
@@ -171,8 +188,10 @@ bool BackGround::Start()
 			maps.push_back(smr);
 			map[0][y] = 40;
 
-			CPhysicsStaticObject pso;
-			pso.CreateMeshObject(smr, pos, CQuaternion::Identity, CVector3::One);
+			psoa[cnt].CreateMeshObject(smr, pos, CQuaternion::Identity, CVector3::One);
+			cnt++;
+			//CPhysicsStaticObject pso;
+			//pso.CreateMeshObject(smr, pos, CQuaternion::Identity, CVector3::One);
 			//psolist.push_back(pso);
 		}
 
@@ -190,19 +209,100 @@ bool BackGround::Start()
 			maps.push_back(smr);
 			map[29][y] = 43;
 
-			CPhysicsStaticObject pso;
-			pso.CreateMeshObject(smr, pos, CQuaternion::Identity, CVector3::One);
+			psoa[cnt].CreateMeshObject(smr, pos, rot, CVector3::One);
+			cnt++;
+			//CPhysicsStaticObject pso;
+			//pso.CreateMeshObject(smr, pos, CQuaternion::Identity, CVector3::One);
 			//psolist.push_back(pso);
 		}
 	}
-
-	for (int xi = 0; xi < 30; xi++)
+	CQuaternion rot;
+	int num;
+	for (int xi = 1; xi < 29; xi++)
 	{
-		for (int yi = 0; yi < 30; yi++)
+		for (int yi = 1; yi < 29; yi++)
 		{
 			if (map[xi][yi] == 0)
 			{
+				prefab::CSkinModelRender* smr = nullptr;
+				int r = Random().GetRandDouble()*3;
+				switch (r)
+				{
+				case 0:
+					num = (r+1) * 10;
 
+					//prefab::CSkinModelRender* smr = nullptr;
+					smr = NewGO<prefab::CSkinModelRender>(0);
+					smr->Init(L"modelData/map/right.cmo");
+					pos.Set((float)(xi * 1000), 0, (float)(yi * 1000));
+					smr->SetPosition(pos);
+					r = Random().GetRandDouble() * 3;
+					num += r;
+					//CQuaternion rot;
+					rot.SetRotationDeg(CVector3::AxisY, 90*r);
+					smr->SetRotation(rot);
+
+					maps.push_back(smr);
+					
+					map[xi][yi] = num;
+					break;
+				case 1:
+					num = (r + 1) * 10;
+
+					//prefab::CSkinModelRender* smr = nullptr;
+					smr = NewGO<prefab::CSkinModelRender>(0);
+					smr->Init(L"modelData/map/rightkarb.cmo");
+					pos.Set((float)(xi * 1000), 0, (float)(yi * 1000));
+					smr->SetPosition(pos);
+					r = Random().GetRandDouble() * 3;
+					num += r;
+					//CQuaternion rot;
+					rot.SetRotationDeg(CVector3::AxisY, 90 * r);
+					smr->SetRotation(rot);
+
+					maps.push_back(smr);
+
+					map[xi][yi] = num;
+					break;
+				case 2:
+					num = (r + 1) * 10;
+
+					//prefab::CSkinModelRender* smr = nullptr;
+					smr = NewGO<prefab::CSkinModelRender>(0);
+					smr->Init(L"modelData/map/leftkarb.cmo");
+					pos.Set((float)(xi * 1000), 0, (float)(yi * 1000));
+					smr->SetPosition(pos);
+					r = Random().GetRandDouble() * 3;
+					num += r;
+					//CQuaternion rot;
+					rot.SetRotationDeg(CVector3::AxisY, 90 * r);
+					smr->SetRotation(rot);
+
+					maps.push_back(smr);
+
+					map[xi][yi] = num;
+					break;
+				case 3:
+					num = (r + 1) * 10;
+
+					
+					smr = NewGO<prefab::CSkinModelRender>(0);
+					smr->Init(L"modelData/map/road.cmo");
+					pos.Set((float)(xi * 1000), 0, (float)(yi * 1000));
+					smr->SetPosition(pos);
+					r = Random().GetRandDouble() * 3;
+					num += r;
+					//CQuaternion rot;
+					rot.SetRotationDeg(CVector3::AxisY, 90 * r);
+					smr->SetRotation(rot);
+
+					maps.push_back(smr);
+
+					map[xi][yi] = num;
+					break;
+				}
+				psoa[cnt].CreateMeshObject(smr, pos, rot, CVector3::One);
+				cnt++;
 			}
 		}
 	}
