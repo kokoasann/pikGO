@@ -1653,13 +1653,16 @@
       <ContentOutput>%(RelativeDir)/%(Filename).dds</ContentOutput>
     </ImageContentTask>
     <CustomBuild>
-      <Command>call $(ProjectDir)..\tkTools\tkContentTools.bat %(Identity) $(OutDir)</Command>
+      <Command>
+      </Command>
     </CustomBuild>
     <CustomBuild>
-      <Message>tkContentTools</Message>
+      <Message>
+      </Message>
     </CustomBuild>
     <CustomBuild>
-      <Outputs>$(OutDir)\%(Identity)</Outputs>
+      <Outputs>
+      </Outputs>
     </CustomBuild>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Preview_Low|X64'">
@@ -1811,6 +1814,7 @@
     <MeshContentTask Include="Assets\modelData\map\road.FBX" />
     <MeshContentTask Include="Assets\modelData\map\start.FBX" />
     <MeshContentTask Include="Assets\modelData\map\tesmap.fbx" />
+    <MeshContentTask Include="Assets\modelData\map\tile.FBX" />
     <MeshContentTask Include="Assets\modelData\pixie\pixie.FBX" />
     <MeshContentTask Include="Assets\modelData\Theif\Thethief_H.FBX" />
     <MeshContentTask Include="Assets\modelData\unityChan.fbx" />

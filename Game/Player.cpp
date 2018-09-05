@@ -15,7 +15,7 @@ Player::~Player()
 
 bool Player::Start()
 {
-	pos.Set(0, 500, 0);
+	//pos.Set(15000, 5500, 15000);
 	//sr = NewGO<prefab::CSkinModelRender>(0);
 	//sr->Init(L"modelData/unityChan.cmo");
 	//cc.Init(20.0f, 40.0f, pos);

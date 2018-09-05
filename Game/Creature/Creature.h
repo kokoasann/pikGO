@@ -16,10 +16,8 @@ public:
 	{
 		return pos;
 	}
-	void Setpos(CVector3 v)
-	{
-		pos = v;
-	}
+	void Setpos(CVector3 v);
+	
 	CVector3 Addpos(CVector3 v)
 	{
 		pos += v;

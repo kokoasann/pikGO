@@ -12,6 +12,8 @@ public:
 	prefab::CSkinModelRender* start = nullptr;
 	prefab::CSkinModelRender* end = nullptr;
 	std::list<prefab::CSkinModelRender*> maps;
+	CVector3 startpos = CVector3::Zero,endpos = CVector3::Zero;
+
 
 	std::vector<CPhysicsStaticObject> psolist;
 	CPhysicsStaticObject psoa[900];

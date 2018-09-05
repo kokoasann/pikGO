@@ -87,6 +87,13 @@ void Creature::Gravity()
 
 }
 
+void Creature::Setpos(CVector3 v)
+{
+	pos = v;
+	sr->SetPosition(pos);
+	cc.SetPosition(pos);
+}
+
 void Creature::PushPushed()
 {
 

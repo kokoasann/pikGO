@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "BackGround.h"
+#include "Player.h"
 
 BackGround::~BackGround()
 {
@@ -11,8 +12,8 @@ bool BackGround::Start()
 	CVector3 pos;
 	int x, y,cnt = 0;
 
-	x = Random().GetRandDouble() * 30;
-	y = Random().GetRandDouble() * 30;
+	x = Random().GetRandDouble() * 28 +1;
+	y = Random().GetRandDouble() * 28 +1;
 	map[x][y] = 10;
 
 	{
@@ -26,13 +27,193 @@ bool BackGround::Start()
 		psoa[cnt].CreateMeshObject(start, pos, CQuaternion::Identity, CVector3::One);
 		cnt++;
 		//psolist.push_back(pso);
+
+		FindGO<Player>("player")->Setpos(pos);
 	}
-	
-	do
+	CQuaternion enro;
+	for (int root = 0; root < 30; root++)
+	{
+		int c,ex = 0,r,count = 0;
+		do
+		{
+			c = 0;
+			r = Random().GetRandDouble() * 3;
+			switch (r)
+			{
+			case 0:
+				if (x - 1 != 0 && map[x - 1][y] == 0)
+				{
+					if(root == 0)
+					{
+						CQuaternion rot;
+						rot.SetRotationDeg(CVector3::AxisY, 180);
+						start->SetRotation(rot);
+					}
+					else if (root == 29)
+					{
+						enro = CQuaternion::Identity;
+					}
+					x--;
+					map[x][y] = 99;
+					c++;
+				}
+				break;
+			case 1:
+				if (y + 1 != 29 && map[x][y + 1] == 0)
+				{
+					if (root == 0)
+					{
+						CQuaternion rot;
+						rot.SetRotationDeg(CVector3::AxisY, -90);
+						start->SetRotation(rot);
+					}
+					else if (root == 29)
+					{
+						enro.SetRotationDeg(CVector3::AxisY,90);
+					}
+					y++;
+					map[x][y] = 99;
+					c++;
+				}
+				break;
+			case 2:
+				if (x + 1 != 29 && map[x + 1][y] == 0)
+				{
+					if (root == 0)
+					{
+						CQuaternion rot = CQuaternion::Identity;
+						start->SetRotation(rot);
+					}
+					else if (root == 29)
+					{
+						enro.SetRotationDeg(CVector3::AxisY, 90);
+					}
+					x++;
+					map[x][y] = 99;
+					c++;
+				}
+				break;
+			case 3:
+				if (y - 1 != 0 && map[x][y - 1] == 0)
+				{
+					if (root == 0)
+					{
+						CQuaternion rot;
+						rot.SetRotationDeg(CVector3::AxisY, 90);
+						start->SetRotation(rot);
+					}
+					else if (root == 29)
+					{
+						enro.SetRotationDeg(CVector3::AxisY, -90);
+					}
+					y--;
+					map[x][y] = 99;
+					c++;
+				}
+				break;
+			}
+			if (c == 0)
+			{
+				if (count >= 8)
+				{
+					switch (r)
+					{
+					case 0:
+						if (map[x - 1][y] == 99)
+						{
+							if (root == 0)
+							{
+								CQuaternion rot;
+								rot.SetRotationDeg(CVector3::AxisY, 180);
+								start->SetRotation(rot);
+							}
+							else if (root == 29)
+							{
+								enro = CQuaternion::Identity;
+							}
+							x--;
+							c++;
+							ex++;
+						}
+						break;
+					case 1:
+						if (map[x][y + 1] == 99)
+						{
+							if (root == 0)
+							{
+								CQuaternion rot;
+								rot.SetRotationDeg(CVector3::AxisY, -90);
+								start->SetRotation(rot);
+							}
+							else if (root == 29)
+							{
+								enro.SetRotationDeg(CVector3::AxisY, 90);
+							}
+							y++;
+							c++;
+							ex++;
+						}
+						break;
+					case 2:
+						if (map[x + 1][y] == 99)
+						{
+							if (root == 0)
+							{
+								CQuaternion rot = CQuaternion::Identity;
+								start->SetRotation(rot);
+							}
+							else if (root == 29)
+							{
+								enro.SetRotationDeg(CVector3::AxisY, 90);
+							}
+							x++;
+							c++;
+							ex++;
+						}
+						break;
+					case 3:
+						if (map[x][y - 1] == 99)
+						{
+							if (root == 0)
+							{
+								CQuaternion rot;
+								rot.SetRotationDeg(CVector3::AxisY, 90);
+								start->SetRotation(rot);
+							}
+							else if (root == 29)
+							{
+								enro.SetRotationDeg(CVector3::AxisY, -90);
+							}
+							y--;
+							c++;
+							ex++;
+						}
+						break;
+					}
+				}
+				else
+				{
+					count++;
+				}
+			}
+		} while (c == 0);
+		if (ex == 0)
+		{
+			prefab::CSkinModelRender* sr = NewGO<prefab::CSkinModelRender>(0);
+			sr->Init(L"modelData/map/tile.cmo");
+			pos.Set((float)(x * 1000), 0, (float)(y * 1000));
+			sr->SetPosition(pos);
+
+			psoa[cnt].CreateMeshObject(sr, pos, CQuaternion::Identity, CVector3::One);
+			cnt++;
+		}
+		
+	}
+	/*do
 	{
 		x = Random().GetRandDouble() * 29;
 		y = Random().GetRandDouble() * 29;
-	} while (map[x][y] != 0);
+	} while (map[x][y] != 0);*/
 	map[x][y] = 20;
 	{
 		//CPhysicsStaticObject pso;
@@ -40,6 +221,7 @@ bool BackGround::Start()
 		end->Init(L"modelData/map/end.cmo");
 		pos.Set((float)(x * 1000), 0, (float)(y * 1000));
 		end->SetPosition(pos);
+		end->SetRotation(enro);
 
 		psoa[cnt].CreateMeshObject(end, pos, CQuaternion::Identity, CVector3::One);
 		cnt++;
@@ -225,7 +407,8 @@ bool BackGround::Start()
 			if (map[xi][yi] == 0)
 			{
 				prefab::CSkinModelRender* smr = nullptr;
-				int r = Random().GetRandDouble()*3;
+				int r = round(Random().GetRandDouble());
+				r = 0;
 				switch (r)
 				{
 				case 0:
@@ -246,7 +429,7 @@ bool BackGround::Start()
 					
 					map[xi][yi] = num;
 					break;
-				case 1:
+				case 3:
 					num = (r + 1) * 10;
 
 					//prefab::CSkinModelRender* smr = nullptr;
@@ -282,7 +465,7 @@ bool BackGround::Start()
 
 					map[xi][yi] = num;
 					break;
-				case 3:
+				case 1:
 					num = (r + 1) * 10;
 
 					
