@@ -33,6 +33,7 @@ bool BackGround::Start()
 	CQuaternion enro;
 	for (int root = 0; root < 30; root++)
 	{
+		CQuaternion rot;
 		int c,ex = 0,r,count = 0;
 		do
 		{
@@ -45,7 +46,7 @@ bool BackGround::Start()
 				{
 					if(root == 0)
 					{
-						CQuaternion rot;
+						//CQuaternion rot;
 						rot.SetRotationDeg(CVector3::AxisY, 180);
 						start->SetRotation(rot);
 					}
@@ -63,7 +64,7 @@ bool BackGround::Start()
 				{
 					if (root == 0)
 					{
-						CQuaternion rot;
+						//CQuaternion rot;
 						rot.SetRotationDeg(CVector3::AxisY, -90);
 						start->SetRotation(rot);
 					}
@@ -81,7 +82,7 @@ bool BackGround::Start()
 				{
 					if (root == 0)
 					{
-						CQuaternion rot = CQuaternion::Identity;
+						//CQuaternion rot = CQuaternion::Identity;
 						start->SetRotation(rot);
 					}
 					else if (root == 29)
@@ -98,7 +99,7 @@ bool BackGround::Start()
 				{
 					if (root == 0)
 					{
-						CQuaternion rot;
+						//CQuaternion rot;
 						rot.SetRotationDeg(CVector3::AxisY, 90);
 						start->SetRotation(rot);
 					}
@@ -123,7 +124,7 @@ bool BackGround::Start()
 						{
 							if (root == 0)
 							{
-								CQuaternion rot;
+								//CQuaternion rot;
 								rot.SetRotationDeg(CVector3::AxisY, 180);
 								start->SetRotation(rot);
 							}
@@ -141,7 +142,7 @@ bool BackGround::Start()
 						{
 							if (root == 0)
 							{
-								CQuaternion rot;
+								//CQuaternion rot;
 								rot.SetRotationDeg(CVector3::AxisY, -90);
 								start->SetRotation(rot);
 							}
@@ -159,7 +160,7 @@ bool BackGround::Start()
 						{
 							if (root == 0)
 							{
-								CQuaternion rot = CQuaternion::Identity;
+								//CQuaternion rot = CQuaternion::Identity;
 								start->SetRotation(rot);
 							}
 							else if (root == 29)
@@ -176,7 +177,7 @@ bool BackGround::Start()
 						{
 							if (root == 0)
 							{
-								CQuaternion rot;
+								//CQuaternion rot;
 								rot.SetRotationDeg(CVector3::AxisY, 90);
 								start->SetRotation(rot);
 							}
@@ -204,7 +205,7 @@ bool BackGround::Start()
 			pos.Set((float)(x * 1000), 0, (float)(y * 1000));
 			sr->SetPosition(pos);
 
-			psoa[cnt].CreateMeshObject(sr, pos, CQuaternion::Identity, CVector3::One);
+			psoa[cnt].CreateMeshObject(sr, pos, rot, CVector3::One);
 			cnt++;
 		}
 		
@@ -223,7 +224,7 @@ bool BackGround::Start()
 		end->SetPosition(pos);
 		end->SetRotation(enro);
 
-		psoa[cnt].CreateMeshObject(end, pos, CQuaternion::Identity, CVector3::One);
+		psoa[cnt].CreateMeshObject(end, pos, enro, CVector3::One);
 		cnt++;
 		//pso.CreateMeshObject(end, pos, CQuaternion::Identity, CVector3::One);
 		//psolist.push_back(pso);
