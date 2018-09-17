@@ -252,6 +252,8 @@ namespace tkEngine{
 			GetCursorPos(&pt);
 			oldx = pt.x;
 			oldy = pt.y;
+
+			
 		}
 
 		

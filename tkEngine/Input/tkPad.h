@@ -147,6 +147,14 @@ namespace tkEngine{
 		{
 			return m_mouseY;
 		}
+		void SetWheel(int w)
+		{
+			m_wheel = w;
+		}
+		int GetWheel() const
+		{
+			return m_wheel;
+		}
 	private:
 		PAD_STATE m_state;	//!<パッドステート。
 		int m_padNo = 0;			//!<パッド番号。
@@ -161,5 +169,7 @@ namespace tkEngine{
 		float m_mouseY = 0.0f;
 		float oldx = 0.0f;
 		float oldy = 0.0f;
+
+		int m_wheel = 0.0f;
 	};
 }

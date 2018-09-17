@@ -11,7 +11,6 @@ public:
 	void OtherMove();
 	void Gravity();
 	void PushPushed();
-
 	CVector3 Getpos()
 	{
 		return pos;

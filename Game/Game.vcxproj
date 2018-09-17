@@ -1775,6 +1775,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Pixie\Pixie.cpp" />
+    <ClCompile Include="Pixie\PixieSpawner.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -1796,6 +1797,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Preview_Middle|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Preview_Low|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="test\test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BackGround\BackGround.h" />
@@ -1804,9 +1806,11 @@
     <ClInclude Include="Creature\CreatureManager.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Pixie\Pixie.h" />
+    <ClInclude Include="Pixie\PixieSpawner.h" />
     <ClInclude Include="Player.h" />
     <CLInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="test\test.h" />
     <ResourceCompile Include="Game.rc" />
   </ItemGroup>
   <ItemGroup>
@@ -1819,6 +1823,7 @@
     <MeshContentTask Include="Assets\modelData\map\tesmap.fbx" />
     <MeshContentTask Include="Assets\modelData\map\tile.FBX" />
     <MeshContentTask Include="Assets\modelData\pixie\pixie.FBX" />
+    <MeshContentTask Include="Assets\modelData\tes\bone.fbx" />
     <MeshContentTask Include="Assets\modelData\Theif\Thethief_H.FBX" />
     <MeshContentTask Include="Assets\modelData\unityChan.fbx" />
   </ItemGroup>

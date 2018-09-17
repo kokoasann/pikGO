@@ -79,6 +79,7 @@ void Player::Update()
 
 	float x = Pad(0).GetLStickYF()*-1.0f;
 	float z = Pad(0).GetLStickXF();
+	//z = Pad(0).GetWheel();
 
 	speed.x = 0;
 	speed.z = 0;
@@ -87,7 +88,7 @@ void Player::Update()
 
 	if (fabsf(speed.x) <= 0.0001f && fabsf(speed.z) <= 0.0001f)
 		olds = Getpos();
-	if (Pad(0).IsTrigger(enButtonA) && cc.IsOnGround())
+	if (Pad(0).IsTrigger(enButtonA)&& cc.IsOnGround())
 	{
 		speed.y += 400;
 	}

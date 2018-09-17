@@ -169,12 +169,16 @@ namespace tkEngine {
 	{
 		PAINTSTRUCT ps;
 		HDC hdc;
-
+		Pad(0).SetWheel(0);
 		switch (msg)
 		{
 		case WM_PAINT:
 			hdc = BeginPaint(hWnd, &ps);
 			EndPaint(hWnd, &ps);
+			break;
+
+		case WM_MOUSEWHEEL:
+			Pad(0).SetWheel(GET_WHEEL_DELTA_WPARAM(wParam));
 			break;
 
 		case WM_DESTROY:

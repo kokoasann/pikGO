@@ -14,7 +14,7 @@ bool Pixie::Start()
 	animClip[anim_idle].SetLoopFlag(true);
 	animClip[anim_walk].SetLoopFlag(true);
 
-	pos.Set(500, 0, 0);
+	//pos.Set(500, 0, 0);
 	//sr = NewGO < prefab::CSkinModelRender>(0);
 	//sr->Init(L"modelData/pixie/pixie.cmo",animClip,anim_num);
 	//sr->SetPosition(pos);
@@ -23,7 +23,7 @@ bool Pixie::Start()
 
 	//sr->PlayAnimation(anim_walk);
 
-	init(pos, 1, 0.1f, 20, 70, L"modelData/pixie/pixie.cmo",animClip,anim_num);
+	init(inipo, 1, 0.1f, 20, 70, L"modelData/pixie/pixie.cmo",animClip,anim_num);
 	PlayAnim(anim_walk);
 	player = FindGO<Player>("player");
 	return true;

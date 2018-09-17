@@ -24,8 +24,7 @@ bool BackGround::Start()
 		start->SetPosition(pos);
 
 		//pso.CreateMeshObject(start, pos, CQuaternion::Identity, CVector3::One);
-		psoa[cnt].CreateMeshObject(start, pos, CQuaternion::Identity, CVector3::One);
-		cnt++;
+		
 		//psolist.push_back(pso);
 
 		FindGO<Player>("player")->Setpos(pos);
@@ -49,6 +48,8 @@ bool BackGround::Start()
 						//CQuaternion rot;
 						rot.SetRotationDeg(CVector3::AxisY, 180);
 						start->SetRotation(rot);
+						psoa[cnt].CreateMeshObject(start, pos, rot, CVector3::One);
+						cnt++;
 					}
 					else if (root == 29)
 					{
@@ -67,6 +68,8 @@ bool BackGround::Start()
 						//CQuaternion rot;
 						rot.SetRotationDeg(CVector3::AxisY, -90);
 						start->SetRotation(rot);
+						psoa[cnt].CreateMeshObject(start, pos, rot, CVector3::One);
+						cnt++;
 					}
 					else if (root == 29)
 					{
@@ -82,8 +85,10 @@ bool BackGround::Start()
 				{
 					if (root == 0)
 					{
-						//CQuaternion rot = CQuaternion::Identity;
+						CQuaternion rot = CQuaternion::Identity;
 						start->SetRotation(rot);
+						psoa[cnt].CreateMeshObject(start, pos, rot, CVector3::One);
+						cnt++;
 					}
 					else if (root == 29)
 					{
@@ -102,6 +107,8 @@ bool BackGround::Start()
 						//CQuaternion rot;
 						rot.SetRotationDeg(CVector3::AxisY, 90);
 						start->SetRotation(rot);
+						psoa[cnt].CreateMeshObject(start, pos, rot, CVector3::One);
+						cnt++;
 					}
 					else if (root == 29)
 					{
@@ -127,6 +134,8 @@ bool BackGround::Start()
 								//CQuaternion rot;
 								rot.SetRotationDeg(CVector3::AxisY, 180);
 								start->SetRotation(rot);
+								psoa[cnt].CreateMeshObject(start, pos, rot, CVector3::One);
+								cnt++;
 							}
 							else if (root == 29)
 							{
@@ -145,6 +154,8 @@ bool BackGround::Start()
 								//CQuaternion rot;
 								rot.SetRotationDeg(CVector3::AxisY, -90);
 								start->SetRotation(rot);
+								psoa[cnt].CreateMeshObject(start, pos, rot, CVector3::One);
+								cnt++;
 							}
 							else if (root == 29)
 							{
@@ -160,8 +171,10 @@ bool BackGround::Start()
 						{
 							if (root == 0)
 							{
-								//CQuaternion rot = CQuaternion::Identity;
+								CQuaternion rot = CQuaternion::Identity;
 								start->SetRotation(rot);
+								psoa[cnt].CreateMeshObject(start, pos, rot, CVector3::One);
+								cnt++;
 							}
 							else if (root == 29)
 							{
@@ -180,6 +193,8 @@ bool BackGround::Start()
 								//CQuaternion rot;
 								rot.SetRotationDeg(CVector3::AxisY, 90);
 								start->SetRotation(rot);
+								psoa[cnt].CreateMeshObject(start, pos, rot, CVector3::One);
+								cnt++;
 							}
 							else if (root == 29)
 							{
@@ -204,6 +219,10 @@ bool BackGround::Start()
 			sr->Init(L"modelData/map/tile.cmo");
 			pos.Set((float)(x * 1000), 0, (float)(y * 1000));
 			sr->SetPosition(pos);
+
+			prefab::CSkinModelRender* sk = NewGO<prefab::CSkinModelRender>(0);
+			sk->Init(L"modelData/pixie/pixie.cmo");
+			sk->SetPosition(pos);
 
 			psoa[cnt].CreateMeshObject(sr, pos, rot, CVector3::One);
 			cnt++;

@@ -29,7 +29,7 @@ public:
 	//CVector3 walk = CVector3::Zero;
 	float time = 0;
 	float timeUP = 0;
-
+	CVector3 inipo = CVector3::Zero;
 	Player* player = nullptr;
 
 	enum Mode
@@ -39,7 +39,20 @@ public:
 		chase
 	};
 
-	Mode mode = free;
+	Mode mode = stay;
+
+	void Modefree()
+	{
+		mode = free;
+	}
+	void Modestay()
+	{
+		mode = stay;
+	}
+	void Modechase()
+	{
+		mode = chase;
+	}
 
 	enum AnimationClip
 	{

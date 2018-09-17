@@ -4,8 +4,11 @@
 #include "BackGround/BackGround.h"
 #include "Player.h"
 #include "Pixie/Pixie.h"
+#include "Pixie/PixieSpawner.h"
 #include "Camera/GameCamera.h"
 #include "tkEngine/light/tkDirectionLight.h"
+
+#include "test/test.h"
 
 Game::Game()
 {
@@ -18,6 +21,7 @@ Game::~Game()
 }
 bool Game::Start()
 {
+	//NewGO<test>(0);
 	//ÉJÉÅÉâÇê›íËÅB
 	/*MainCamera().SetTarget({ 0.0f, 70.0f, 0.0f });
 	MainCamera().SetNear(10.0f);
@@ -31,7 +35,8 @@ bool Game::Start()
 	NewGO <BackGround>(0, "BG");
 	NewGO<GameCamera>(0, "camera");
 
-	NewGO<Pixie>(0, "pixie");
+	NewGO<PixieSpawner>(0, "PS");
+	//NewGO<Pixie>(0, "pixie");
 	
 	point = NewGO < prefab::CSpriteRender>(0);
 	point->Init(L"sprite/point.dds", 24, 24);

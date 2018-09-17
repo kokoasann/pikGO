@@ -43,6 +43,7 @@ void Creature::Move()
 		{
 			CVector3 diff = pos - crea->Getpos();
 			diff.y = 0;
+			
 			if (diff.Length() <= radius + crea->Getradius()+5)
 			{
 				if (weight >= crea->Getweight())
@@ -76,6 +77,7 @@ void Creature::OtherMove()
 	sr->SetPosition(pos);
 	otherspeed = CVector3::Zero;
 }
+
 
 void Creature::Gravity()
 {

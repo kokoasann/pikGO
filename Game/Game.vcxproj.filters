@@ -35,6 +35,12 @@
     <Filter Include="Creature">
       <UniqueIdentifier>{9a38c16f-d6e6-4ad8-9251-cfa28236081f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="test">
+      <UniqueIdentifier>{240eed7a-22c0-4c40-b68f-eb0d1b301411}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\modelData\tes">
+      <UniqueIdentifier>{4872b2e3-55c5-442e-b1d2-493f339f8520}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -55,6 +61,12 @@
     </ClCompile>
     <ClCompile Include="Creature\CreatureManager.cpp">
       <Filter>Creature</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="Pixie\PixieSpawner.cpp">
+      <Filter>Pixie</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -78,6 +90,12 @@
     </ClInclude>
     <ClInclude Include="Creature\CreatureManager.h">
       <Filter>Creature</Filter>
+    </ClInclude>
+    <ClInclude Include="test\test.h">
+      <Filter>test</Filter>
+    </ClInclude>
+    <ClInclude Include="Pixie\PixieSpawner.h">
+      <Filter>Pixie</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +136,9 @@
     </MeshContentTask>
     <MeshContentTask Include="Assets\modelData\map\tile.FBX">
       <Filter>Assets\modelData\map</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\tes\bone.fbx">
+      <Filter>Assets\modelData\tes</Filter>
     </MeshContentTask>
   </ItemGroup>
   <ItemGroup>
