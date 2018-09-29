@@ -2,12 +2,13 @@
 #include "Creature.h"
 #include "CreatureManager.h"
 
-void Creature::init(CVector3 pos,float scale, float weight, float radius, float height, const wchar_t * modelpath, CAnimationClip* anim, int clips)
+void Creature::init(CVector3 pos,float scale, float weight, float radius, float height,int hp, const wchar_t * modelpath, CAnimationClip* anim, int clips)
 {
 	this->pos = pos;
 	this->weight = weight;
 	this->radius = radius;
 	this->height = height;
+	this->HP = hp;
 	sr = NewGO < prefab::CSkinModelRender>(0);
 	if (anim == nullptr)
 		sr->Init(modelpath);
@@ -49,7 +50,9 @@ void Creature::Move()
 				if (weight >= crea->Getweight())
 				{
 					float f = (weight - crea->Getweight()) / (weight + crea->Getweight());
-					speed -= speed * f;
+					CVector3 dsp = speed;
+					dsp.y = 0;
+					speed -= dsp * f;
 					CVector3 v = speed;
 
 					diff.Normalize();
@@ -62,7 +65,7 @@ void Creature::Move()
 		return;
 	});
 	pos = cc.Execute(GameTime().GetFrameDeltaTime(), speed);
-
+	
 	if (cc.IsOnGround())
 	{
 		speed.y = 0;

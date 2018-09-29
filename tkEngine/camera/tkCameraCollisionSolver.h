@@ -35,8 +35,10 @@ namespace tkEngine{
 		 *@return	コリジョン解決を行った場合はtrueが返ってくる。
 		 */
 		bool Execute(CVector3& result, const CVector3& position, const CVector3& target);
+		CVector3 Execute(CVector3 position, CVector3 oldpos);
 	private:
 		CSphereCollider		m_collider;		 //コライダー。
 		float				m_radius = 0.0f; //半径。
+		CCharacterController m_CCC;
 	};
 }

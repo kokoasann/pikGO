@@ -4,16 +4,21 @@
 
 bool PixieSpawner::Start()
 {
-	int r = 8 + Random().GetRandDouble() * 3;
-	for (int c = 0; c < 8; c++)
+	
+	return true;
+}
+
+void PixieSpawner::init(int T, int Y, int RC, int RM)
+{
+	int r = RC + Random().GetRandDouble() * RM;
+	for (int c = 0; c < r; c++)
 	{
-		int rx = 1 + Random().GetRandDouble() * 27;
-		int ry = 1 + Random().GetRandDouble() * 27;
+		int rx = 1 + Random().GetRandDouble() * (T-3);
+		int ry = 1 + Random().GetRandDouble() * (Y-3);
 
 		CVector3 pos = { (float)(rx * 1000),0,(float)(ry * 1000) };
-		Pixie* p = NewGO<Pixie>(0,"pixie");
+		Pixie* p = NewGO<Pixie>(0, "pixie");
 		p->inipo = pos;
-		p->Modefree();
+		p->Modechase();
 	}
-	return true;
 }

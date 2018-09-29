@@ -1,6 +1,20 @@
 #pragma once
 #include "tkEngine/character/tkCharacterController.h"
 #include "Creature/Creature.h"
+#include "tkEngine/Physics/tkSphereCollider.h"
+
+struct RePhy : public btCollisionWorld::ConvexResultCallback
+{
+	bool isHit = false;
+	CVector3 Hitpo = CVector3::Zero;
+	virtual	btScalar	addSingleResult(btCollisionWorld::LocalConvexResult& convexResult, bool normalInWorldSpace)
+	{
+		isHit = true;
+		Hitpo = *(CVector3*)&convexResult.m_hitPointLocal;
+		return 0.0f;
+	}
+};
+
 class Player;
 class Pixie:public IGameObject,public Creature
 {
@@ -31,6 +45,8 @@ public:
 	float timeUP = 0;
 	CVector3 inipo = CVector3::Zero;
 	Player* player = nullptr;
+
+	CSphereCollider CSC;
 
 	enum Mode
 	{

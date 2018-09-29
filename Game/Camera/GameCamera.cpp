@@ -21,18 +21,25 @@ bool GameCamera::Start()
 	//カメラのニアクリップとファークリップを設定する。
 	MainCamera().SetNear(1.0f);
 	MainCamera().SetFar(50000.0f);
+	pos = toto + player->Getpos();
+	pos.y = 80;
+	MainCamera().SetPosition(pos);
+	tar = tota + player->Getpos();
+	tar.y = 80;
+	MainCamera().SetTarget(tar);
 
 	camera = &MainCamera();
 	CCS.Init(5.0f);
-
+	//CCC.Init(5.0f, 5.0f, pos);
 	//ばねカメラの初期化。
-	Scamera.Init(
-		MainCamera(),		//ばねカメラの処理を行うカメラを指定する。
-		1000000.0f,			//カメラの移動速度の最大値。
-		true,				//カメラと地形とのあたり判定を取るかどうかのフラグ。trueだとあたり判定を行う。
-		5.0f				//カメラに設定される球体コリジョンの半径。第３引数がtrueの時に有効になる。
-	);
+	//Scamera.Init(
+	//	MainCamera(),		//ばねカメラの処理を行うカメラを指定する。
+	//	1000000.0f,			//カメラの移動速度の最大値。
+	//	true,				//カメラと地形とのあたり判定を取るかどうかのフラグ。trueだとあたり判定を行う。
+	//	5.0f				//カメラに設定される球体コリジョンの半径。第３引数がtrueの時に有効になる。
+	//);
 	//camera.Update();
+	MainCamera().Update();
 	return true;
 }
 
@@ -42,7 +49,8 @@ void GameCamera::Update()
 	CVector3 target = player->Getpos();
 	//プレイヤの足元からちょっと上を注視点とする。
 	target.y += 80.0f;
-
+	CVector3 old = pos;
+	CVector3 oldt = tar;
 	/*CVector3 camX = Scamera.GetCamera()->GetForward();
 	camX.y = 0;
 	camX.Normalize();
@@ -94,7 +102,7 @@ void GameCamera::Update()
 		toto = toCameraPosOld;
 		tota = toCameraTarOld;
 	}
-	else if (toPosDir.y > 0.8f) {
+	else if (toPosDir.y > 0.4f) {
 		//カメラが下向きすぎ。
 		toto = toCameraPosOld;
 		tota = toCameraTarOld;
@@ -104,20 +112,28 @@ void GameCamera::Update()
 	CVector3 nt = toto;
 	nt.Normalize();
 	toto += (nt * Pad(0).GetWheel() * 2);
+
 	pos = target + toto;
 	tar = target + tota;
+
+	//CVector3 mop = posr - old;
+	//CVector3 mot = tarr - oldt;
+
+	//pos = old + mop * GameTime().GetFrameDeltaTime();
+	//tar = oldt + mot * GameTime().GetFrameDeltaTime();
 	//pos += player->GetMove();
 	//tar += player->GetMove();
 
-	//Scamera.SetPosition(pos);
-	//Scamera.SetTarget(target+tota);
-	//Scamera.Update();
-
-	CVector3 res;
-	CCS.Execute(res, pos, tar);
-
-	MainCamera().SetPosition(res);
+	CVector3 res,re;
+	//CCS.Execute(res, pos, old);
+	res = CCS.Execute(pos, old);
+	
+	CCS.Execute(re, res, target);
+	//re = CCS.Execute(target,res);
+	//CVector3 move = pos - old;
+	//pos = CCC.Execute(GameTime().GetFrameDeltaTime(),move);
+	pos = re;
+	MainCamera().SetPosition(pos);
 	MainCamera().SetTarget(tar);
 	MainCamera().Update();
-	
 }

@@ -1595,13 +1595,16 @@
       <ContentOutput>%(RelativeDir)/%(Filename).dds</ContentOutput>
     </ImageContentTask>
     <CustomBuild>
-      <Command>call $(ProjectDir)..\tkTools\tkContentTools.bat %(Identity) $(OutDir)</Command>
+      <Command>
+      </Command>
     </CustomBuild>
     <CustomBuild>
-      <Message>tkContentTools</Message>
+      <Message>
+      </Message>
     </CustomBuild>
     <CustomBuild>
-      <Outputs>$(OutDir)\%(Identity)</Outputs>
+      <Outputs>
+      </Outputs>
     </CustomBuild>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Preview_Middle|X64'">
@@ -1769,14 +1772,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BackGround\BackGround.cpp" />
+    <ClCompile Include="BackGround\MapPiece.cpp" />
+    <ClCompile Include="BackGround\RootFind.cpp" />
     <ClCompile Include="Camera\GameCamera.cpp" />
     <ClCompile Include="Creature\Creature.cpp" />
     <ClCompile Include="Creature\CreatureManager.cpp" />
+    <ClCompile Include="Enemy\Enemy.cpp" />
+    <ClCompile Include="Enemy\EnemySpawner.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Pixie\Pixie.cpp" />
     <ClCompile Include="Pixie\PixieSpawner.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Q\Q.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug_Middle|Win32'">Create</PrecompiledHeader>
@@ -1797,25 +1805,34 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Preview_Middle|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Preview_Low|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="SystemGraphics\Loading.cpp" />
     <ClCompile Include="test\test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BackGround\BackGround.h" />
+    <ClInclude Include="BackGround\MapPiece.h" />
+    <ClInclude Include="BackGround\RootFind.h" />
     <ClInclude Include="Camera\GameCamera.h" />
     <ClInclude Include="Creature\Creature.h" />
     <ClInclude Include="Creature\CreatureManager.h" />
+    <ClInclude Include="Enemy\Enemy.h" />
+    <ClInclude Include="Enemy\EnemySpawner.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Pixie\Pixie.h" />
     <ClInclude Include="Pixie\PixieSpawner.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Q\Q.h" />
     <CLInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="SystemGraphics\Loading.h" />
     <ClInclude Include="test\test.h" />
     <ResourceCompile Include="Game.rc" />
   </ItemGroup>
   <ItemGroup>
+    <MeshContentTask Include="Assets\modelData\mamono\mamono.fbx" />
     <MeshContentTask Include="Assets\modelData\map\end.FBX" />
     <MeshContentTask Include="Assets\modelData\map\leftkarb.FBX" />
+    <MeshContentTask Include="Assets\modelData\map\Q.FBX" />
     <MeshContentTask Include="Assets\modelData\map\right.FBX" />
     <MeshContentTask Include="Assets\modelData\map\rightkarb.FBX" />
     <MeshContentTask Include="Assets\modelData\map\road.FBX" />

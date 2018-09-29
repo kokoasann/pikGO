@@ -41,6 +41,18 @@
     <Filter Include="Assets\modelData\tes">
       <UniqueIdentifier>{4872b2e3-55c5-442e-b1d2-493f339f8520}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Enemy">
+      <UniqueIdentifier>{8fc6343c-fa59-453e-b1aa-27dc43bef851}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\modelData\mamono">
+      <UniqueIdentifier>{6891d618-72f7-41a8-a27d-e7973092d387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Q">
+      <UniqueIdentifier>{2f0ccfa6-80ae-46f6-baec-3bb6d9296625}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SystemGraphics">
+      <UniqueIdentifier>{5850fc91-980c-4167-b7c8-210d9ab7df6d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -67,6 +79,24 @@
     </ClCompile>
     <ClCompile Include="Pixie\PixieSpawner.cpp">
       <Filter>Pixie</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy\Enemy.cpp">
+      <Filter>Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy\EnemySpawner.cpp">
+      <Filter>Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Q\Q.cpp">
+      <Filter>Q</Filter>
+    </ClCompile>
+    <ClCompile Include="BackGround\MapPiece.cpp">
+      <Filter>BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="SystemGraphics\Loading.cpp">
+      <Filter>SystemGraphics</Filter>
+    </ClCompile>
+    <ClCompile Include="BackGround\RootFind.cpp">
+      <Filter>BackGround</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -96,6 +126,24 @@
     </ClInclude>
     <ClInclude Include="Pixie\PixieSpawner.h">
       <Filter>Pixie</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy\Enemy.h">
+      <Filter>Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy\EnemySpawner.h">
+      <Filter>Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Q\Q.h">
+      <Filter>Q</Filter>
+    </ClInclude>
+    <ClInclude Include="BackGround\MapPiece.h">
+      <Filter>BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemGraphics\Loading.h">
+      <Filter>SystemGraphics</Filter>
+    </ClInclude>
+    <ClInclude Include="BackGround\RootFind.h">
+      <Filter>BackGround</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -139,6 +187,12 @@
     </MeshContentTask>
     <MeshContentTask Include="Assets\modelData\tes\bone.fbx">
       <Filter>Assets\modelData\tes</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\mamono\mamono.fbx">
+      <Filter>Assets\modelData\mamono</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\map\Q.FBX">
+      <Filter>Assets\modelData\map</Filter>
     </MeshContentTask>
   </ItemGroup>
   <ItemGroup>

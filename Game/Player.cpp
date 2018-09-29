@@ -3,6 +3,7 @@
 #include "Creature/Creature.h"
 #include "Pixie/Pixie.h"
 #include "Camera/GameCamera.h"
+#include "BackGround/BackGround.h"
 
 Player::Player()
 {
@@ -20,8 +21,10 @@ bool Player::Start()
 	//sr->Init(L"modelData/unityChan.cmo");
 	//cc.Init(20.0f, 40.0f, pos);
 
-	init(pos, 1, 5, 20, 40, L"modelData/unityChan.cmo");
+	init(inipo, 1.0f, 5.0f, 20.0f, 40.0f,30, L"modelData/unityChan.cmo");
 	cam = FindGO<GameCamera>("camera");
+	collider.Create(0.5f);
+	bg = FindGO<BackGround>("BG");
 	return true;
 }
 
@@ -40,35 +43,63 @@ void Player::Rotationa()
 
 void Player::PikGet()
 {
-	if (Pad(0).IsTrigger(enButtonB))
+	CVector3 cap = cam->GetPos();
+	CVector3 cat = cam->GetTar();
+	CVector3 vec = cap - cat;
+	
+	vec.Normalize();
+	QueryGOs<Pixie>("pixie", [&](Pixie* pix)->bool
 	{
-		CVector3 vec = cam->GetPos() - cam->GetTar();
-		vec.Normalize();
-		QueryGOs<Pixie>("pixie", [&](Pixie* pix)->bool
+		if (pix->mode == Pixie::Mode::free)
 		{
-			CVector3 p = pix->Getpos();
-			p.y += 35;
-			CVector3 dif = pos - p;
-			
-			if (dif.Length() < 200)
+		}
+		CVector3 p = pix->Getpos();
+		p.y += 35;
+		CVector3 dif = pos - p;
+
+		if (dif.Length() < 200)
+		{
+			btTransform btStart, btEnd;
+			btStart.setIdentity();
+			btEnd.setIdentity();
+
+			btStart.setOrigin(btVector3(cap.x, cap.y, cap.z));
+			btEnd.setOrigin(btVector3(cat.x, cat.y, cat.z));
+			collback callback(vec);
+			//	callback.m_collisionFilterGroup = 
+			PhysicsWorld().ConvexSweepTest((const btConvexShape*)collider.GetBody(), btStart, btEnd, callback);
+			if (callback.hasHit())
 			{
-				CVector3 piv = cam->pos - pix->Getpos();
-				piv.Normalize();
-
-				float cta = piv.Dot(vec);
-				cta = acosf(cta);
-				if (cta < 10)
+				pixG = true;
+				if (Pad(0).IsTrigger(enButtonB))
 				{
-
+					pix->Modechase();
 				}
 			}
-			return true;
-		});
-	}
+			/*CVector3 piv = cam->pos - pix->Getpos();
+			piv.Normalize();
+
+			float cta = piv.Dot(vec);
+			cta = acosf(cta);
+			if (cta < 10.0f/CMath::PI*180.0f)
+			{
+				
+			}
+			else
+			{
+				pixG = false;
+			}*/
+		}
+		return true;
+	});
 }
 
 void Player::Update()
 {
+	if (!bg->iniend)
+	{
+		return;
+	}
 	CVector3 vecX = cam->GetPos() - cam->GetTar();
 	vecX.y = 0;
 	vecX.Normalize();
@@ -112,4 +143,15 @@ void Player::Update()
 	Gravity();
 	Move();
 	PikGet();
+}
+
+void Player::PostRender(CRenderContext & rc)
+{
+	if (pixG)
+	{
+		font.Begin(rc);
+		font.Draw(L"E ’‡ŠÔ‚É‚·‚é", { 0,-10},CVector4::White,0,0.5f);
+		font.End(rc);
+		pixG = false;
+	}
 }
