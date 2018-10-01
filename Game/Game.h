@@ -7,6 +7,7 @@ class BackGround;
 class Loading;
 class PixieSpawner;
 class EnemySpawner;
+class RootFind;
 class Game : public IGameObject
 {
 public:
@@ -24,11 +25,13 @@ public:
 	prefab::CSpriteRender* point = nullptr;
 	prefab::CSpriteRender* o = nullptr;
 	CQuaternion oRot = CQuaternion::Identity;
-	int T = 30, Y = 30;
+	int T = 10, Y = 10;
 	BackGround* bg;
 	Loading* lod;
 	PixieSpawner* ps;
 	EnemySpawner* es;
+
+	RootFind* RF;
 	prefab::CSkinModelRender* sr;
 	//prefab::CSkinModelRender* m_skinModelRender = nullptr;		//スキンモデルレンダラー。
 };

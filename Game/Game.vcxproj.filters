@@ -98,6 +98,9 @@
     <ClCompile Include="BackGround\RootFind.cpp">
       <Filter>BackGround</Filter>
     </ClCompile>
+    <ClCompile Include="BackGround\DebugBackGround.cpp">
+      <Filter>BackGround</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -143,6 +146,9 @@
       <Filter>SystemGraphics</Filter>
     </ClInclude>
     <ClInclude Include="BackGround\RootFind.h">
+      <Filter>BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="BackGround\DebugBackGround.h">
       <Filter>BackGround</Filter>
     </ClInclude>
   </ItemGroup>

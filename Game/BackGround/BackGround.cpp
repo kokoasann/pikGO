@@ -1098,7 +1098,7 @@ void BackGround::SetUP()
 
 void BackGround::PostRender(CRenderContext & rc)
 {
-	if (false)
+	if (false&&iniend)
 	{
 		font.Begin(rc);
 		//wchar_t text[255];

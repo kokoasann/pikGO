@@ -8,9 +8,11 @@
 #include "Pixie/PixieSpawner.h"
 #include "Enemy/EnemySpawner.h"
 #include "Camera/GameCamera.h"
+#include "BackGround/RootFind.h"
 #include "tkEngine/light/tkDirectionLight.h"
 
 #include "test/test.h"
+#include "BackGround/DebugBackGround.h"
 
 Game::Game()
 {
@@ -47,15 +49,15 @@ bool Game::Start()
 		DeleteGO(sr);
 		//NewGO<test>(0);
 		//ÉJÉÅÉâÇê›íËÅB
-		/*MainCamera().SetTarget({ 15000.1f, -10.0f, 15000.0f });
+		MainCamera().SetTarget({ 5000.1f, -0.0001f, 5000.0f });
 		MainCamera().SetNear(1.0f);
 		MainCamera().SetFar(50000.0f);
-		MainCamera().SetPosition({ 15000.0f, 9500.0f, 15000.0f });
+		MainCamera().SetPosition({ 5000.0f, 9500.0f, 5000.0f });
 		MainCamera().SetViewAngle(90);
-		MainCamera().Update();*/
+		MainCamera().Update();
 		//int T = 10, Y = 10;
 		NewGO<CreatureManager>(0, "CM");
-		NewGO<GameCamera>(0, "camera");
+		//NewGO<GameCamera>(0, "camera");
 		NewGO<Player>(0, "player");
 		bg = NewGO<BackGround>(0, "BG");
 		bg->init(T, Y);
@@ -73,14 +75,20 @@ bool Game::Start()
 		}
 		break;
 	case enInitStep_02:
+		RF = NewGO<RootFind>(0, "RF");
+		RF->CreateNodeMap(T,Y,bg->map);
+		RF->BuildNode();
+
 		ps = NewGO<PixieSpawner>(0, "PS");
-		es = NewGO<EnemySpawner>(0, "ES");
+		//es = NewGO<EnemySpawner>(0, "ES");
 		ps->init(T, Y, 10, 0);
-		es->init(T, Y, 10, 0);
+		//es->init(T, Y, 10, 0);
 		//NewGO<Pixie>(0, "pixie");
 
 		point = NewGO < prefab::CSpriteRender>(0);
 		point->Init(L"sprite/point.dds", 24, 24);
+
+		NewGO<DebugBG>(0, "DBG");
 		return true;
 	}
 	return false;

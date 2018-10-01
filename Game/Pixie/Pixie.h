@@ -14,7 +14,7 @@ struct RePhy : public btCollisionWorld::ConvexResultCallback
 		return 0.0f;
 	}
 };
-
+class RootFind;
 class Player;
 class Pixie:public IGameObject,public Creature
 {
@@ -45,6 +45,7 @@ public:
 	float timeUP = 0;
 	CVector3 inipo = CVector3::Zero;
 	Player* player = nullptr;
+	RootFind* RF = nullptr;
 
 	CSphereCollider CSC;
 
