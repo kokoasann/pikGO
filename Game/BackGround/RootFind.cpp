@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include <iostream>
 #include "RootFind.h"
 
 bool RootFind::Start()
@@ -23,7 +24,7 @@ void RootFind::CreateNodeMap(int T,int Y,int** map)
 	}
 }
 
-CVector3 RootFind::FindRoot(CVector3 start,CVector3 target)
+CVector3 RootFind::FindRoot(CVector3 start,CVector3 target,Piece &piece)
 {
 	for (int iy = 0; iy < mt; iy++)
 	{
@@ -39,10 +40,32 @@ CVector3 RootFind::FindRoot(CVector3 start,CVector3 target)
 		}
 	}
 
-	int spz = round((start.z) / 1000.0f / BASE);
-	int spx = round((start.x) / 1000.0f / BASE);
-	Node* startNode = &nodeMap[spz][spx];
+	int spz = ((start.z) / 1000.0f / BASE)+1;
+	int spx = ((start.x) / 1000.0f / BASE)+1;
+
+	if (spz != piece.pos.y || spx != piece.pos.x)
+	{
+		piece.old = piece.pos;
+	}
+	if (nodeMap[spz][spx].mapID == 1)
+	{
+		spz = piece.old.y;
+		spx = piece.old.x;
+	}
+	piece.pos.y = spz;
+	piece.pos.x = spx;
+	
+	Node* startNode = &nodeMap[spx][spz];
 	startNode->movecost = 0;
+
+	/*prefab::CSkinModelRender* sk = NewGO < prefab::CSkinModelRender>(0);
+	sk->Init(L"modelData/mamono/mamono.cmo");
+	sk->SetScale({ 2.0f,0.1f,0.1f });
+	CVector3 nonp = { startNode->pos.x,0,startNode->pos.y };
+	CVector3 t3 = { 333.333f,500.0f,333.333f };
+	CVector3 spo = nonp * (BASE * 1000.0f);
+	sk->SetPosition(spo);
+*/
 	while (true)
 	{
 		Node* prosNode = NULL;
@@ -71,12 +94,16 @@ CVector3 RootFind::FindRoot(CVector3 start,CVector3 target)
 			if (node == NULL)
 				continue;
 			CVector3 dif;
-			if(prosNode->parentNode != NULL)
-				dif = prosNode->parentNode->pos*(BASE * 1000.0f) - prosNode->pos*(BASE * 1000.0f);
+			if(prosNode->parentNode != NULL || true)
+				dif = node->pos*(BASE * 1000.0f) - prosNode->pos*(BASE * 1000.0f);
 			else
 				dif = startNode->pos*(BASE * 1000.0f) - prosNode->pos*(BASE * 1000.0f);
 			float cost = dif.Length();
-			bool isUpdata = (node->movecost < 0 || node->movecost > cost);
+			if (i == 0 || i == 2 || i == 5 || i == 7)
+			{
+				//cost *= sqrtf(2);
+			}
+			bool isUpdata = ((node->movecost < 0) || (node->movecost > cost)) && (node != prosNode->parentNode);
 			if (isUpdata)
 			{
 				node->movecost = cost;
@@ -84,15 +111,43 @@ CVector3 RootFind::FindRoot(CVector3 start,CVector3 target)
 			}
 		}
 	}
-	int tpz = round(target.z / 1000.0f / BASE);
-	int tpx = round(target.x / 1000.0f / BASE);
+	int tpz = (target.z / 1000.0f / BASE);
+	int tpx = (target.x / 1000.0f / BASE);
 	Node* node = &nodeMap[tpz][tpx];
-	while (node->parentNode == startNode)
+	int count = 0;/*
+	for(prefab::CSkinModelRender* s : msa)
 	{
-		node = node->parentNode;
+		DeleteGO(s);
 	}
-	CVector3 dif = node->pos*(BASE * 1000.0f) - startNode->pos*(BASE * 1000.0f);
-	CVector3 root = {dif.x,0,dif.y};
+	msa.clear();*/
+	while (node->parentNode != startNode)
+	{
+		CVector2 np = { node->parentNode->pos.x,node->parentNode->pos.y };
+		piece.root.push_back(np);
+		node = node->parentNode;
+
+		prefab::CSkinModelRender* sk = NewGO < prefab::CSkinModelRender>(0);
+		sk->Init(L"modelData/mamono/mamono.cmo");
+		sk->SetScale({ 2.0f,0.1f,0.1f });
+		CVector3 nop = { node->pos.x,0,node->pos.y };
+		CVector3 three = { 333.333f,500.0f,333.333f };
+		CVector3 spo = nop * (BASE * 1000.0f);
+		sk->SetPosition(spo);
+		msa.push_back(sk);
+
+		std::cout << count << "x:" << np.x << "y:" << np.y << "\n";
+		count++;
+		if (count >= 300)
+			break;
+	}
+	//CVector3 dif = node->pos*(BASE * 1000.0f) - startNode->pos*(BASE * 1000.0f);
+	CVector3 nop = { node->pos.x,0,node->pos.y };
+	CVector3 three = { 333.333f,0.0f,333.333f };
+
+	CVector3 dif = nop*(BASE * 1000.0f) - startNode->pos;
+	//CVector3 dif = nop*(BASE * 1000.0f) - start;
+
+	CVector3 root = {dif.x,0,dif.z};
 	root.Normalize();
 	return root;
 }
@@ -109,21 +164,21 @@ void RootFind::BuildNode()
 
 			if (y - 1 >= 0 && x - 1 >= 0)
 				node->linkNode[0] = &nodeMap[y - 1][x - 1];
-			if (y - 1 >= 0 && x >= 0)
+			if (y - 1 >= 0)
 				node->linkNode[1] = &nodeMap[y - 1][x];
-			if (y - 1 >= 0 && x + 1 >= 0)
+			if (y - 1 >= 0 && x + 1 < mt)
 				node->linkNode[2] = &nodeMap[y - 1][x + 1];
 
-			if (y >= 0 && x - 1 >= 0)
+			if (x - 1 >= 0)
 				node->linkNode[3] = &nodeMap[y][x - 1];
-			if (y >= 0 && x + 1 >= 0)
+			if (x + 1 < mt)
 				node->linkNode[4] = &nodeMap[y][x + 1];
 
-			if (y + 1 >= 0 && x - 1 >= 0)
+			if (y + 1 < my && x - 1 >= 0)
 				node->linkNode[5] = &nodeMap[y + 1][x - 1];
-			if (y + 1 >= 0 && x >= 0)
+			if (y + 1 < my)
 				node->linkNode[6] = &nodeMap[y + 1][x];
-			if (y + 1 >= 0 && x + 1 >= 0)
+			if (y + 1 < my && x + 1 < mt)
 				node->linkNode[7] = &nodeMap[y+1][x+1];
 			node->pos.x = x;
 			node->pos.y = y;

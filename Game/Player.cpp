@@ -4,6 +4,7 @@
 #include "Pixie/Pixie.h"
 #include "Camera/GameCamera.h"
 #include "BackGround/BackGround.h"
+#include "Q/Q.h"
 
 Player::Player()
 {
@@ -25,6 +26,7 @@ bool Player::Start()
 	cam = FindGO<GameCamera>("camera");
 	collider.Create(0.5f);
 	bg = FindGO<BackGround>("BG");
+	q = FindGO<Q>("q");
 	return true;
 }
 
@@ -50,53 +52,60 @@ void Player::PikGet()
 	vec.Normalize();
 	QueryGOs<Pixie>("pixie", [&](Pixie* pix)->bool
 	{
-		if (pix->mode == Pixie::Mode::free)
+		if (pix->GetMode() == Pixie::Mode::free)
 		{
-		}
-		CVector3 p = pix->Getpos();
-		p.y += 35;
-		CVector3 dif = pos - p;
+			CVector3 p = pix->Getpos();
+			p.y += 35;
+			CVector3 dif = pos - p;
 
-		if (dif.Length() < 200)
-		{
-			btTransform btStart, btEnd;
-			btStart.setIdentity();
-			btEnd.setIdentity();
-
-			btStart.setOrigin(btVector3(cap.x, cap.y, cap.z));
-			btEnd.setOrigin(btVector3(cat.x, cat.y, cat.z));
-			collback callback(vec);
-			//	callback.m_collisionFilterGroup = 
-			PhysicsWorld().ConvexSweepTest((const btConvexShape*)collider.GetBody(), btStart, btEnd, callback);
-			if (callback.hasHit())
+			if (dif.Length() < 200)
 			{
-				pixG = true;
-				if (Pad(0).IsTrigger(enButtonB))
+				btTransform btStart, btEnd;
+				btStart.setIdentity();
+				btEnd.setIdentity();
+
+				btStart.setOrigin(btVector3(cap.x, cap.y, cap.z));
+				btEnd.setOrigin(btVector3(cat.x, cat.y, cat.z));
+				collback callback(vec);
+				//	callback.m_collisionFilterGroup = 
+				PhysicsWorld().ConvexSweepTest((const btConvexShape*)collider.GetBody(), btStart, btEnd, callback);
+				if (callback.hasHit())
 				{
-					pix->Modechase();
+					pixG = true;
+					if (Pad(0).IsTrigger(enButtonB))
+					{
+						pix->Modechase();
+					}
 				}
 			}
-			/*CVector3 piv = cam->pos - pix->Getpos();
-			piv.Normalize();
-
-			float cta = piv.Dot(vec);
-			cta = acosf(cta);
-			if (cta < 10.0f/CMath::PI*180.0f)
-			{
-				
-			}
-			else
-			{
-				pixG = false;
-			}*/
 		}
 		return true;
 	});
 }
 
+void Player::GoalIn()
+{
+	CVector2 two = CVector2::Zero;
+	CVector3 qpos = q->GetPos();
+	qpos.y = 131.95f;
+	MainCamera().CalcScreenPositionFromWorldPosition(two, qpos);
+	if (fabsf(two.x) < 24.0f && fabsf(two.y) < 24.0f)
+	{
+		isGoalDo = true;
+		if (Pad(0).IsTrigger(enButtonB))
+		{
+			isClear = true;
+		}
+	}
+	else
+	{
+		isGoalDo = false;
+	}
+}
+
 void Player::Update()
 {
-	if (!bg->iniend)
+	if (!bg->GetInitEnd())
 	{
 		return;
 	}
@@ -143,15 +152,20 @@ void Player::Update()
 	Gravity();
 	Move();
 	PikGet();
+	GoalIn();
 }
 
 void Player::PostRender(CRenderContext & rc)
 {
-	if (pixG)
+	font.Begin(rc);
+	if (isGoalDo)
 	{
-		font.Begin(rc);
+		font.Draw(L"E ÉSÅ[ÉãÇ∑ÇÈ", { 0,-10 }, CVector4::White, 0, 0.5f);
+	}
+	else if (pixG)
+	{
 		font.Draw(L"E íáä‘Ç…Ç∑ÇÈ", { 0,-10},CVector4::White,0,0.5f);
-		font.End(rc);
 		pixG = false;
 	}
+	font.End(rc);
 }

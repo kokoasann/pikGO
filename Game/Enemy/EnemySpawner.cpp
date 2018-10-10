@@ -22,6 +22,6 @@ void EnemySpawner::init(int T, int Y,int RC,int RM)
 
 		CVector3 pos = { (float)(rx * 1000),0,(float)(ry * 1000) };
 		Enemy* e = NewGO<Enemy>(0, "enemy");
-		e->inipo = pos;
+		e->SetInitPos(pos);
 	}
 }

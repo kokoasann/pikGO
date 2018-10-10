@@ -1831,6 +1831,8 @@
     <ResourceCompile Include="Game.rc" />
   </ItemGroup>
   <ItemGroup>
+    <MeshContentTask Include="Assets\modelData\mamono\mamono.2.fbx" />
+    <MeshContentTask Include="Assets\modelData\mamono\mamono.3.fbx" />
     <MeshContentTask Include="Assets\modelData\mamono\mamono.fbx" />
     <MeshContentTask Include="Assets\modelData\map\end.FBX" />
     <MeshContentTask Include="Assets\modelData\map\leftkarb.FBX" />

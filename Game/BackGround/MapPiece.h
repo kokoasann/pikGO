@@ -11,6 +11,8 @@ public:
 	void initPhysic();
 	void SetPos(CVector3 pos);
 	void SetRot(CQuaternion rot);
+
+private:
 	prefab::CSkinModelRender* sr;
 	CVector3 pos;
 	CQuaternion rot;

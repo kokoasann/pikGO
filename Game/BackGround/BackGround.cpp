@@ -62,7 +62,7 @@ void BackGround::init(const int T, const int Y)
 
 			stm->init(pos, CQuaternion::Identity, (int)start);
 			
-			FindGO<Player>("player")->inipo = pos;
+			FindGO<Player>("player")->SetInitPos(pos);
 		}
 		CQuaternion enro;
 		int enn = 0;
@@ -302,6 +302,8 @@ void BackGround::init(const int T, const int Y)
 				}
 				else if (obj.EqualObjectName(L"Q"))
 				{
+					Qpos = obj.position + pos;
+					FindGO<Q>("q")->SetPos(Qpos);
 					/*Q* q = NewGO<Q>(0, "Q");
 					CVector3 qp = obj.position;
 					qp += pos;
@@ -1116,4 +1118,160 @@ void BackGround::PostRender(CRenderContext & rc)
 		}
 		font.End(rc);
 	}
+}
+
+void BackGround::TestMaping()
+{
+	int T = 12;
+	int Y = 12;
+	tx = T * 3;
+	yy = Y * 3;
+	map = new int*[tx];
+	for (int i = 0; i < tx; i++)
+	{
+		map[i] = new int[yy];
+	}
+	for (int y = 0; y < tx; y++)
+	{
+		for (int x = 0; x < yy; x++)
+		{
+			map[y][x] = 0;
+		}
+	}
+
+	int** minimap = new int*[T];
+	for (int i = 0; i < T; i++)
+	{
+		minimap[i] = new int[Y];
+	}
+	for (int y = 0; y < T; y++)
+	{
+		for (int x = 0; x < Y; x++)
+		{
+			minimap[y][x] = 0;
+		}
+	}
+
+	CVector3 pos;
+	CQuaternion rot;
+	MapPiece* mp;
+	int x = 0, y = 0;
+	//wall1
+	pos.Set((float)(1 * 1000), 0, (float)(3 * 1000));
+	rot.SetRotationDeg(CVector3::AxisY, 90);
+	//rot = CQuaternion::Identity;
+
+	minimap[1][3] = 1;
+
+	mp = NewGO<MapPiece>(0);
+	mp->init(pos, rot, right);
+	PMS.push_back(mp);
+	Maping(1, 3, 1, right);
+
+	//wall2
+	pos.Set((float)(2 * 1000), 0, (float)(3 * 1000));
+	rot.SetRotationDeg(CVector3::AxisY, 90);
+	//rot = CQuaternion::Identity;
+
+	minimap[2][3] = 1;
+
+	mp = NewGO<MapPiece>(0);
+	mp->init(pos, rot, right);
+	PMS.push_back(mp);
+	Maping(2, 3, 1, right);
+
+
+	pos.Set((float)(1 * 1000), 0, (float)(4 * 1000));
+	pos.Set((float)((T-2) * 1000), 0, (float)((Y-5) * 1000));
+	FindGO<Player>("player")->SetInitPos(pos);
+
+	
+	//ŠO•Ç
+	x = 0;
+	y = 0;
+	for (x = 1; x < T - 1; x++)
+	{
+
+		if (minimap[x][0] == 0)
+		{
+			pos.Set((float)(x * 1000), 0, 0);
+
+			CQuaternion rot;
+			rot.SetRotationDeg(CVector3::AxisY, -90);
+
+			minimap[x][0] = 40;
+
+			MapPiece* mp = NewGO<MapPiece>(0);
+			mp->init(pos, rot, right);
+			PMS.push_back(mp);
+			Maping(x, 0, 3, right);
+		}
+		if (minimap[x][Y - 1] == 0)
+		{
+			pos.Set((float)(x * 1000), 0, (float)((Y - 1) * 1000));
+
+			CQuaternion rot;
+			rot.SetRotationDeg(CVector3::AxisY, 90);
+
+			minimap[x][Y - 1] = 43;
+
+			MapPiece* mp = NewGO<MapPiece>(0);
+			mp->init(pos, rot, right);
+			PMS.push_back(mp);
+			Maping(x, Y-1, 1, right);
+		}
+
+	}
+	
+	for (y = 1; y < Y - 1; y++)
+	{
+		if (true)
+		{
+			pos.Set(0, 0, (float)(y * 1000));
+
+			minimap[0][y] = 40;
+
+			MapPiece* mp = NewGO<MapPiece>(0);
+			mp->init(pos, CQuaternion::Identity, right);
+			PMS.push_back(mp);
+			Maping(0, y, 0, right);
+		}
+
+		if (true)
+		{
+			pos.Set((float)((T - 1) * 1000), 0, (float)(y * 1000));
+
+			CQuaternion rot;
+			rot.SetRotationDeg(CVector3::AxisY, 180);
+
+			minimap[T - 1][y] = 43;
+
+			MapPiece* mp = NewGO<MapPiece>(0);
+			mp->init(pos, rot, right);
+			PMS.push_back(mp);
+			Maping(T-1, y, 2, right);
+		}
+	}
+
+	for (x = 0; x < T; x++)
+	{
+		for (y = 0; y < Y; y++)
+		{
+			if (minimap[x][y] == 0)
+			{
+				pos.Set((float)((x) * 1000), 0, (float)(y * 1000));
+
+				rot = CQuaternion::Identity;
+
+				minimap[T - 1][y] = 1;
+
+				MapPiece* mp = NewGO<MapPiece>(0);
+				mp->init(pos, rot, tile);
+				PMS.push_back(mp);
+				Maping(x, y, 0, tile);
+			}
+		}
+	}
+	iniend = true;
+	delete(minimap);
 }

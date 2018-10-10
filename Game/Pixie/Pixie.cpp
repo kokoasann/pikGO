@@ -132,7 +132,7 @@ void Pixie::Stay()
 
 void Pixie::Chase()
 {
-	speed = RF->FindRoot(pos, player->Getpos());
+	speed = RF->FindRoot(pos, player->Getpos(),piece);
 	speed *= 1000.0f;
 	Rotation(speed);
 	Move();

@@ -3,6 +3,7 @@
 #include "tkEngine/graphics/effect/tkEffect.h"
 #include "tkEngine/physics/tkPhysicsGhostObject.h"
 #include "tkEngine/character/tkCharacterController.h"
+class Player;
 class BackGround;
 class Loading;
 class PixieSpawner;
@@ -21,11 +22,25 @@ public:
 		enInitStep_01,
 		enInitStep_02,
 	};
+
+	int GetTate()
+	{
+		return T;
+	}
+	int GetYoko()
+	{
+		return Y;
+	}
+
+private:
 	EnInitStep initStep = enInitStep_00;
 	prefab::CSpriteRender* point = nullptr;
 	prefab::CSpriteRender* o = nullptr;
 	CQuaternion oRot = CQuaternion::Identity;
-	int T = 10, Y = 10;
+	int T = 12, Y = 12;
+
+	Player* player;
+
 	BackGround* bg;
 	Loading* lod;
 	PixieSpawner* ps;

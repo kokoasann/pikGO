@@ -2,6 +2,7 @@
 #include "tkEngine/character/tkCharacterController.h"
 #include "Creature/Creature.h"
 #include "tkEngine/Physics/tkSphereCollider.h"
+#include "BackGround/RootFind.h"
 
 struct RePhy : public btCollisionWorld::ConvexResultCallback
 {
@@ -26,10 +27,46 @@ public:
 	void PushPushed();
 	void Rotationa(CVector3 v);
 
+	void SetInitPos(CVector3 v)
+	{
+		inipo = v;
+	}
+
+	enum Mode
+	{
+		free,
+		stay,
+		chase
+	};
+
 	void Free();
 	void Stay();
 	void Chase();
 
+	void Modefree()
+	{
+		mode = free;
+	}
+	void Modestay()
+	{
+		mode = stay;
+	}
+	void Modechase()
+	{
+		mode = chase;
+	}
+	
+	Piece GetPiece()
+	{
+		return piece;
+	}
+
+	Mode GetMode()
+	{
+		return mode;
+	}
+
+private:
 	//prefab::CSkinModelRender* sr = nullptr;
 
 	//CVector3 pos = CVector3::Zero;
@@ -46,30 +83,15 @@ public:
 	CVector3 inipo = CVector3::Zero;
 	Player* player = nullptr;
 	RootFind* RF = nullptr;
+	Piece piece;
 
 	CSphereCollider CSC;
 
-	enum Mode
-	{
-		free,
-		stay,
-		chase
-	};
+	
 
 	Mode mode = stay;
 
-	void Modefree()
-	{
-		mode = free;
-	}
-	void Modestay()
-	{
-		mode = stay;
-	}
-	void Modechase()
-	{
-		mode = chase;
-	}
+	
 
 	enum AnimationClip
 	{

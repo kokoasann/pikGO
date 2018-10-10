@@ -2,6 +2,7 @@
 #include "Game.h"
 #include "Creature/CreatureManager.h"
 #include "BackGround/BackGround.h"
+#include "Q/Q.h"
 #include "SystemGraphics/Loading.h"
 #include "Player.h"
 #include "Pixie/Pixie.h"
@@ -47,27 +48,34 @@ bool Game::Start()
 		sr->Init(L"modelData/map/rightkarb.cmo");
 		sr->Init(L"modelData/map/tile.cmo");
 		DeleteGO(sr);
-		//NewGO<test>(0);
+		
 		//カメラを設定。
-		MainCamera().SetTarget({ 5000.1f, -0.0001f, 5000.0f });
+		MainCamera().SetTarget({ 5000.1f, -0.0001f, 1000.0f });
 		MainCamera().SetNear(1.0f);
 		MainCamera().SetFar(50000.0f);
-		MainCamera().SetPosition({ 5000.0f, 9500.0f, 5000.0f });
-		MainCamera().SetViewAngle(90);
+		MainCamera().SetPosition({ 5000.0f, 10500.0f, 1000.0f });
+		MainCamera().SetViewAngle(20);
 		MainCamera().Update();
 		//int T = 10, Y = 10;
+
 		NewGO<CreatureManager>(0, "CM");
+
 		//NewGO<GameCamera>(0, "camera");
-		NewGO<Player>(0, "player");
+
+		player = NewGO<Player>(0, "player");
+
+		NewGO<Q>(0, "q");
+
 		bg = NewGO<BackGround>(0, "BG");
-		bg->init(T, Y);
+		//bg->init(T, Y);
+		bg->TestMaping();
 		initStep = enInitStep_01;
 		break;
 	case enInitStep_01:
 		/*ad.SetRotationDeg(CVector3::AxisX, 1.0f);
 		oRot.Multiply(oRot, ad);
 		o->SetRotation(oRot);*/
-		if (bg->iniend == true) {
+		if (bg->GetInitEnd() == true) {
 			//BGの構築終わり。
 			DeleteGO(lod);
 			bg->SetUP();
@@ -75,20 +83,26 @@ bool Game::Start()
 		}
 		break;
 	case enInitStep_02:
+		
+
 		RF = NewGO<RootFind>(0, "RF");
-		RF->CreateNodeMap(T,Y,bg->map);
+		RF->CreateNodeMap(T,Y,bg->GetMap());
 		RF->BuildNode();
 
 		ps = NewGO<PixieSpawner>(0, "PS");
 		//es = NewGO<EnemySpawner>(0, "ES");
-		ps->init(T, Y, 10, 0);
-		//es->init(T, Y, 10, 0);
+		//ps->init(T, Y,1, 0);
+		ps->TestSpawn();
+		//es->init(T, Y, 1, 0);
+
 		//NewGO<Pixie>(0, "pixie");
 
 		point = NewGO < prefab::CSpriteRender>(0);
 		point->Init(L"sprite/point.dds", 24, 24);
 
 		NewGO<DebugBG>(0, "DBG");
+
+		NewGO<test>(0,"test");
 		return true;
 	}
 	return false;
@@ -96,7 +110,10 @@ bool Game::Start()
 
 void Game::Update()
 {
+	if (player->GetIsClear())
+	{
 
+	}
 }
 
 void Game::PostRender(CRenderContext & rc)

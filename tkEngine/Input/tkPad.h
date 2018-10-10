@@ -149,11 +149,18 @@ namespace tkEngine{
 		}
 		void SetWheel(int w)
 		{
-			m_wheel = w;
+			if (w == 0)
+				m_wheel = 0;
+			else if (w < 0)
+				m_wheel = -1;
+			else 
+				m_wheel = 1;
 		}
-		int GetWheel() const
+		int GetWheel()
 		{
-			return m_wheel;
+			int re = m_wheel;
+			m_wheel = 0;
+			return re;
 		}
 	private:
 		PAD_STATE m_state;	//!<パッドステート。

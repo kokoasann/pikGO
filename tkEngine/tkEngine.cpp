@@ -169,7 +169,7 @@ namespace tkEngine {
 	{
 		PAINTSTRUCT ps;
 		HDC hdc;
-		Pad(0).SetWheel(0);
+		//Pad(0).SetWheel(0);
 		switch (msg)
 		{
 		case WM_PAINT:

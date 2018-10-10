@@ -97,21 +97,23 @@ void GameCamera::Update()
 	//大きさが１になるということは、ベクトルから強さがなくなり、方向のみの情報となるということ。
 	CVector3 toPosDir = toto;
 	toPosDir.Normalize();
-	if (toPosDir.y < -0.5f) {
+	if (toPosDir.y < -0.9f) {
 		//カメラが上向きすぎ。
 		toto = toCameraPosOld;
 		tota = toCameraTarOld;
 	}
-	else if (toPosDir.y > 0.4f) {
+	else if (toPosDir.y > 0.9f) {
 		//カメラが下向きすぎ。
 		toto = toCameraPosOld;
 		tota = toCameraTarOld;
 	}
 
 	//視点を計算する。
-	CVector3 nt = toto;
+	CVector3 nt = toto,ot = toto;
 	nt.Normalize();
-	toto += (nt * Pad(0).GetWheel() * 2);
+	toto += (nt * Pad(0).GetWheel() * 20);
+	if (toto.Length() < 158.0f)
+		toto = ot;
 
 	pos = target + toto;
 	tar = target + tota;

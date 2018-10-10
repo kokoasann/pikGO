@@ -20,6 +20,25 @@ public:
 	void Maping(int x, int y,int r,int m);
 	void SetUP();
 	void PostRender(CRenderContext& rc);
+
+	void TestMaping();
+
+	int** GetMap()
+	{
+		return map;
+	}
+
+	bool GetInitEnd()
+	{
+		return iniend;
+	}
+
+	CVector3 GetQpos()
+	{
+		return Qpos;
+	}
+
+private:
 	CFont font;
 
 	int tx = 0, yy = 0;
@@ -36,7 +55,7 @@ public:
 	//CPhysicsStaticObject pso,pso2;
 
 	CLevel level;
-
+	CVector3 Qpos;
 	
 	std::thread* initThread = nullptr;
 	std::list<MapPiece*> maplist;

@@ -200,6 +200,12 @@
     <MeshContentTask Include="Assets\modelData\map\Q.FBX">
       <Filter>Assets\modelData\map</Filter>
     </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\mamono\mamono.2.fbx">
+      <Filter>Assets\modelData\mamono</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\mamono\mamono.3.fbx">
+      <Filter>Assets\modelData\mamono</Filter>
+    </MeshContentTask>
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\dummy.png">
