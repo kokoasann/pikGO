@@ -7,6 +7,10 @@
 
 BackGround::~BackGround()
 {
+	for (auto mp : PMS)
+	{
+		DeleteGO(mp);
+	}
 	delete map;
 	delete initThread;
 }

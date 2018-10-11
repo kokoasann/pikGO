@@ -9,6 +9,7 @@ class Loading;
 class PixieSpawner;
 class EnemySpawner;
 class RootFind;
+class Lighting;
 class Game : public IGameObject
 {
 public:
@@ -45,6 +46,8 @@ private:
 	Loading* lod;
 	PixieSpawner* ps;
 	EnemySpawner* es;
+
+	Lighting* lighting;
 
 	RootFind* RF;
 	prefab::CSkinModelRender* sr;

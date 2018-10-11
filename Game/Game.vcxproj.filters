@@ -101,6 +101,9 @@
     <ClCompile Include="BackGround\DebugBackGround.cpp">
       <Filter>BackGround</Filter>
     </ClCompile>
+    <ClCompile Include="BackGround\Lighting.cpp">
+      <Filter>BackGround</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -149,6 +152,9 @@
       <Filter>BackGround</Filter>
     </ClInclude>
     <ClInclude Include="BackGround\DebugBackGround.h">
+      <Filter>BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="BackGround\Lighting.h">
       <Filter>BackGround</Filter>
     </ClInclude>
   </ItemGroup>

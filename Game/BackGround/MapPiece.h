@@ -4,6 +4,7 @@
 class MapPiece :public IGameObject
 {
 public:
+	~MapPiece();
 	bool Start();
 	void Update();
 	void init(CVector3 pos, CQuaternion rot,int m);

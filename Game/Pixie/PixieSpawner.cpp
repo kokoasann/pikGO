@@ -21,6 +21,7 @@ void PixieSpawner::init(int T, int Y, int RC, int RM)
 		p->SetInitPos(pos);
 		p->Modechase();
 	}
+	DeleteGO(this);
 }
 
 void PixieSpawner::TestSpawn()
@@ -29,4 +30,5 @@ void PixieSpawner::TestSpawn()
 	Pixie* p = NewGO<Pixie>(0, "pixie");
 	p->SetInitPos(pos);
 	p->Modechase();
+	DeleteGO(this);
 }

@@ -135,9 +135,9 @@ CVector3 RootFind::FindRoot(CVector3 start,CVector3 target,Piece &piece)
 		sk->SetPosition(spo);
 		msa.push_back(sk);
 
-		std::cout << count << "x:" << np.x << "y:" << np.y << "\n";
+		//std::cout << count << "x:" << np.x << "y:" << np.y << "\n";
 		count++;
-		if (count >= 300)
+		if (count >= 30)
 			break;
 	}
 	//CVector3 dif = node->pos*(BASE * 1000.0f) - startNode->pos*(BASE * 1000.0f);

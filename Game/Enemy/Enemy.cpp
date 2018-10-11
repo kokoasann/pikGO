@@ -17,5 +17,25 @@ bool Enemy::Start()
 
 void Enemy::Update()
 {
+	switch (mode)
+	{
+	case Enemy::free:
+		break;
+	case Enemy::chase:
+		break;
+	case Enemy::atack:
+		break;
+	}
+}
 
+void Enemy::Free()
+{
+}
+
+void Enemy::Chase()
+{
+}
+
+void Enemy::Atack()
+{
 }

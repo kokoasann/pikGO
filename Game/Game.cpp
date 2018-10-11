@@ -2,6 +2,7 @@
 #include "Game.h"
 #include "Creature/CreatureManager.h"
 #include "BackGround/BackGround.h"
+#include "BackGround/Lighting.h"
 #include "Q/Q.h"
 #include "SystemGraphics/Loading.h"
 #include "Player.h"
@@ -23,6 +24,8 @@ Game::Game()
 
 Game::~Game()
 {
+	DeleteGO(FindGO<GameCamera>("camera"));
+
 }
 bool Game::Start()
 {
@@ -60,7 +63,7 @@ bool Game::Start()
 
 		NewGO<CreatureManager>(0, "CM");
 
-		//NewGO<GameCamera>(0, "camera");
+		NewGO<GameCamera>(0, "camera");
 
 		player = NewGO<Player>(0, "player");
 
@@ -96,6 +99,8 @@ bool Game::Start()
 		//es->init(T, Y, 1, 0);
 
 		//NewGO<Pixie>(0, "pixie");
+
+		lighting = NewGO<Lighting>(0, "light");
 
 		point = NewGO < prefab::CSpriteRender>(0);
 		point->Init(L"sprite/point.dds", 24, 24);

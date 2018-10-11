@@ -10,8 +10,30 @@ public:
 	{
 		inipo = v;
 	}
+	void Free();
+	void Chase();
+	void Atack();
+	enum Mode
+	{
+		free,
+		chase,
+		atack
+	};
+	void ModeFree()
+	{
+		mode = free;
+	}
+	void ModeChase()
+	{
+		mode = chase;
+	}
+	void ModeAtack()
+	{
+		mode = atack;
+	}
 private:
 	CVector3 inipo = CVector3::Zero;
+	Mode mode;
 	enum anim
 	{
 		idle,

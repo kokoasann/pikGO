@@ -1,6 +1,11 @@
 #include "stdafx.h"
 #include "MapPiece.h"
 
+MapPiece::~MapPiece()
+{
+	DeleteGO(sr);
+}
+
 bool MapPiece::Start()
 {
 	return true;

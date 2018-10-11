@@ -1773,6 +1773,7 @@
   <ItemGroup>
     <ClCompile Include="BackGround\BackGround.cpp" />
     <ClCompile Include="BackGround\DebugBackGround.cpp" />
+    <ClCompile Include="BackGround\Lighting.cpp" />
     <ClCompile Include="BackGround\MapPiece.cpp" />
     <ClCompile Include="BackGround\RootFind.cpp" />
     <ClCompile Include="Camera\GameCamera.cpp" />
@@ -1812,6 +1813,7 @@
   <ItemGroup>
     <ClInclude Include="BackGround\BackGround.h" />
     <ClInclude Include="BackGround\DebugBackGround.h" />
+    <ClInclude Include="BackGround\Lighting.h" />
     <ClInclude Include="BackGround\MapPiece.h" />
     <ClInclude Include="BackGround\RootFind.h" />
     <ClInclude Include="Camera\GameCamera.h" />
