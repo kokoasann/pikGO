@@ -53,6 +53,9 @@
     <Filter Include="SystemGraphics">
       <UniqueIdentifier>{5850fc91-980c-4167-b7c8-210d9ab7df6d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Assets\modelData\op">
+      <UniqueIdentifier>{6dbd26fe-a9fc-4225-b964-49208b84f490}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -103,6 +106,18 @@
     </ClCompile>
     <ClCompile Include="BackGround\Lighting.cpp">
       <Filter>BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="SystemGraphics\StartMenu.cpp">
+      <Filter>SystemGraphics</Filter>
+    </ClCompile>
+    <ClCompile Include="SystemGraphics\Opening.cpp">
+      <Filter>SystemGraphics</Filter>
+    </ClCompile>
+    <ClCompile Include="SystemGraphics\opChara.cpp">
+      <Filter>SystemGraphics</Filter>
+    </ClCompile>
+    <ClCompile Include="SystemGraphics\Fade.cpp">
+      <Filter>SystemGraphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -156,6 +171,18 @@
     </ClInclude>
     <ClInclude Include="BackGround\Lighting.h">
       <Filter>BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemGraphics\Opening.h">
+      <Filter>SystemGraphics</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemGraphics\StartMenu.h">
+      <Filter>SystemGraphics</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemGraphics\opChara.h">
+      <Filter>SystemGraphics</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemGraphics\Fade.h">
+      <Filter>SystemGraphics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -212,12 +239,22 @@
     <MeshContentTask Include="Assets\modelData\mamono\mamono.3.fbx">
       <Filter>Assets\modelData\mamono</Filter>
     </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\op\block.FBX">
+      <Filter>Assets\modelData\op</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\op\Ground.FBX">
+      <Filter>Assets\modelData\op</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\op\Groundslim.FBX">
+      <Filter>Assets\modelData\op</Filter>
+    </MeshContentTask>
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\dummy.png">
       <Filter>Assets\sprite</Filter>
     </ImageContentTask>
     <ImageContentTask Include="Assets\sprite\point.png" />
+    <ImageContentTask Include="Assets\sprite\fade.png" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Assets\modelData\pixie\pixie.tks" />

@@ -1807,7 +1807,11 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Preview_Middle|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Preview_Low|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="SystemGraphics\Fade.cpp" />
     <ClCompile Include="SystemGraphics\Loading.cpp" />
+    <ClCompile Include="SystemGraphics\opChara.cpp" />
+    <ClCompile Include="SystemGraphics\Opening.cpp" />
+    <ClCompile Include="SystemGraphics\StartMenu.cpp" />
     <ClCompile Include="test\test.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -1828,7 +1832,11 @@
     <ClInclude Include="Q\Q.h" />
     <CLInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="SystemGraphics\Fade.h" />
     <ClInclude Include="SystemGraphics\Loading.h" />
+    <ClInclude Include="SystemGraphics\opChara.h" />
+    <ClInclude Include="SystemGraphics\Opening.h" />
+    <ClInclude Include="SystemGraphics\StartMenu.h" />
     <ClInclude Include="test\test.h" />
     <ResourceCompile Include="Game.rc" />
   </ItemGroup>
@@ -1845,6 +1853,9 @@
     <MeshContentTask Include="Assets\modelData\map\start.FBX" />
     <MeshContentTask Include="Assets\modelData\map\tesmap.fbx" />
     <MeshContentTask Include="Assets\modelData\map\tile.FBX" />
+    <MeshContentTask Include="Assets\modelData\op\block.FBX" />
+    <MeshContentTask Include="Assets\modelData\op\Ground.FBX" />
+    <MeshContentTask Include="Assets\modelData\op\Groundslim.FBX" />
     <MeshContentTask Include="Assets\modelData\pixie\pixie.FBX" />
     <MeshContentTask Include="Assets\modelData\tes\bone.fbx" />
     <MeshContentTask Include="Assets\modelData\Theif\Thethief_H.FBX" />
@@ -1860,6 +1871,9 @@
     <CustomBuild Include="Assets\modelData\pixie\pixie.tks">
       <FileType>Document</FileType>
     </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="Assets\sprite\fade.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

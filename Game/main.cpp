@@ -3,6 +3,8 @@
  */
 #include "stdafx.h"
 #include "Game.h"
+#include "SystemGraphics/Opening.h"
+#include "SystemGraphics/Fade.h"
 
 namespace {
 	/*!
@@ -126,7 +128,9 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 
 	//エンジンを初期化。
 	if (Engine().Init(initParam) == true) {
-		NewGO<Game>(0, "game");
+		//NewGO<Game>(0, "game");
+		NewGO<Opening>(0, "OP");
+		NewGO<Fade>(0, "fade");
 		//ゲームループを実行。
 		Engine().RunGameLoop();
 	}

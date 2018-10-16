@@ -55,6 +55,8 @@ namespace tkEngine{
 		 * 生成したときに、falseを返してしまうと、同じモデルが二つ描画されることになります。
 		 */
 		void Init( const wchar_t* filePath,  std::function<bool(LevelObjectData& objData)> hookFunc);
+
+		void AllClear();
 	private:
 		using CMapChipPtr = std::unique_ptr<CMapChip>;
 		std::vector<CMapChipPtr>	m_mapChipPtr;		//マップチップの可変長配列。

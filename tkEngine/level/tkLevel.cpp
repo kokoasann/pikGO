@@ -50,5 +50,15 @@ namespace tkEngine{
 				}
 			}
 		}
-	}	
+	}
+	void CLevel::AllClear()
+	{
+		for (int i = 0;i < m_mapChipPtr.size();i++)
+		{
+			delete(m_mapChipPtr[i].release());
+		}
+		m_mapChipPtr.clear();
+		m_mapChipPtr.shrink_to_fit();
+	}
+
 }
