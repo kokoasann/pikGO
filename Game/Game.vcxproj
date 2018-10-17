@@ -1850,6 +1850,7 @@
     <MeshContentTask Include="Assets\modelData\map\right.FBX" />
     <MeshContentTask Include="Assets\modelData\map\rightkarb.FBX" />
     <MeshContentTask Include="Assets\modelData\map\road.FBX" />
+    <MeshContentTask Include="Assets\modelData\map\sky.FBX" />
     <MeshContentTask Include="Assets\modelData\map\start.FBX" />
     <MeshContentTask Include="Assets\modelData\map\tesmap.fbx" />
     <MeshContentTask Include="Assets\modelData\map\tile.FBX" />

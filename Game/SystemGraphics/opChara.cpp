@@ -85,6 +85,11 @@ void opChara::SetScale(CVector3 v)
 	sr->SetScale(v);
 }
 
+void opChara::playAnim(int num)
+{
+	sr->PlayAnimation(num);
+}
+
 void opChara::Update()
 {
 	switch (state)

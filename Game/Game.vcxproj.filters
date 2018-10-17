@@ -248,6 +248,9 @@
     <MeshContentTask Include="Assets\modelData\op\Groundslim.FBX">
       <Filter>Assets\modelData\op</Filter>
     </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\map\sky.FBX">
+      <Filter>Assets\modelData\map</Filter>
+    </MeshContentTask>
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\dummy.png">

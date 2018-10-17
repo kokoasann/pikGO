@@ -467,3 +467,10 @@ float4 PSMain_Silhouette( PSInput In ) : SV_Target0
 	return silhouetteTexture.Sample(Sampler, screenPos * 12.0f) * 4.0f;
 #endif
 }
+
+
+float4 PSsky(PSInput In) :SV_Target0
+{
+	float4 albedo = float4(albedoTexture.Sample(Sampler, In.TexCoord).xyz, 1.0f);
+	return float4(albedo.xyz, 1.0f);
+}

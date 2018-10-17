@@ -44,7 +44,7 @@ public:
 	}
 
 	void SetScale(CVector3 v);
-
+	void playAnim(int num);
 private:
 	State state = idle;
 	prefab::CSkinModelRender* sr;

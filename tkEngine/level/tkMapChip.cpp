@@ -21,6 +21,7 @@ namespace tkEngine{
 		m_modelRender->SetScale(objData.scale);
 		//MapChip用のモディファイアを作らなあかんなぁ・・・
 		m_modelRender->SetShadowReceiverFlag(true);
+		m_modelRender->SetShadowCasterFlag(true);
 		
 		m_physicsStaticObject.CreateMeshObject(
 			m_modelRender, 

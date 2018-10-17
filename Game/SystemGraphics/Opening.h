@@ -22,6 +22,13 @@ public:
 		front,
 		end
 	};
+	enum pixa
+	{
+		pix_idle,
+		pix_walk,
+
+		pix_num
+	};
 private:
 	State state = start;
 	int cut = 0;
@@ -30,9 +37,16 @@ private:
 	opChara* pix;
 	std::vector<opChara*> pixies;
 	prefab::CSkinModelRender* pre;
+	CAnimationClip pix_anic[pix_num];
 
 	Fade* fade;
 	float time = 0;
 
 	CLevel level;
+
+	prefab::CSkinModelRender* sky;
+	CShader shader;
+
+	prefab::CDirectionLight* light;
+	std::vector<prefab::CDirectionLight*> lightlist;
 };

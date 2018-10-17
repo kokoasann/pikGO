@@ -2,18 +2,25 @@
 #include "Opening.h"
 #include "opChara.h"
 #include "Fade.h"
+#include "tkEngine/light/tkDirectionLight.h"
 
 Opening::~Opening()
 {
 	DeleteGO(player);
 	DeleteGO(pre);
+	DeleteGO(sky);
+	for (prefab::CDirectionLight* l : lightlist)
+	{
+		DeleteGO(l);
+	}
+	
 }
 
 bool Opening::Start()
 {
 	MainCamera().SetPosition({ -250.0f,450.0f,130.0f });
 	MainCamera().SetTarget({ 100.0f,0.0f,0.0f });
-	MainCamera().SetFar(9999.9f);
+	MainCamera().SetFar(99999.9f);
 	MainCamera().SetNear(1.0f);
 	MainCamera().SetViewAngle(20.0f);
 	MainCamera().Update();
@@ -21,6 +28,8 @@ bool Opening::Start()
 	CVector3 ppo = { -300.0f,0.0f,500.0f };
 	pre = NewGO<prefab::CSkinModelRender>(0);
 	pre->Init(L"modelData/unityChan.cmo");
+	pre->SetShadowCasterFlag(true);
+	pre->SetShadowReceiverFlag(true);
 	player = NewGO<opChara>(0, "pla");
 	player->init(pre,ppo);
 	player->chenGo();
@@ -29,10 +38,18 @@ bool Opening::Start()
 	v *= 3;
 	player->SetMove(v);
 
+	pix_anic[pix_idle].Load(L"modelData/pixie/pixie_idle.tka");
+	pix_anic[pix_idle].SetLoopFlag(true);
+	pix_anic[pix_walk].Load(L"modelData/pixie/pixie_walk.tka");
+	pix_anic[pix_walk].SetLoopFlag(true);
+
 	pre = NewGO < prefab::CSkinModelRender>(0);
-	pre->Init(L"modelData/pixie/pixie.cmo");
+	pre->Init(L"modelData/pixie/pixie.cmo",pix_anic,pix_num);
+	pre->SetShadowCasterFlag(true);
+	pre->SetShadowReceiverFlag(true);
 	pix = NewGO<opChara>(0, "pix");
 	pix->init(pre, CVector3::Zero);
+	pix->playAnim(pix_idle);
 	pixies.push_back(pix);
 
 	fade = FindGO<Fade>("fade");
@@ -45,6 +62,35 @@ bool Opening::Start()
 		obj.scale *= 3;
 		return false;
 	});
+
+	sky = NewGO<prefab::CSkinModelRender>(0, "sky");
+	sky->Init(L"modelData/map/sky.cmo");
+	sky->SetScale({ 100,100,100 });
+	shader.Load("shader/model.fx","PSsky", CShader::EnType::PS);
+	sky->FindMaterial([&](CModelEffect* mf)
+	{
+		mf->SetRender3DModelPSShader(shader);
+	});
+
+	light = NewGO<prefab::CDirectionLight>(0);
+	light->SetColor({ 10,10,10,0.5f });
+	light->SetDirection({ -0.707f,-0.3f,0 });
+	lightlist.push_back(light);
+
+	light = NewGO<prefab::CDirectionLight>(0);
+	light->SetColor({ 0,1,5,0.2f });
+	light->SetDirection({ 0.35f,0.707f,0.2f });
+	lightlist.push_back(light);
+
+	light = NewGO<prefab::CDirectionLight>(0);
+	light->SetColor({ 2.0f,2,2.2f,0.5f });
+	light->SetDirection({ 0.707f,0.707f,0 });
+	lightlist.push_back(light);
+
+	light = NewGO<prefab::CDirectionLight>(0);
+	light->SetColor({ 0.1f,3,0.2f,0.2f });
+	light->SetDirection({ 0,1,0 });
+	lightlist.push_back(light);
 	return true;
 }
 
@@ -107,6 +153,8 @@ void Opening::SStart()
 			player->SetMove(v);
 			pix->chenGo();
 			pix->SetMove(v);
+
+			pix->playAnim(pix_walk);
 			//first = false;
 			cut = 3;
 		}
@@ -155,7 +203,7 @@ void Opening::SSide()
 			return false;
 		});
 		fade->StartFadeIn();
-		MainCamera().SetPosition({ 800,230,-2000 });
+		MainCamera().SetPosition({ 800,200,-2000 });
 		MainCamera().SetTarget({ 800,200,0 });
 		//MainCamera().SetViewAngle(10);
 		MainCamera().SetUpdateProjMatrixFunc(CCamera::enUpdateProjMatrixFunc_Ortho);
@@ -177,7 +225,9 @@ void Opening::SSide()
 		break;
 	case 2:
 		pre = NewGO < prefab::CSkinModelRender>(0);
-		pre->Init(L"modelData/pixie/pixie.cmo");
+		pre->Init(L"modelData/pixie/pixie.cmo",pix_anic,pix_num);
+		pre->SetShadowCasterFlag(true);
+		pre->SetShadowReceiverFlag(true);
 		pix = NewGO<opChara>(0, "pix");
 		pix->init(pre, CVector3::Zero);
 		v.Set(0, 0, Random().GetRandDouble() * 500 * ((Random().GetRandDouble() > 0.5f) ? -1 : 1));
@@ -186,6 +236,8 @@ void Opening::SSide()
 		pix->SetMove(v);
 		pix->SetScale({ 0.7f,0.7f,0.7f });
 		pix->chenGo();
+
+		pix->playAnim(pix_walk);
 
 		pixies.push_back(pix);
 		if (time < 5)
@@ -221,9 +273,12 @@ void Opening::SSide()
 void Opening::SUp()
 {
 	CVector3 v;
+	prefab::CSkinModelRender* gr;
 	switch (cut)
 	{
 	case 0:
+		level.AllClear();
+		
 		fade->StartFadeIn();
 		v = player->GetPos();
 		v.y = 2000;
@@ -233,6 +288,10 @@ void Opening::SUp()
 		v.y = 0.5f;
 		MainCamera().SetTarget(v);
 		MainCamera().Update();
+		gr = NewGO < prefab::CSkinModelRender>(0, "gro");
+		gr->Init(L"modelData/op/Ground.cmo");
+		gr->SetPosition(v);
+		gr->SetScale({ 10,10,10 });
 		cut = 1;
 		break;
 	case 1:
@@ -268,6 +327,10 @@ void Opening::SFront()
 	switch (cut)
 	{
 	case 0:
+		DeleteGO(FindGO<prefab::CSkinModelRender>("gro"));
+
+		
+
 		fade->StartFadeIn();
 		v = MainCamera().GetPosition();
 		v.x += 500;
@@ -278,6 +341,17 @@ void Opening::SFront()
 		MainCamera().SetTarget(v);
 		MainCamera().SetUpdateProjMatrixFunc(CCamera::enUpdateProjMatrixFunc_Perspective);
 		MainCamera().Update();
+
+		v = player->GetPos();
+		v.x -= 500;
+		level.Init(L"level/LopUp.tkl", [&](auto &obj)->bool
+		{
+			obj.position *= 2;
+			obj.position += v;
+			obj.scale *= 2;
+			return false;
+		});
+
 		cut = 1;
 		break;
 	case 1:
