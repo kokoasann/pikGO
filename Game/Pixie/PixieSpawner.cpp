@@ -26,7 +26,7 @@ void PixieSpawner::init(int T, int Y, int RC, int RM)
 
 void PixieSpawner::TestSpawn()
 {
-	CVector3 pos = { (float)(1 * 1000),0,(float)(1 * 1000) };
+	CVector3 pos = { (float)(10 * 1000),0,(float)(10 * 1000) };
 	Pixie* p = NewGO<Pixie>(0, "pixie");
 	p->SetInitPos(pos);
 	p->Modechase();

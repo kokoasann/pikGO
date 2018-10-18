@@ -18,8 +18,10 @@ void RootFind::CreateNodeMap(int T,int Y,int** map)
 	{
 		for (int x = 0; x < my; x++)
 		{
-			nodeMap[y][x].mapID = map[y][x];
-			nodeMap[y][x].parentNode = NULL;
+			int mapY = mt - (y+1);
+			int mapX = my - (x + 1);
+			nodeMap[mapY][mapX].mapID = map[y][x];
+			nodeMap[mapY][mapX].parentNode = NULL;
 		}
 	}
 }
@@ -128,7 +130,7 @@ CVector3 RootFind::FindRoot(CVector3 start,CVector3 target,Piece &piece)
 		piece.root.push_back(np);
 		node = node->parentNode;
 
-		prefab::CSkinModelRender* sk = NewGO < prefab::CSkinModelRender>(0);
+		prefab::CSkinModelRender* sk = NewGO <prefab::CSkinModelRender>(0);
 		sk->Init(L"modelData/mamono/mamono.cmo");
 		sk->SetScale({ 2.0f,0.1f,0.1f });
 		CVector3 nop = { node->pos.x,0,node->pos.y };
@@ -169,23 +171,23 @@ void RootFind::BuildNode()
 			for (int l = 0; l < 8; l++)
 				node->linkNode[l] = NULL;
 
-			if (y - 1 >= 0 && x - 1 >= 0)
+			if (y - 1 >= 0 && x - 1 >= 0 && node->mapID != 1)
 				node->linkNode[0] = &nodeMap[y - 1][x - 1];
-			if (y - 1 >= 0)
+			if (y - 1 >= 0 && node->mapID != 1)
 				node->linkNode[1] = &nodeMap[y - 1][x];
-			if (y - 1 >= 0 && x + 1 < mt)
+			if (y - 1 >= 0 && x + 1 < mt && node->mapID != 1)
 				node->linkNode[2] = &nodeMap[y - 1][x + 1];
 
-			if (x - 1 >= 0)
+			if (x - 1 >= 0 && node->mapID != 1)
 				node->linkNode[3] = &nodeMap[y][x - 1];
-			if (x + 1 < mt)
+			if (x + 1 < mt && node->mapID != 1)
 				node->linkNode[4] = &nodeMap[y][x + 1];
 
-			if (y + 1 < my && x - 1 >= 0)
+			if (y + 1 < my && x - 1 >= 0 && node->mapID != 1)
 				node->linkNode[5] = &nodeMap[y + 1][x - 1];
-			if (y + 1 < my)
+			if (y + 1 < my && node->mapID != 1)
 				node->linkNode[6] = &nodeMap[y + 1][x];
-			if (y + 1 < my && x + 1 < mt)
+			if (y + 1 < my && x + 1 < mt && node->mapID != 1)
 				node->linkNode[7] = &nodeMap[y+1][x+1];
 			node->pos.x = x;
 			node->pos.y = y;
