@@ -63,7 +63,7 @@ bool Game::Start()
 
 		NewGO<CreatureManager>(0, "CM");
 
-		NewGO<GameCamera>(0, "camera");
+		//NewGO<GameCamera>(0, "camera");
 
 		player = NewGO<Player>(0, "player");
 
@@ -105,7 +105,7 @@ bool Game::Start()
 		point = NewGO < prefab::CSpriteRender>(0);
 		point->Init(L"sprite/point.dds", 24, 24);
 
-		NewGO<DebugBG>(0, "DBG");
+		//NewGO<DebugBG>(0, "DBG");
 
 		NewGO<test>(0,"test");
 		return true;

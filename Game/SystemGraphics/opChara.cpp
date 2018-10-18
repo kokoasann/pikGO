@@ -1,13 +1,20 @@
 #include "stdafx.h"
 #include "opChara.h"
+#include "tkEngine/light/tkDirectionLight.h"
 
 opChara::~opChara()
+{
+	
+}
+
+void opChara::OnDestroy()
 {
 	DeleteGO(sr);
 }
 
 bool opChara::Start()
 {
+	
 	return true;
 }
 
@@ -41,6 +48,11 @@ bool opChara::Rotation()
 	rotcount++;
 
 	return true;
+}
+
+void opChara::lightMove()
+{
+
 }
 
 void opChara::SetPos(CVector3 pos)

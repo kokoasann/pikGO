@@ -55,7 +55,7 @@ CVector3 RootFind::FindRoot(CVector3 start,CVector3 target,Piece &piece)
 	piece.pos.y = spz;
 	piece.pos.x = spx;
 	
-	Node* startNode = &nodeMap[spx][spz];
+	Node* startNode = &nodeMap[spz][spx];
 	startNode->movecost = 0;
 
 	/*prefab::CSkinModelRender* sk = NewGO < prefab::CSkinModelRender>(0);
@@ -113,6 +113,7 @@ CVector3 RootFind::FindRoot(CVector3 start,CVector3 target,Piece &piece)
 	}
 	int tpz = (target.z / 1000.0f / BASE);
 	int tpx = (target.x / 1000.0f / BASE);
+	Node* targetNode = &nodeMap[tpz][tpx];
 	Node* node = &nodeMap[tpz][tpx];
 	int count = 0;/*
 	for(prefab::CSkinModelRender* s : msa)
@@ -120,6 +121,7 @@ CVector3 RootFind::FindRoot(CVector3 start,CVector3 target,Piece &piece)
 		DeleteGO(s);
 	}
 	msa.clear();*/
+	std::vector<CVector3> r;
 	while (node->parentNode != startNode)
 	{
 		CVector2 np = { node->parentNode->pos.x,node->parentNode->pos.y };
@@ -144,10 +146,15 @@ CVector3 RootFind::FindRoot(CVector3 start,CVector3 target,Piece &piece)
 	CVector3 nop = { node->pos.x,0,node->pos.y };
 	CVector3 three = { 333.333f,0.0f,333.333f };
 
-	CVector3 dif = nop*(BASE * 1000.0f) - startNode->pos;
+	CVector3 targetPos = node->pos;
+	targetPos *= 1000.0f * BASE;
+	CVector3 startPos = startNode->pos;
+	startPos *= 1000.0f * BASE;
+	CVector3 dif = targetPos - startPos;
+	//CVector3 dif = nop*(BASE * 1000.0f) - startNode->pos;
 	//CVector3 dif = nop*(BASE * 1000.0f) - start;
 
-	CVector3 root = {dif.x,0,dif.z};
+	CVector3 root = {dif.x,0,dif.y};
 	root.Normalize();
 	return root;
 }

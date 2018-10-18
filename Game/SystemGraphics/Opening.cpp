@@ -1,14 +1,20 @@
 #include "stdafx.h"
 #include "Opening.h"
 #include "opChara.h"
+#include "Title.h"
 #include "Fade.h"
 #include "tkEngine/light/tkDirectionLight.h"
 
 Opening::~Opening()
 {
 	DeleteGO(player);
-	DeleteGO(pre);
+	//DeleteGO(pre);
 	DeleteGO(sky);
+	for (auto p : pixies)
+	{
+		if(p != nullptr)
+			DeleteGO(p);
+	}
 	for (prefab::CDirectionLight* l : lightlist)
 	{
 		DeleteGO(l);
@@ -83,7 +89,7 @@ bool Opening::Start()
 	lightlist.push_back(light);
 
 	light = NewGO<prefab::CDirectionLight>(0);
-	light->SetColor({ 2.0f,2,2.2f,0.5f });
+	light->SetColor({ 2.0f,2,2.2f,0.2f });
 	light->SetDirection({ 0.707f,0.707f,0 });
 	lightlist.push_back(light);
 
@@ -96,6 +102,14 @@ bool Opening::Start()
 
 void Opening::Update()
 {
+	if (Pad(0).IsTrigger(enButtonB))
+	{
+		fade->StartFadeOut();
+		state = end;
+		cut = 1;
+		first = true;
+		time = 0.0f;
+	}
 	switch (state)
 	{
 	case start:
@@ -259,7 +273,7 @@ void Opening::SSide()
 		}
 		else
 		{
-			if (fade->IsFade())
+			if (!fade->IsFade())
 			{
 				first = true;
 				state = up;
@@ -304,7 +318,7 @@ void Opening::SUp()
 			}
 			else
 			{
-				if (fade->IsFade())
+				if (!fade->IsFade())
 				{
 					first = true;
 					time = 0;
@@ -328,8 +342,6 @@ void Opening::SFront()
 	{
 	case 0:
 		DeleteGO(FindGO<prefab::CSkinModelRender>("gro"));
-
-		
 
 		fade->StartFadeIn();
 		v = MainCamera().GetPosition();
@@ -364,7 +376,7 @@ void Opening::SFront()
 			}
 			else
 			{
-				if (fade->IsFade())
+				if (!fade->IsFade())
 				{
 					first = true;
 					time = 0;
@@ -383,4 +395,11 @@ void Opening::SFront()
 
 void Opening::SEnd()
 {
+	if (!fade->IsFade())
+	{
+		NewGO<Title>(0, "title");
+
+
+		DeleteGO(this);
+	}
 }

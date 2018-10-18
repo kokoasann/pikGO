@@ -119,6 +119,9 @@
     <ClCompile Include="SystemGraphics\Fade.cpp">
       <Filter>SystemGraphics</Filter>
     </ClCompile>
+    <ClCompile Include="SystemGraphics\Title.cpp">
+      <Filter>SystemGraphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -182,6 +185,9 @@
       <Filter>SystemGraphics</Filter>
     </ClInclude>
     <ClInclude Include="SystemGraphics\Fade.h">
+      <Filter>SystemGraphics</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemGraphics\Title.h">
       <Filter>SystemGraphics</Filter>
     </ClInclude>
   </ItemGroup>
@@ -261,5 +267,19 @@
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Assets\modelData\pixie\pixie.tks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\sprite\cell\cell_end.png">
+      <Filter>Assets\sprite</Filter>
+    </Image>
+    <Image Include="Assets\sprite\cell\cell_start.png">
+      <Filter>Assets\sprite</Filter>
+    </Image>
+    <Image Include="Assets\sprite\cell\cell_config.png">
+      <Filter>Assets\sprite</Filter>
+    </Image>
+    <Image Include="Assets\sprite\cell\cell_diff.png">
+      <Filter>Assets\sprite</Filter>
+    </Image>
   </ItemGroup>
 </Project>

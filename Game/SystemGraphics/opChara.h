@@ -4,10 +4,12 @@ class opChara :public IGameObject
 {
 public:
 	~opChara();
+	void OnDestroy() override;
 	bool Start();
 	void init(prefab::CSkinModelRender* sr, CVector3 pos);
 	void Update();
 	bool Rotation();
+	void lightMove();
 	void SetPos(CVector3 pos);
 	void SetMove(CVector3 v);
 
@@ -56,4 +58,6 @@ private:
 	int rotspeed = 1;
 	int rotcount = 0;
 	bool rotcomp = false;
+
+	//prefab::CDirectionLight* light;
 };

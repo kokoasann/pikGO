@@ -1186,7 +1186,7 @@ void BackGround::TestMaping()
 
 
 	pos.Set((float)(1 * 1000), 0, (float)(4 * 1000));
-	pos.Set((float)((T-2) * 1000), 0, (float)((Y-5) * 1000));
+	//pos.Set((float)((T-2) * 1000), 0, (float)((Y-5) * 1000));
 	FindGO<Player>("player")->SetInitPos(pos);
 
 	

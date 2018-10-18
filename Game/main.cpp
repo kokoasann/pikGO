@@ -53,9 +53,9 @@ namespace {
 		initParam.graphicsConfing.shadowRenderConfig.isEnable = true;
 		initParam.graphicsConfing.shadowRenderConfig.shadowMapWidth = 1024;
 		initParam.graphicsConfing.shadowRenderConfig.shadowMapHeight = 1024;
-		initParam.graphicsConfing.shadowRenderConfig.lightHeight = UnitM(20.0f);
-		initParam.graphicsConfing.shadowRenderConfig.depthOffset[0] = 0.001f;
-		initParam.graphicsConfing.shadowRenderConfig.depthOffset[1] = 0.001f;
+		initParam.graphicsConfing.shadowRenderConfig.lightHeight = UnitM(35.0f);
+		initParam.graphicsConfing.shadowRenderConfig.depthOffset[0] = 0.011f;
+		initParam.graphicsConfing.shadowRenderConfig.depthOffset[1] = 0.091f;
 		initParam.graphicsConfing.shadowRenderConfig.depthOffset[2] = 0.002f;
 		initParam.graphicsConfing.shadowRenderConfig.softShadowLevel = EnSoftShadowQualityLevel::eSSSS_PCF;
 
@@ -84,9 +84,13 @@ namespace {
 		initParam.graphicsConfing.shadowRenderConfig.isEnable = true;
 		initParam.graphicsConfing.shadowRenderConfig.shadowMapWidth = 2048;
 		initParam.graphicsConfing.shadowRenderConfig.shadowMapHeight = 2048;
-		initParam.graphicsConfing.shadowRenderConfig.lightHeight = UnitM(10.0f);
+		/*initParam.graphicsConfing.shadowRenderConfig.lightHeight = UnitM(10.0f);
 		initParam.graphicsConfing.shadowRenderConfig.depthOffset[0] = 0.001f;
 		initParam.graphicsConfing.shadowRenderConfig.depthOffset[1] = 0.001f;
+		initParam.graphicsConfing.shadowRenderConfig.depthOffset[2] = 0.002f;*/
+		initParam.graphicsConfing.shadowRenderConfig.lightHeight = UnitM(35.0f);
+		initParam.graphicsConfing.shadowRenderConfig.depthOffset[0] = 0.011f;
+		initParam.graphicsConfing.shadowRenderConfig.depthOffset[1] = 0.091f;
 		initParam.graphicsConfing.shadowRenderConfig.depthOffset[2] = 0.002f;
 		initParam.graphicsConfing.shadowRenderConfig.softShadowLevel = EnSoftShadowQualityLevel::eSSSS_PCF;
 
@@ -128,9 +132,9 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 
 	//エンジンを初期化。
 	if (Engine().Init(initParam) == true) {
-		//NewGO<Game>(0, "game");
-		NewGO<Opening>(0, "OP");
-		NewGO<Fade>(0, "fade");
+		NewGO<Game>(0, "game");
+		//NewGO<Opening>(0, "OP");
+		//NewGO<Fade>(0, "fade");
 		//ゲームループを実行。
 		Engine().RunGameLoop();
 	}

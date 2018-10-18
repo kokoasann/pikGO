@@ -1812,6 +1812,7 @@
     <ClCompile Include="SystemGraphics\opChara.cpp" />
     <ClCompile Include="SystemGraphics\Opening.cpp" />
     <ClCompile Include="SystemGraphics\StartMenu.cpp" />
+    <ClCompile Include="SystemGraphics\Title.cpp" />
     <ClCompile Include="test\test.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -1837,6 +1838,7 @@
     <ClInclude Include="SystemGraphics\opChara.h" />
     <ClInclude Include="SystemGraphics\Opening.h" />
     <ClInclude Include="SystemGraphics\StartMenu.h" />
+    <ClInclude Include="SystemGraphics\Title.h" />
     <ClInclude Include="test\test.h" />
     <ResourceCompile Include="Game.rc" />
   </ItemGroup>
@@ -1875,6 +1877,12 @@
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\fade.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="Assets\sprite\cell\cell_config.png" />
+    <ImageContentTask Include="Assets\sprite\cell\cell_diff.png" />
+    <ImageContentTask Include="Assets\sprite\cell\cell_end.png" />
+    <ImageContentTask Include="Assets\sprite\cell\cell_start.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

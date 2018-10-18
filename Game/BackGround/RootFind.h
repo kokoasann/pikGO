@@ -35,4 +35,6 @@ private:
 	int my;
 
 	std::list<prefab::CSkinModelRender*> msa;
+
+
 };
