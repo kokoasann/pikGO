@@ -21,7 +21,8 @@ class RootFind:public IGameObject
 public:
 	bool Start();
 	void CreateNodeMap(int T,int Y,int** map);
-	CVector3 FindRoot(CVector3 start, CVector3 target,Piece &piece);
+	void NodeMapTwistRotation();
+	std::vector<CVector3> FindRoot(CVector3 start, CVector3 target,Piece &piece);
 	void BuildNode();
 
 	Node** GetNodeMap()

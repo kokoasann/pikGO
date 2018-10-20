@@ -30,6 +30,8 @@ bool Pixie::Start()
 	RF = FindGO<RootFind>("RF");
 
 	CSC.Create(20);
+
+	root = RF->FindRoot(pos, player->Getpos(), piece);
 	return true;
 }
 
@@ -132,11 +134,30 @@ void Pixie::Stay()
 
 void Pixie::Chase()
 {
-	speed = RF->FindRoot(pos, player->Getpos(),piece);
-	speed *= 1000.0f;
+	CVector3 pTp = player->Getpos() - pos;
+	if (pTp.Length() < 100)
+		return;
+	if (time > 10)
+	{
+		root = RF->FindRoot(pos, player->Getpos(), piece);
+		time = 0;
+	}
+	if (root.size() != 0)
+	{
+		speed = root[0] - pos;
+		if (speed.Length() > pTp.Length())
+			int a;
+			//speed = pTp;
+		if (speed.Length() < 50.0f)
+			root.erase(root.begin());
+	}
+	else
+		speed = pTp;
+	speed.Normalize();
+	speed *= 500.0f;
 	Rotation(speed);
 	Move();
-	
+	time += GameTime().GetFrameDeltaTime();
 	//speed = player->Getpos() - pos;
 	//float t = speed.Length();
 	//if (t > 70)

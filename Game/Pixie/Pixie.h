@@ -91,7 +91,8 @@ private:
 
 	Mode mode = stay;
 
-	
+	//float time = 0.0f;
+	std::vector<CVector3> root;
 
 	enum AnimationClip
 	{

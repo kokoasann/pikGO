@@ -63,15 +63,15 @@ bool Game::Start()
 
 		NewGO<CreatureManager>(0, "CM");
 
-		//NewGO<GameCamera>(0, "camera");
+		NewGO<GameCamera>(0, "camera");
 
 		player = NewGO<Player>(0, "player");
 
 		NewGO<Q>(0, "q");
 
 		bg = NewGO<BackGround>(0, "BG");
-		//bg->init(T, Y);
-		bg->TestMaping();
+		bg->init(T, Y);
+		//bg->TestMaping();
 		initStep = enInitStep_01;
 		break;
 	case enInitStep_01:
@@ -94,8 +94,8 @@ bool Game::Start()
 
 		ps = NewGO<PixieSpawner>(0, "PS");
 		//es = NewGO<EnemySpawner>(0, "ES");
-		//ps->init(T, Y,1, 0);
-		ps->TestSpawn();
+		ps->init(T, Y,10, 5);
+		//ps->TestSpawn();
 		//es->init(T, Y, 1, 0);
 
 		//NewGO<Pixie>(0, "pixie");
