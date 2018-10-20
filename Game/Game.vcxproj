@@ -1777,6 +1777,7 @@
     <ClCompile Include="BackGround\MapPiece.cpp" />
     <ClCompile Include="BackGround\RootFind.cpp" />
     <ClCompile Include="Camera\GameCamera.cpp" />
+    <ClCompile Include="Config\Difficulty.cpp" />
     <ClCompile Include="Creature\Creature.cpp" />
     <ClCompile Include="Creature\CreatureManager.cpp" />
     <ClCompile Include="Enemy\Enemy.cpp" />
@@ -1812,6 +1813,7 @@
     <ClCompile Include="SystemGraphics\opChara.cpp" />
     <ClCompile Include="SystemGraphics\Opening.cpp" />
     <ClCompile Include="SystemGraphics\StartMenu.cpp" />
+    <ClCompile Include="SystemGraphics\Timer.cpp" />
     <ClCompile Include="SystemGraphics\Title.cpp" />
     <ClCompile Include="test\test.cpp" />
   </ItemGroup>
@@ -1822,6 +1824,7 @@
     <ClInclude Include="BackGround\MapPiece.h" />
     <ClInclude Include="BackGround\RootFind.h" />
     <ClInclude Include="Camera\GameCamera.h" />
+    <ClInclude Include="Config\Difficulty.h" />
     <ClInclude Include="Creature\Creature.h" />
     <ClInclude Include="Creature\CreatureManager.h" />
     <ClInclude Include="Enemy\Enemy.h" />
@@ -1838,6 +1841,7 @@
     <ClInclude Include="SystemGraphics\opChara.h" />
     <ClInclude Include="SystemGraphics\Opening.h" />
     <ClInclude Include="SystemGraphics\StartMenu.h" />
+    <ClInclude Include="SystemGraphics\Timer.h" />
     <ClInclude Include="SystemGraphics\Title.h" />
     <ClInclude Include="test\test.h" />
     <ResourceCompile Include="Game.rc" />
@@ -1883,6 +1887,10 @@
     <ImageContentTask Include="Assets\sprite\cell\cell_diff.png" />
     <ImageContentTask Include="Assets\sprite\cell\cell_end.png" />
     <ImageContentTask Include="Assets\sprite\cell\cell_start.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="Assets\sprite\timer\hand.png" />
+    <ImageContentTask Include="Assets\sprite\timer\timer.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -52,7 +52,7 @@ void Creature::Move()
 					float f = (weight - crea->Getweight()) / (weight + crea->Getweight());
 					CVector3 dsp = speed;
 					dsp.y = 0;
-					speed -= dsp * f;
+					//speed -= dsp * f;
 					CVector3 v = speed;
 
 					diff.Normalize();

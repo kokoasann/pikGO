@@ -5,12 +5,14 @@
 #include "BackGround/Lighting.h"
 #include "Q/Q.h"
 #include "SystemGraphics/Loading.h"
+#include "SystemGraphics/Timer.h"
 #include "Player.h"
 #include "Pixie/Pixie.h"
 #include "Pixie/PixieSpawner.h"
 #include "Enemy/EnemySpawner.h"
 #include "Camera/GameCamera.h"
 #include "BackGround/RootFind.h"
+#include "SystemGraphics/Fade.h"
 #include "tkEngine/light/tkDirectionLight.h"
 
 #include "test/test.h"
@@ -42,6 +44,7 @@ bool Game::Start()
 		//o = NewGO<prefab::CSpriteRender>(1);
 		//o->Init(L"sprite/point.dds", 50, 50);
 		lod = NewGO<Loading>(1, "loading");
+		fade = FindGO<Fade>("fade");
 
 		sr = NewGO < prefab::CSkinModelRender>(0);
 		sr->Init(L"modelData/map/start.cmo");
@@ -82,11 +85,18 @@ bool Game::Start()
 			//BG‚Ì\’zI‚í‚èB
 			DeleteGO(lod);
 			bg->SetUP();
+			fade->StartFadeIn();
 			initStep = enInitStep_02;
 		}
 		break;
 	case enInitStep_02:
 		
+		
+		
+		if (fade->IsFade())
+			return false;
+		fade->SetFadeSpeed(20);
+		NewGO<Timer>(0, "timer");
 
 		RF = NewGO<RootFind>(0, "RF");
 		RF->CreateNodeMap(T,Y,bg->GetMap());
@@ -105,9 +115,9 @@ bool Game::Start()
 		point = NewGO < prefab::CSpriteRender>(0);
 		point->Init(L"sprite/point.dds", 24, 24);
 
-		NewGO<DebugBG>(0, "DBG");
+		//NewGO<DebugBG>(0, "DBG");
 
-		NewGO<test>(0,"test");
+		//NewGO<test>(0,"test");
 		return true;
 	}
 	return false;

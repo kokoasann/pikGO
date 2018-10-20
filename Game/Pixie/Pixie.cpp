@@ -25,7 +25,7 @@ bool Pixie::Start()
 	//sr->PlayAnimation(anim_walk);
 
 	init(inipo, 1.0f, 0.1f, 20.0f, 70.0f,10, L"modelData/pixie/pixie.cmo",animClip,anim_num);
-	PlayAnim(anim_walk);
+	PlayAnim(anim_idle);
 	player = FindGO<Player>("player");
 	RF = FindGO<RootFind>("RF");
 
@@ -84,6 +84,7 @@ void Pixie::Free()
 		Move();
 		if (time > timeUP)
 		{
+			PlayAnim(anim_idle);
 			walking = false;
 		}
 		else
@@ -121,6 +122,7 @@ void Pixie::Free()
 			speed.y = 0;
 			speed *= 200;
 
+			PlayAnim(anim_walk);
 			walking = true;
 			time = 0;
 		}
@@ -129,35 +131,44 @@ void Pixie::Free()
 
 void Pixie::Stay()
 {
-
+	PlayAnim(anim_idle);
 }
 
 void Pixie::Chase()
 {
+	oldpos = pos;
 	CVector3 pTp = player->Getpos() - pos;
-	if (pTp.Length() < 100)
-		return;
-	if (time > 10)
+	if (!(pTp.Length() < 100))
 	{
-		root = RF->FindRoot(pos, player->Getpos(), piece);
-		time = 0;
-	}
-	if (root.size() != 0)
-	{
-		speed = root[0] - pos;
-		if (speed.Length() > pTp.Length())
-			int a;
-			//speed = pTp;
-		if (speed.Length() < 50.0f)
-			root.erase(root.begin());
+		if (time > 2)
+		{
+			root = RF->FindRoot(pos, player->Getpos(), piece);
+			time = 0;
+		}
+		if (root.size() != 0)
+		{
+			speed = root[0] - pos;
+			if (speed.Length() > pTp.Length() && root.size() == 1)
+				speed = pTp;
+			if (speed.Length() < 50.0f)
+				root.erase(root.begin());
+		}
+		else
+			speed = pTp;
+		speed.Normalize();
+		speed *= 500.0f;
+		Rotation(speed);
+		Move();
 	}
 	else
-		speed = pTp;
-	speed.Normalize();
-	speed *= 500.0f;
-	Rotation(speed);
-	Move();
+		speed = CVector3::Zero;
 	time += GameTime().GetFrameDeltaTime();
+
+	CVector3 dif = oldpos - pos;
+	if (dif.Length() < 0.1f)
+		PlayAnim(anim_idle);
+	else
+		PlayAnim(anim_walk);
 	//speed = player->Getpos() - pos;
 	//float t = speed.Length();
 	//if (t > 70)

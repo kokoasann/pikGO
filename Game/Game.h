@@ -3,6 +3,7 @@
 #include "tkEngine/graphics/effect/tkEffect.h"
 #include "tkEngine/physics/tkPhysicsGhostObject.h"
 #include "tkEngine/character/tkCharacterController.h"
+class Fade;
 class Player;
 class BackGround;
 class Loading;
@@ -52,5 +53,7 @@ private:
 	RootFind* RF;
 	prefab::CSkinModelRender* sr;
 	//prefab::CSkinModelRender* m_skinModelRender = nullptr;		//スキンモデルレンダラー。
+
+	Fade* fade;
 };
 

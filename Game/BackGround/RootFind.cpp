@@ -153,8 +153,8 @@ std::vector<CVector3> RootFind::FindRoot(CVector3 start,CVector3 target,Piece &p
 			}
 		}
 	}
-	int tpz = (target.z / 1000.0f / BASE);
-	int tpx = (target.x / 1000.0f / BASE);
+	int tpz = (target.z / 1000.0f / BASE)+1;
+	int tpx = (target.x / 1000.0f / BASE)+1;
 	Node* targetNode = &nodeMap[tpz][tpx];
 	Node* node = &nodeMap[tpz][tpx];
 	int count = 0;/*

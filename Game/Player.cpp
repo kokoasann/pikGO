@@ -87,6 +87,9 @@ void Player::GoalIn()
 {
 	CVector2 two = CVector2::Zero;
 	CVector3 qpos = q->GetPos();
+	CVector3 dif = qpos - pos;
+	if (dif.Length() >= 400)
+		return;
 	qpos.y = 131.95f;
 	MainCamera().CalcScreenPositionFromWorldPosition(two, qpos);
 	if (fabsf(two.x) < 24.0f && fabsf(two.y) < 24.0f)

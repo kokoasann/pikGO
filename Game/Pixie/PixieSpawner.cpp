@@ -19,7 +19,7 @@ void PixieSpawner::init(int T, int Y, int RC, int RM)
 		CVector3 pos = { (float)(rx * 1000),0,(float)(ry * 1000) };
 		Pixie* p = NewGO<Pixie>(0, "pixie");
 		p->SetInitPos(pos);
-		p->Modechase();
+		//p->Modechase();
 	}
 	DeleteGO(this);
 }

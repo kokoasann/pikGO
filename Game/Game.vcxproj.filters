@@ -56,6 +56,9 @@
     <Filter Include="Assets\modelData\op">
       <UniqueIdentifier>{6dbd26fe-a9fc-4225-b964-49208b84f490}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Config">
+      <UniqueIdentifier>{ac12ece1-fb84-4a46-8711-aa53f3664c5f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -121,6 +124,12 @@
     </ClCompile>
     <ClCompile Include="SystemGraphics\Title.cpp">
       <Filter>SystemGraphics</Filter>
+    </ClCompile>
+    <ClCompile Include="SystemGraphics\Timer.cpp">
+      <Filter>SystemGraphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Config\Difficulty.cpp">
+      <Filter>Config</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -189,6 +198,12 @@
     </ClInclude>
     <ClInclude Include="SystemGraphics\Title.h">
       <Filter>SystemGraphics</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemGraphics\Timer.h">
+      <Filter>SystemGraphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Config\Difficulty.h">
+      <Filter>Config</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -264,21 +279,19 @@
     </ImageContentTask>
     <ImageContentTask Include="Assets\sprite\point.png" />
     <ImageContentTask Include="Assets\sprite\fade.png" />
+    <ImageContentTask Include="Assets\sprite\cell\cell_config.png" />
+    <ImageContentTask Include="Assets\sprite\cell\cell_diff.png" />
+    <ImageContentTask Include="Assets\sprite\cell\cell_end.png" />
+    <ImageContentTask Include="Assets\sprite\cell\cell_start.png" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Assets\modelData\pixie\pixie.tks" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Assets\sprite\cell\cell_end.png">
+    <Image Include="Assets\sprite\timer\hand.png">
       <Filter>Assets\sprite</Filter>
     </Image>
-    <Image Include="Assets\sprite\cell\cell_start.png">
-      <Filter>Assets\sprite</Filter>
-    </Image>
-    <Image Include="Assets\sprite\cell\cell_config.png">
-      <Filter>Assets\sprite</Filter>
-    </Image>
-    <Image Include="Assets\sprite\cell\cell_diff.png">
+    <Image Include="Assets\sprite\timer\timer.png">
       <Filter>Assets\sprite</Filter>
     </Image>
   </ItemGroup>

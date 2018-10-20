@@ -87,9 +87,9 @@ private:
 
 	CSphereCollider CSC;
 
-	
+	CVector3 oldpos;
 
-	Mode mode = stay;
+	Mode mode = free;
 
 	//float time = 0.0f;
 	std::vector<CVector3> root;
