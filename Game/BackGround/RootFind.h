@@ -19,6 +19,7 @@ struct Piece
 class RootFind:public IGameObject
 {
 public:
+	~RootFind();
 	bool Start();
 	void CreateNodeMap(int T,int Y,int** map);
 	void NodeMapTwistRotation();

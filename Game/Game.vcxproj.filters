@@ -59,6 +59,12 @@
     <Filter Include="Config">
       <UniqueIdentifier>{ac12ece1-fb84-4a46-8711-aa53f3664c5f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Assets\effect">
+      <UniqueIdentifier>{7640fcf7-3500-4a9d-a295-c8f803ffadb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\effect\Texture">
+      <UniqueIdentifier>{c046b9f4-58c5-436e-95ed-c58f06b9539d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -130,6 +136,9 @@
     </ClCompile>
     <ClCompile Include="Config\Difficulty.cpp">
       <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="SystemGraphics\GameClear.cpp">
+      <Filter>SystemGraphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -204,6 +213,9 @@
     </ClInclude>
     <ClInclude Include="Config\Difficulty.h">
       <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemGraphics\GameClear.h">
+      <Filter>SystemGraphics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -294,5 +306,16 @@
     <Image Include="Assets\sprite\timer\timer.png">
       <Filter>Assets\sprite</Filter>
     </Image>
+    <Image Include="Assets\sprite\fade_white.png">
+      <Filter>Assets\sprite</Filter>
+    </Image>
+    <Image Include="Assets\effect\Texture\Star.png">
+      <Filter>Assets\effect\Texture</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\effect\krkr.efk">
+      <Filter>Assets\effect</Filter>
+    </None>
   </ItemGroup>
 </Project>

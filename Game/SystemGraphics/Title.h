@@ -31,4 +31,6 @@ private:
 	CVector4 mulcolor = { 25.0f,25.0f,25.0f,1 };
 
 	bool isStart = false;
+
+	
 };

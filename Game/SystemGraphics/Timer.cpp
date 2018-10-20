@@ -28,6 +28,12 @@ void Timer::Update()
 	hand->SetRotation(rot);
 }
 
+void Timer::DelRen()
+{
+	DeleteGO(watch);
+	DeleteGO(hand);
+}
+
 void Timer::PostRender(CRenderContext & rc)
 {
 	/*font.Begin(rc);

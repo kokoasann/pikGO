@@ -3,6 +3,7 @@
 class Q :public IGameObject
 {
 public:
+	~Q();
 	bool Start();
 	void Update();
 

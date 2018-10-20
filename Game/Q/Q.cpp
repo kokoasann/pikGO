@@ -2,6 +2,11 @@
 #include "Q.h"
 #include "BackGround/BackGround.h"
 
+Q::~Q()
+{
+	DeleteGO(sr);
+}
+
 bool Q::Start()
 {
 	sr = NewGO<prefab::CSkinModelRender>(0);

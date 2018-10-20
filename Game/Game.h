@@ -11,6 +11,7 @@ class PixieSpawner;
 class EnemySpawner;
 class RootFind;
 class Lighting;
+class Timer;
 class Game : public IGameObject
 {
 public:
@@ -49,11 +50,15 @@ private:
 	EnemySpawner* es;
 
 	Lighting* lighting;
+	Timer* timer;
 
 	RootFind* RF;
 	prefab::CSkinModelRender* sr;
 	//prefab::CSkinModelRender* m_skinModelRender = nullptr;		//スキンモデルレンダラー。
 
 	Fade* fade;
+	CFont font;
+	int pixieoCount = 0;
+	bool Clear = false;
 };
 

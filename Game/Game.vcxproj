@@ -1809,6 +1809,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Preview_Low|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="SystemGraphics\Fade.cpp" />
+    <ClCompile Include="SystemGraphics\GameClear.cpp" />
     <ClCompile Include="SystemGraphics\Loading.cpp" />
     <ClCompile Include="SystemGraphics\opChara.cpp" />
     <ClCompile Include="SystemGraphics\Opening.cpp" />
@@ -1837,6 +1838,7 @@
     <CLInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="SystemGraphics\Fade.h" />
+    <ClInclude Include="SystemGraphics\GameClear.h" />
     <ClInclude Include="SystemGraphics\Loading.h" />
     <ClInclude Include="SystemGraphics\opChara.h" />
     <ClInclude Include="SystemGraphics\Opening.h" />
@@ -1891,6 +1893,17 @@
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\timer\hand.png" />
     <ImageContentTask Include="Assets\sprite\timer\timer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="Assets\sprite\fade_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Assets\effect\krkr.efk">
+      <FileType>Document</FileType>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="Assets\effect\Texture\Star.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

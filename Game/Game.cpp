@@ -13,6 +13,7 @@
 #include "Camera/GameCamera.h"
 #include "BackGround/RootFind.h"
 #include "SystemGraphics/Fade.h"
+#include "SystemGraphics/GameClear.h"
 #include "tkEngine/light/tkDirectionLight.h"
 
 #include "test/test.h"
@@ -26,8 +27,19 @@ Game::Game()
 
 Game::~Game()
 {
+	DeleteGO(player);
+	DeleteGO(bg);
 	DeleteGO(FindGO<GameCamera>("camera"));
-
+	DeleteGO(RF);
+	DeleteGO(lighting);
+	DeleteGO(timer);
+	DeleteGO(FindGO<Q>("q"));
+	QueryGOs<Pixie>("pixie", [&](auto obj)->bool
+	{
+		DeleteGO(obj);
+		return true;
+	});
+	DeleteGO(FindGO<CreatureManager>("CM"));
 }
 bool Game::Start()
 {
@@ -96,7 +108,7 @@ bool Game::Start()
 		if (fade->IsFade())
 			return false;
 		fade->SetFadeSpeed(20);
-		NewGO<Timer>(0, "timer");
+		timer = NewGO<Timer>(0, "timer");
 
 		RF = NewGO<RootFind>(0, "RF");
 		RF->CreateNodeMap(T,Y,bg->GetMap());
@@ -125,12 +137,38 @@ bool Game::Start()
 
 void Game::Update()
 {
-	if (player->GetIsClear())
+	if (Clear && !(fade->IsFade()))
 	{
+		GameClear* GC = NewGO<GameClear>(0, "GC");
+		GC->init(pixieoCount, timer->getTime(), timer->getLimit());
 
+		DeleteGO(this);
 	}
+	if (player->GetIsClear() && !(fade->IsFade()) && !Clear)
+	{
+		fade->changeWhite();
+		fade->StartFadeOut();
+		DeleteGO(point);
+		timer->DelRen();
+		Clear = true;
+	}
+
 }
 
 void Game::PostRender(CRenderContext & rc)
 {
+	pixieoCount = 0;
+	QueryGOs<Pixie>("pixie", [&](Pixie* p)->bool
+	{
+		if (p->GetMode() == Pixie::Mode::chase)
+		{
+			pixieoCount += 1;
+		}
+		return true;
+	});
+	font.Begin(rc);
+	wchar_t tex[256];
+	swprintf_s(tex, L"pixies:%d", pixieoCount);
+	font.Draw(tex, { -340,-230 });
+	font.End(rc);
 }

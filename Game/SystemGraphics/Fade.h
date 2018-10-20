@@ -7,6 +7,8 @@ public:
 	bool Start();
 	void Update();
 	void PostRender(CRenderContext& rc);
+	void changeBlack();
+	void changeWhite();
 	void StartFadeIn()
 	{
 		fade = fadeIn;

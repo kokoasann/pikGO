@@ -11,8 +11,11 @@ BackGround::~BackGround()
 	{
 		DeleteGO(mp);
 	}
-	delete map;
-	delete initThread;
+	for(int i = 0;i < tx;i++)
+		delete[] map[i];
+	delete[] map;
+	initThread->detach();
+	//delete initThread;
 }
 
 bool BackGround::Start()
@@ -22,7 +25,8 @@ bool BackGround::Start()
 
 void BackGround::init(const int T, const int Y)
 {
-	initThread = new std::thread([=] {
+	initThread.reset(
+		new std::thread([=] {
 		CStopwatch sw;
 		sw.Start();
 		tx = T*3;
@@ -534,7 +538,7 @@ void BackGround::init(const int T, const int Y)
 		//5SetUP();
 		sw.Stop();
 		TK_LOG("Background thread time = %lf\n", sw.GetElapsed());
-	});
+	}));
 #if 0
 	tx = T;
 	yy = Y;

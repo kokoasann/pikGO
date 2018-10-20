@@ -57,6 +57,7 @@ private:
 	CLevel level;
 	CVector3 Qpos;
 	
-	std::thread* initThread = nullptr;
+	//std::thread* initThread = nullptr;
+	std::unique_ptr<std::thread> initThread;
 	std::list<MapPiece*> maplist;
 };

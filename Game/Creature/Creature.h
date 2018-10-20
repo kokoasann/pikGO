@@ -31,6 +31,7 @@ public:
 class Creature:Noncopyable
 {
 public:
+	~Creature();
 	void init(CVector3 pos,float scale, float weight, float radius, float height,int hp, const wchar_t*modelpath, CAnimationClip* anim = nullptr,int clips = 0);
 	void Rotation(CVector3 v);
 	

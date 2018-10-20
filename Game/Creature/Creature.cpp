@@ -2,6 +2,11 @@
 #include "Creature.h"
 #include "CreatureManager.h"
 
+Creature::~Creature()
+{
+	DeleteGO(sr);
+}
+
 void Creature::init(CVector3 pos,float scale, float weight, float radius, float height,int hp, const wchar_t * modelpath, CAnimationClip* anim, int clips)
 {
 	this->pos = pos;

@@ -2,6 +2,16 @@
 #include <iostream>
 #include "RootFind.h"
 
+RootFind::~RootFind()
+{
+	for (int i = 0; i < mt; i++)
+	{
+		delete[] nodeMap[i];
+
+	}
+	delete[] nodeMap;
+}
+
 bool RootFind::Start()
 {
 	return true;
@@ -63,7 +73,11 @@ void RootFind::NodeMapTwistRotation()
 			nodeMap[i][mj] = nodes[i][j];
 		}
 	}
-	delete(nodes);
+	for (int i = 0; i < mt; i++)
+	{
+		delete[] nodes[i];
+	}
+	delete[] nodes;
 }
 
 std::vector<CVector3> RootFind::FindRoot(CVector3 start,CVector3 target,Piece &piece)

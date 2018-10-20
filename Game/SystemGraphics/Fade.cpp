@@ -48,3 +48,15 @@ void Fade::PostRender(CRenderContext& rc)
 		sprite.Draw(rc, MainCamera2D().GetViewMatrix(), MainCamera2D().GetProjectionMatrix());
 	}
 }
+
+void Fade::changeBlack()
+{
+	texture.CreateFromDDSTextureFromFile(L"sprite/fade.dds");
+	sprite.Init(texture, 1280.0f, 720.0f);
+}
+
+void Fade::changeWhite()
+{
+	texture.CreateFromDDSTextureFromFile(L"sprite/fade_white.dds");
+	sprite.Init(texture, 1280.0f, 720.0f);
+}
