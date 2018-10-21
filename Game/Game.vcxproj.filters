@@ -65,6 +65,9 @@
     <Filter Include="Assets\effect\Texture">
       <UniqueIdentifier>{c046b9f4-58c5-436e-95ed-c58f06b9539d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Assets\sprite\char">
+      <UniqueIdentifier>{1ba03beb-41ee-41b5-81e9-74fca308292d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -284,6 +287,9 @@
     <MeshContentTask Include="Assets\modelData\map\sky.FBX">
       <Filter>Assets\modelData\map</Filter>
     </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\map\sky_night.fbx">
+      <Filter>Assets\modelData\map</Filter>
+    </MeshContentTask>
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\dummy.png">
@@ -295,27 +301,54 @@
     <ImageContentTask Include="Assets\sprite\cell\cell_diff.png" />
     <ImageContentTask Include="Assets\sprite\cell\cell_end.png" />
     <ImageContentTask Include="Assets\sprite\cell\cell_start.png" />
+    <ImageContentTask Include="Assets\sprite\timer\hand.png" />
+    <ImageContentTask Include="Assets\sprite\timer\timer.png" />
+    <ImageContentTask Include="Assets\sprite\fade_white.png" />
+    <ImageContentTask Include="Assets\effect\Texture\Star.png" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Assets\modelData\pixie\pixie.tks" />
+    <CustomBuild Include="Assets\effect\krkr.efk" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Assets\sprite\timer\hand.png">
-      <Filter>Assets\sprite</Filter>
+    <Image Include="Assets\sprite\char\gc_c.png">
+      <Filter>Assets\sprite\char</Filter>
     </Image>
-    <Image Include="Assets\sprite\timer\timer.png">
-      <Filter>Assets\sprite</Filter>
+    <Image Include="Assets\sprite\char\gc_e.png">
+      <Filter>Assets\sprite\char</Filter>
     </Image>
-    <Image Include="Assets\sprite\fade_white.png">
-      <Filter>Assets\sprite</Filter>
+    <Image Include="Assets\sprite\char\gc_i.png">
+      <Filter>Assets\sprite\char</Filter>
     </Image>
-    <Image Include="Assets\effect\Texture\Star.png">
-      <Filter>Assets\effect\Texture</Filter>
+    <Image Include="Assets\sprite\char\gc_l.png">
+      <Filter>Assets\sprite\char</Filter>
     </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Assets\effect\krkr.efk">
-      <Filter>Assets\effect</Filter>
-    </None>
+    <Image Include="Assets\sprite\char\gc_m.png">
+      <Filter>Assets\sprite\char</Filter>
+    </Image>
+    <Image Include="Assets\sprite\char\gc_o.png">
+      <Filter>Assets\sprite\char</Filter>
+    </Image>
+    <Image Include="Assets\sprite\char\gc_p.png">
+      <Filter>Assets\sprite\char</Filter>
+    </Image>
+    <Image Include="Assets\sprite\char\gc_r.png">
+      <Filter>Assets\sprite\char</Filter>
+    </Image>
+    <Image Include="Assets\sprite\char\gc_r_l.png">
+      <Filter>Assets\sprite\char</Filter>
+    </Image>
+    <Image Include="Assets\sprite\char\gc_s.png">
+      <Filter>Assets\sprite\char</Filter>
+    </Image>
+    <Image Include="Assets\sprite\char\gc_t.png">
+      <Filter>Assets\sprite\char</Filter>
+    </Image>
+    <Image Include="Assets\sprite\char\gc_u.png">
+      <Filter>Assets\sprite\char</Filter>
+    </Image>
+    <Image Include="Assets\sprite\char\gc_x.png">
+      <Filter>Assets\sprite\char</Filter>
+    </Image>
   </ItemGroup>
 </Project>

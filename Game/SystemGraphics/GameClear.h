@@ -15,11 +15,18 @@ private:
 	float time = 0.0f;
 	float limit = 0.0f;
 	int result = 0;
+
+	prefab::CSkinModelRender* sky;
+	std::list<prefab::CDirectionLight*> lights;
+
+	CShader sha_sky;
 	std::vector<prefab::CSkinModelRender*> runpixs;
+	CAnimationClip anim;
 
 	std::vector<prefab::CSpriteRender*> sp_result;
 	std::vector<prefab::CSpriteRender*> sp_time;
 	std::vector<prefab::CSpriteRender*> sp_PC;
+	std::vector<prefab::CSpriteRender*> sp_score;
 
 	CFont font;
 

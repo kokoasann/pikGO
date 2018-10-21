@@ -1859,6 +1859,7 @@
     <MeshContentTask Include="Assets\modelData\map\rightkarb.FBX" />
     <MeshContentTask Include="Assets\modelData\map\road.FBX" />
     <MeshContentTask Include="Assets\modelData\map\sky.FBX" />
+    <MeshContentTask Include="Assets\modelData\map\sky_night.fbx" />
     <MeshContentTask Include="Assets\modelData\map\start.FBX" />
     <MeshContentTask Include="Assets\modelData\map\tesmap.fbx" />
     <MeshContentTask Include="Assets\modelData\map\tile.FBX" />
@@ -1904,6 +1905,21 @@
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\effect\Texture\Star.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="Assets\sprite\char\gc_c.png" />
+    <ImageContentTask Include="Assets\sprite\char\gc_e.png" />
+    <ImageContentTask Include="Assets\sprite\char\gc_i.png" />
+    <ImageContentTask Include="Assets\sprite\char\gc_l.png" />
+    <ImageContentTask Include="Assets\sprite\char\gc_m.png" />
+    <ImageContentTask Include="Assets\sprite\char\gc_o.png" />
+    <ImageContentTask Include="Assets\sprite\char\gc_p.png" />
+    <ImageContentTask Include="Assets\sprite\char\gc_r.png" />
+    <ImageContentTask Include="Assets\sprite\char\gc_r_l.png" />
+    <ImageContentTask Include="Assets\sprite\char\gc_s.png" />
+    <ImageContentTask Include="Assets\sprite\char\gc_t.png" />
+    <ImageContentTask Include="Assets\sprite\char\gc_u.png" />
+    <ImageContentTask Include="Assets\sprite\char\gc_x.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
