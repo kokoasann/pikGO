@@ -8,8 +8,9 @@ SaveLoad::SaveLoad()
 
 void SaveLoad::Load()
 {
-	FILE* file;
-	if (fopen_s(&file, "save.sid", "rb") == NULL)
+	FILE* file = _wfopen(L"save.sid",L"rb");
+	//errno_t e = fopen_s(&file, "Assets/save.sid", "rb");
+	if (file == nullptr)
 		return;
 	int r = 0,c = 0;
 	for (int i = 0; i < 30; i++)
@@ -38,12 +39,13 @@ void SaveLoad::Load()
 		else
 			c++;
 	}
+	fclose(file);
 }
 
 void SaveLoad::Save()
 {
-	FILE* file;
-	if (fopen_s(&file, "save.sid", "wb") == NULL)
+	FILE* file = _wfopen(L"save.sid", L"wb");
+	if (file == nullptr)
 		return;
 	int r = 0, c = 0;
 	for (int i = 0; i < 30; i++)
@@ -73,4 +75,5 @@ void SaveLoad::Save()
 		else
 			c++;
 	}
+	fclose(file);
 }

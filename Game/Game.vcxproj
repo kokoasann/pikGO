@@ -1923,6 +1923,16 @@
     <ImageContentTask Include="Assets\sprite\char\gc_u.png" />
     <ImageContentTask Include="Assets\sprite\char\gc_x.png" />
   </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Assets\save.sid">
+      <FileType>Document</FileType>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="Assets\sprite\go\go_marker.png" />
+    <ImageContentTask Include="Assets\sprite\go\go_retry.png" />
+    <ImageContentTask Include="Assets\sprite\go\go_title.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="$(VCTargetsPath)\BuildCustomizations\ImageContentTask.targets" />

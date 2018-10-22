@@ -2,6 +2,9 @@
 #include "GameClear.h"
 #include "opChara.h"
 
+#include "Game.h"
+#include "Title.h"
+
 #include "SaveLoad/SaveLoad.h"
 #include "Fade.h"
 #include "tkEngine/light/tkDirectionLight.h"
@@ -13,26 +16,12 @@ GameClear::~GameClear()
 	{
 		DeleteGO(s);
 	}
-	for (auto s : runpixs)
+	for (auto s : sp_choise)
 	{
 		DeleteGO(s);
 	}
-	for (auto s : sp_result)
-	{
-		DeleteGO(s);
-	}
-	for (auto s : sp_time)
-	{
-		DeleteGO(s);
-	}
-	for (auto s : sp_PC)
-	{
-		DeleteGO(s);
-	}
-	for (auto s : sp_score)
-	{
-		DeleteGO(s);
-	}
+	DeleteGO(sp_marker);
+	
 }
 
 bool GameClear::Start()
@@ -55,9 +44,15 @@ bool GameClear::Start()
 	}
 	if (fade->IsFade())
 		return false;
-
-
 	fade->SetFadeSpeed(20);
+
+	SaveLoad sl;
+	ranking = sl.getBeginner();
+	ranking.push_back(score);
+	std::sort(ranking.begin(), ranking.end(), std::greater<int>());
+	sl.setBiginner(ranking);
+	sl.Save();
+
 	MainCamera().SetUpdateProjMatrixFunc(CCamera::EnUpdateProjMatrixFunc::enUpdateProjMatrixFunc_Ortho);
 	MainCamera().SetPosition({ 0,0,-50 });
 	MainCamera().SetTarget({ 0,0,0 });
@@ -280,6 +275,22 @@ void GameClear::init(int pic, float time, float limit)
 
 void GameClear::Update()
 {
+	switch (state)
+	{
+	case first:
+		st_first();
+		break;
+	case rank:
+		st_ranking();
+		break;
+	case waitfade:
+		st_waitfade();
+		break;
+	}
+}
+
+void GameClear::st_first()
+{
 	CVector3 v;
 	for (auto s : sp_result)
 	{
@@ -365,6 +376,127 @@ void GameClear::Update()
 	{
 		fontdisp = true;
 	}
+
+	if (runpixs[1]->GetPos().x > 650)
+	{
+		if (Pad(0).IsTrigger(enButtonB))
+		{
+			for (auto s : sp_result)
+			{
+				DeleteGO(s);
+			}
+			for (auto s : sp_time)
+			{
+				DeleteGO(s);
+			}
+			for (auto s : sp_PC)
+			{
+				DeleteGO(s);
+			}
+			for (auto s : sp_score)
+			{
+				DeleteGO(s);
+			}
+			for (auto s : runpixs)
+			{
+				DeleteGO(s);
+			}
+			sp_marker = NewGO<prefab::CSpriteRender>(0);
+			sp_marker->Init(L"sprite/go/go_marker.dds", 256, 256);
+			sp_marker->SetPosition({ -486,-200,0 });
+
+			prefab::CSpriteRender* sp = NewGO<prefab::CSpriteRender>(0);
+			sp->Init(L"sprite/go/go_retry.dds", 256, 256);
+			sp->SetPosition({ -486,-200,0 });
+			sp_choise.push_back(sp);
+			sp = NewGO<prefab::CSpriteRender>(0);
+			sp->Init(L"sprite/go/go_title.dds", 256, 256);
+			sp->SetPosition({ -220,-200,0 });
+			sp_choise.push_back(sp);
+
+			state = rank;
+		}
+	}
+	else
+	{
+		if (Pad(0).IsTrigger(enButtonB))
+		{
+			for (auto s : sp_result)
+			{
+				s->SetRotation(CQuaternion::Identity);
+			}
+			for (auto s : sp_time)
+			{
+				s->SetRotation(CQuaternion::Identity);
+			}
+			for (auto s : sp_PC)
+			{
+				s->SetRotation(CQuaternion::Identity);
+			}
+			for (auto s : sp_score)
+			{
+				s->SetRotation(CQuaternion::Identity);
+			}
+			for (auto s : runpixs)
+			{
+				s->SetPos({ 651,0,0 });
+			}
+			
+
+			
+			fontdisp = true;
+		}
+	}
+}
+
+void GameClear::st_ranking()
+{
+	if (Pad(0).IsTrigger(enButtonB))
+	{
+		fade->StartFadeOut();
+		state = waitfade;
+		MainCamera().SetUpdateProjMatrixFunc(CCamera::EnUpdateProjMatrixFunc::enUpdateProjMatrixFunc_Perspective);
+		
+	}
+	else if (Pad(0).GetLStickXF() >= 0.5f && isMove)
+	{
+		if (choi != 1)
+		{
+			sp_marker->SetPosition({ -220,-200,0 });
+			choi++;
+			isMove = false;
+		}
+	}
+	else if (Pad(0).GetLStickXF() <= -0.5f && isMove)
+	{
+		if (choi != 0)
+		{
+			sp_marker->SetPosition({ -486,-200,0 });
+			choi--;
+			isMove = false;
+		}
+	}
+	if (fabsf(Pad(0).GetLStickXF()) < 0.3f)
+	{
+		isMove = true;
+	}
+	
+}
+
+void GameClear::st_waitfade()
+{
+	if (fade->IsFade())
+		return;
+	switch (choi)
+	{
+	case 0:
+		NewGO<Game>(0, "game");
+		break;
+	case 1:
+		NewGO<Title>(0, "title");
+		break;
+	}
+	DeleteGO(this);
 }
 
 void GameClear::PostRender(CRenderContext& rc)
@@ -372,15 +504,37 @@ void GameClear::PostRender(CRenderContext& rc)
 	if (!fontdisp)
 		return;
 	font.Begin(rc);
+	CVector2 po = CVector2::Zero;
+	float ins = 60;
 	wchar_t text[256];
-	swprintf_s(text, L"%02f", time);
-	font.Draw(text, { 0,130 }, {1,1,1,fontalph}, 0, 1);
+	switch(state)
+	{
+	case first:
+		swprintf_s(text, L"%02f", time);
+		font.Draw(text, { 0,130 }, {1,1,1,fontalph}, 0, 1);
 
-	swprintf_s(text, L"%d", pixieCount);
-	font.Draw(text, { 0,-20 }, { 1,1,1,fontalph }, 0, 1);
+		swprintf_s(text, L"%d", pixieCount);
+		font.Draw(text, { 0,-20 }, { 1,1,1,fontalph }, 0, 1);
 
-	swprintf_s(text, L"%d", score);
-	font.Draw(text, { 0,-170 }, { 1,1,1,fontalph }, 0, 1);
+		swprintf_s(text, L"%d", score);
+		font.Draw(text, { 0,-170 }, { 1,1,1,fontalph }, 0, 1);
+
+		swprintf_s(text, L"press E please");
+		font.Draw(text, { 420,-320 });
+		break;
+	case rank:
+		po = { 300,340 };
+		swprintf_s(text, L"Ranking");
+		font.Draw(text, {300,360}, CVector4::White, 0, 1.5f, { 0,1 });
+		for (int i = 0; i < 10; i++)
+		{
+			swprintf_s(text, L"%d:%d",i, ranking[i]);
+			po.y -= ins;
+			font.Draw(text, po, CVector4::White, 0, 1.5f, {0,1});
+		}
+		break;
+	}
+	
 	font.End(rc);
-	fontalph += 0.04f*GameTime().GetFrameDeltaTime();
+	fontalph += 0.01f*GameTime().GetFrameDeltaTime();
 }

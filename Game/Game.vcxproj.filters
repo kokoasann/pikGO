@@ -68,6 +68,12 @@
     <Filter Include="Assets\sprite\char">
       <UniqueIdentifier>{1ba03beb-41ee-41b5-81e9-74fca308292d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SaveLoad">
+      <UniqueIdentifier>{02ae75cf-9cef-4411-86a8-c12f707bb4df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\sprite\go">
+      <UniqueIdentifier>{189fc1c3-ebf0-482d-aa90-d063f74743e6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -142,6 +148,9 @@
     </ClCompile>
     <ClCompile Include="SystemGraphics\GameClear.cpp">
       <Filter>SystemGraphics</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveLoad\SaveLoad.cpp">
+      <Filter>SaveLoad</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -219,6 +228,9 @@
     </ClInclude>
     <ClInclude Include="SystemGraphics\GameClear.h">
       <Filter>SystemGraphics</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveLoad\SaveLoad.h">
+      <Filter>SaveLoad</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -305,50 +317,38 @@
     <ImageContentTask Include="Assets\sprite\timer\timer.png" />
     <ImageContentTask Include="Assets\sprite\fade_white.png" />
     <ImageContentTask Include="Assets\effect\Texture\Star.png" />
+    <ImageContentTask Include="Assets\sprite\char\gc_c.png" />
+    <ImageContentTask Include="Assets\sprite\char\gc_e.png" />
+    <ImageContentTask Include="Assets\sprite\char\gc_i.png" />
+    <ImageContentTask Include="Assets\sprite\char\gc_l.png" />
+    <ImageContentTask Include="Assets\sprite\char\gc_m.png" />
+    <ImageContentTask Include="Assets\sprite\char\gc_o.png" />
+    <ImageContentTask Include="Assets\sprite\char\gc_p.png" />
+    <ImageContentTask Include="Assets\sprite\char\gc_r.png" />
+    <ImageContentTask Include="Assets\sprite\char\gc_r_l.png" />
+    <ImageContentTask Include="Assets\sprite\char\gc_s.png" />
+    <ImageContentTask Include="Assets\sprite\char\gc_t.png" />
+    <ImageContentTask Include="Assets\sprite\char\gc_u.png" />
+    <ImageContentTask Include="Assets\sprite\char\gc_x.png" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Assets\modelData\pixie\pixie.tks" />
     <CustomBuild Include="Assets\effect\krkr.efk" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Assets\sprite\char\gc_c.png">
-      <Filter>Assets\sprite\char</Filter>
+    <None Include="Assets\save.sid">
+      <Filter>Assets</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\sprite\go\go_title.png">
+      <Filter>Assets\sprite\go</Filter>
     </Image>
-    <Image Include="Assets\sprite\char\gc_e.png">
-      <Filter>Assets\sprite\char</Filter>
+    <Image Include="Assets\sprite\go\go_marker.png">
+      <Filter>Assets\sprite\go</Filter>
     </Image>
-    <Image Include="Assets\sprite\char\gc_i.png">
-      <Filter>Assets\sprite\char</Filter>
-    </Image>
-    <Image Include="Assets\sprite\char\gc_l.png">
-      <Filter>Assets\sprite\char</Filter>
-    </Image>
-    <Image Include="Assets\sprite\char\gc_m.png">
-      <Filter>Assets\sprite\char</Filter>
-    </Image>
-    <Image Include="Assets\sprite\char\gc_o.png">
-      <Filter>Assets\sprite\char</Filter>
-    </Image>
-    <Image Include="Assets\sprite\char\gc_p.png">
-      <Filter>Assets\sprite\char</Filter>
-    </Image>
-    <Image Include="Assets\sprite\char\gc_r.png">
-      <Filter>Assets\sprite\char</Filter>
-    </Image>
-    <Image Include="Assets\sprite\char\gc_r_l.png">
-      <Filter>Assets\sprite\char</Filter>
-    </Image>
-    <Image Include="Assets\sprite\char\gc_s.png">
-      <Filter>Assets\sprite\char</Filter>
-    </Image>
-    <Image Include="Assets\sprite\char\gc_t.png">
-      <Filter>Assets\sprite\char</Filter>
-    </Image>
-    <Image Include="Assets\sprite\char\gc_u.png">
-      <Filter>Assets\sprite\char</Filter>
-    </Image>
-    <Image Include="Assets\sprite\char\gc_x.png">
-      <Filter>Assets\sprite\char</Filter>
+    <Image Include="Assets\sprite\go\go_retry.png">
+      <Filter>Assets\sprite\go</Filter>
     </Image>
   </ItemGroup>
 </Project>
