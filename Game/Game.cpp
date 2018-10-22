@@ -147,6 +147,7 @@ void Game::Update()
 	if (player->GetIsClear() && !(fade->IsFade()) && !Clear)
 	{
 		fade->changeWhite();
+		fade->SetFadeSpeed(0.5f);
 		fade->StartFadeOut();
 		DeleteGO(point);
 		timer->DelRen();

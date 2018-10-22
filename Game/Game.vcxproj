@@ -1788,6 +1788,7 @@
     <ClCompile Include="Pixie\PixieSpawner.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Q\Q.cpp" />
+    <ClCompile Include="SaveLoad\SaveLoad.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug_Middle|Win32'">Create</PrecompiledHeader>
@@ -1836,6 +1837,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Q\Q.h" />
     <CLInclude Include="resource.h" />
+    <ClInclude Include="SaveLoad\SaveLoad.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="SystemGraphics\Fade.h" />
     <ClInclude Include="SystemGraphics\GameClear.h" />

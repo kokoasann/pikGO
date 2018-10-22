@@ -24,7 +24,7 @@ void Timer::Update()
 {
 	time += GameTime().GetFrameDeltaTime();
 	float c = time / limit * 360;
-	rot.SetRotationDeg(CVector3::AxisZ, c);
+	rot.SetRotationDeg(CVector3::AxisZ, -c);
 	hand->SetRotation(rot);
 }
 

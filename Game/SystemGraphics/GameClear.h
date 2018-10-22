@@ -1,6 +1,7 @@
 #pragma once
 
 class Fade;
+class opChara;
 class GameClear :public IGameObject
 {
 public:
@@ -14,13 +15,13 @@ private:
 	int pixieCount = 0;
 	float time = 0.0f;
 	float limit = 0.0f;
-	int result = 0;
+	int score = 0;
 
 	prefab::CSkinModelRender* sky;
 	std::list<prefab::CDirectionLight*> lights;
 
 	CShader sha_sky;
-	std::vector<prefab::CSkinModelRender*> runpixs;
+	std::vector<opChara*> runpixs;
 	CAnimationClip anim;
 
 	std::vector<prefab::CSpriteRender*> sp_result;
@@ -29,6 +30,9 @@ private:
 	std::vector<prefab::CSpriteRender*> sp_score;
 
 	CFont font;
+	bool fontdisp = false;
+	float fontalph = 0.0f;
 
 	Fade* fade;
+	bool firstfade = true;
 };

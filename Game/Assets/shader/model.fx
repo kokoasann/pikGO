@@ -304,6 +304,20 @@ PSInput_RenderToDepth VSMainSkin_RenderDepth(VSInputNmTxWeights In)
 	return psInput;
 	
 }
+
+float4 PSsky(PSInput In) :SV_Target0
+{
+	float4 albedo = float4(albedoTexture.Sample(Sampler, In.TexCoord).xyz, 1.0f);
+	return float4(albedo.xyz, 1.0f);
+}
+
+float4 PSgcp(PSInput In) :SV_Target0
+{
+	float4 albedo = float4(albedoTexture.Sample(Sampler, In.TexCoord).xyz, 1.0f);
+	float3 fcolor = albedo.xyz / 100000.0f;
+	return float4(fcolor, 1.0f);
+}
+
 //--------------------------------------------------------------------------------------
 // ピクセルシェーダーのエントリ関数。
 //--------------------------------------------------------------------------------------
@@ -469,15 +483,3 @@ float4 PSMain_Silhouette( PSInput In ) : SV_Target0
 }
 
 
-float4 PSsky(PSInput In) :SV_Target0
-{
-	float4 albedo = float4(albedoTexture.Sample(Sampler, In.TexCoord).xyz, 1.0f);
-	return float4(albedo.xyz, 1.0f);
-}
-
-float4 PSgcp(PSInput In):SV_Targer0
-{
-	float4 albedo = float4(albedoTexture.Sample(Sampler, In.TexCoord).xyz, 1.0f);
-	albedo = albedo / float4(10.0f,10.0f,10.0f,1.0f);
-	return float4(albedo.xyz, 1.0f);
-}
