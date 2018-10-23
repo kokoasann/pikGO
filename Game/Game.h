@@ -34,7 +34,10 @@ public:
 	{
 		return Y;
 	}
-
+	void SetTO(bool b)
+	{
+		TimeOver = b;
+	}
 private:
 	EnInitStep initStep = enInitStep_00;
 	prefab::CSpriteRender* point = nullptr;
@@ -60,5 +63,6 @@ private:
 	CFont font;
 	int pixieoCount = 0;
 	bool Clear = false;
+	bool TimeOver = false;
 };
 

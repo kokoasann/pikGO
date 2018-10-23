@@ -21,6 +21,7 @@ class Pixie:public IGameObject,public Creature
 {
 public:
 	~Pixie();
+	void OnDestroy() override;
 	bool Start() override;
 	void Update() override;
 	

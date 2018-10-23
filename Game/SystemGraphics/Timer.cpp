@@ -1,5 +1,9 @@
 #include "stdafx.h"
 #include "Timer.h"
+#include "TimeUp.h"
+#include "Game.h"
+
+#include "Fade.h"
 
 Timer::~Timer()
 {
@@ -17,6 +21,8 @@ bool Timer::Start()
 	hand->Init(L"sprite/timer/hand.dds", x, y);
 	hand->SetPivot({ 0.5f,0.0f });
 	hand->SetPosition({ 480,240,0 });
+
+	fade = FindGO<Fade>("fade");
 	return true;
 }
 
@@ -26,6 +32,13 @@ void Timer::Update()
 	float c = time / limit * 360;
 	rot.SetRotationDeg(CVector3::AxisZ, -c);
 	hand->SetRotation(rot);
+
+	if (time >= limit)
+	{
+		DelRen();
+		fade->StartFadeIn();
+		FindGO<Game>("game")->SetTO(true);
+	}
 }
 
 void Timer::DelRen()

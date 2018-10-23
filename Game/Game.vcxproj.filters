@@ -152,6 +152,9 @@
     <ClCompile Include="SaveLoad\SaveLoad.cpp">
       <Filter>SaveLoad</Filter>
     </ClCompile>
+    <ClCompile Include="SystemGraphics\TimeUp.cpp">
+      <Filter>SystemGraphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -231,6 +234,9 @@
     </ClInclude>
     <ClInclude Include="SaveLoad\SaveLoad.h">
       <Filter>SaveLoad</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemGraphics\TimeUp.h">
+      <Filter>SystemGraphics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -330,25 +336,18 @@
     <ImageContentTask Include="Assets\sprite\char\gc_t.png" />
     <ImageContentTask Include="Assets\sprite\char\gc_u.png" />
     <ImageContentTask Include="Assets\sprite\char\gc_x.png" />
+    <ImageContentTask Include="Assets\sprite\go\go_marker.png" />
+    <ImageContentTask Include="Assets\sprite\go\go_retry.png" />
+    <ImageContentTask Include="Assets\sprite\go\go_title.png" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Assets\modelData\pixie\pixie.tks" />
     <CustomBuild Include="Assets\effect\krkr.efk" />
+    <CustomBuild Include="Assets\save.sid" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\save.sid">
-      <Filter>Assets</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="Assets\sprite\go\go_title.png">
-      <Filter>Assets\sprite\go</Filter>
-    </Image>
-    <Image Include="Assets\sprite\go\go_marker.png">
-      <Filter>Assets\sprite\go</Filter>
-    </Image>
-    <Image Include="Assets\sprite\go\go_retry.png">
-      <Filter>Assets\sprite\go</Filter>
+    <Image Include="Assets\sprite\title.png">
+      <Filter>Assets\sprite</Filter>
     </Image>
   </ItemGroup>
 </Project>

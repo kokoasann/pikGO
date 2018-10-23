@@ -4,16 +4,26 @@
 
 #include "Game.h"
 
+#include "opChara.h"
+#include "tkEngine/light/tkDirectionLight.h"
+
 Title::~Title()
 {
 	for (auto s : cells)
 	{
 		DeleteGO(s);
 	}
+	DeleteGO(title);
+	DeleteGO(ground);
+	DeleteGO(light);
 }
 
 bool Title::Start()
 {
+	MainCamera().SetPosition({ 0,50,0 });
+	MainCamera().SetTarget({ 0,1,0.1f });
+	MainCamera().SetUpdateProjMatrixFunc(CCamera::EnUpdateProjMatrixFunc::enUpdateProjMatrixFunc_Perspective);
+	MainCamera().Update();
 	fade = FindGO<Fade>("fade");
 	fade->StartFadeIn();
 
@@ -37,6 +47,17 @@ bool Title::Start()
 	sp->Init(L"sprite/cell/cell_end.dds", 250.0f, 80.529f);
 	sp->SetPosition({ 290,-305,0 });
 	cells.push_back(sp);
+
+	title = NewGO<prefab::CSpriteRender>(0);
+	title->Init(L"sprite/title.dds", 1028*0.7f, 542*0.7f);
+	title->SetPosition({ -220,150,0 });
+
+	ground = NewGO<prefab::CSkinModelRender>(0);
+	ground->Init(L"modelData/op/Ground.cmo");
+
+	light = NewGO<prefab::CDirectionLight>(0);
+	light->SetDirection({ 0,-1,0 });
+	light->SetColor({ 300,300,300,1 });
 	return true;
 }
 
@@ -131,4 +152,8 @@ void Title::cho_config()
 void Title::cho_end()
 {
 	exit(0);
+}
+
+void Title::pic_spw()
+{
 }

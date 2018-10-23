@@ -1816,6 +1816,7 @@
     <ClCompile Include="SystemGraphics\Opening.cpp" />
     <ClCompile Include="SystemGraphics\StartMenu.cpp" />
     <ClCompile Include="SystemGraphics\Timer.cpp" />
+    <ClCompile Include="SystemGraphics\TimeUp.cpp" />
     <ClCompile Include="SystemGraphics\Title.cpp" />
     <ClCompile Include="test\test.cpp" />
   </ItemGroup>
@@ -1846,6 +1847,7 @@
     <ClInclude Include="SystemGraphics\Opening.h" />
     <ClInclude Include="SystemGraphics\StartMenu.h" />
     <ClInclude Include="SystemGraphics\Timer.h" />
+    <ClInclude Include="SystemGraphics\TimeUp.h" />
     <ClInclude Include="SystemGraphics\Title.h" />
     <ClInclude Include="test\test.h" />
     <ResourceCompile Include="Game.rc" />
@@ -1932,6 +1934,9 @@
     <ImageContentTask Include="Assets\sprite\go\go_marker.png" />
     <ImageContentTask Include="Assets\sprite\go\go_retry.png" />
     <ImageContentTask Include="Assets\sprite\go\go_title.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="Assets\sprite\title.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -14,6 +14,7 @@
 #include "BackGround/RootFind.h"
 #include "SystemGraphics/Fade.h"
 #include "SystemGraphics/GameClear.h"
+#include "SystemGraphics/TimeUp.h"
 #include "tkEngine/light/tkDirectionLight.h"
 
 #include "test/test.h"
@@ -72,6 +73,7 @@ bool Game::Start()
 		MainCamera().SetNear(1.0f);
 		MainCamera().SetFar(50000.0f);
 		MainCamera().SetPosition({ 5000.0f, 10500.0f, 1000.0f });
+		MainCamera().SetUpdateProjMatrixFunc(CCamera::EnUpdateProjMatrixFunc::enUpdateProjMatrixFunc_Perspective);
 		MainCamera().SetViewAngle(20);
 		MainCamera().Update();
 		//int T = 10, Y = 10;
@@ -154,6 +156,12 @@ void Game::Update()
 		Clear = true;
 	}
 
+	if (TimeOver && !fade->IsFade())
+	{
+		NewGO<TimeUp>(0, "timeup");
+		DeleteGO(point);
+		DeleteGO(this);
+	}
 }
 
 void Game::PostRender(CRenderContext & rc)

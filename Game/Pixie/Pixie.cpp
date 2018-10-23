@@ -7,6 +7,11 @@ Pixie::~Pixie()
 {
 }
 
+void Pixie::OnDestroy()
+{
+	//DeleteGO(sr);
+}
+
 bool Pixie::Start()
 {
 	animClip[anim_idle].Load(L"modelData/pixie/pixie_idle.tka");
