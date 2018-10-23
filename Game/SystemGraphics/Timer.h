@@ -23,7 +23,7 @@ public:
 	}
 private:
 	float time = 0.0f;
-	float limit = 10.0f;
+	float limit = 60.0f;
 	CQuaternion rot = CQuaternion::Identity;
 	prefab::CSpriteRender* watch;
 	prefab::CSpriteRender* hand;

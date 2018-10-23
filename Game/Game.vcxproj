@@ -1477,13 +1477,16 @@
       <ContentOutput>%(RelativeDir)/%(Filename).dds</ContentOutput>
     </ImageContentTask>
     <CustomBuild>
-      <Command>call $(ProjectDir)..\tkTools\tkContentTools.bat %(Identity) $(OutDir)</Command>
+      <Command>
+      </Command>
     </CustomBuild>
     <CustomBuild>
-      <Message>tkContentTools</Message>
+      <Message>
+      </Message>
     </CustomBuild>
     <CustomBuild>
-      <Outputs>$(OutDir)\%(Identity)</Outputs>
+      <Outputs>
+      </Outputs>
     </CustomBuild>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_Low|X64'">
